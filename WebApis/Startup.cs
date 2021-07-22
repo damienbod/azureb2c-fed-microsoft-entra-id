@@ -35,10 +35,6 @@ namespace WebApis
             services.AddMicrosoftIdentityWebApiAuthentication(
                 Configuration, "AzureB2CUserApi");
 
-            //services.AddMicrosoftIdentityWebApiAuthentication(
-            //   Configuration, "AzureB2CAdminApi");
-
-
             services.AddMicrosoftIdentityWebApiAuthentication(
                Configuration, "AzureB2CAdminApi", "BearerAdmin");
 

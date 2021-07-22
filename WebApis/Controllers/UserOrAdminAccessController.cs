@@ -1,24 +1,23 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.Resource;
 
 namespace WebApis.Controllers
 {
-    [Authorize(AuthenticationSchemes = "BearerAdmin")]
-    [AuthorizeForScopes(Scopes = new string[] { "api://5f4e8bb1-3f4e-4fc6-b03c-12169e192cd7/access_as_user" })]
+    [Authorize(AuthenticationSchemes = "Bearer, BearerAdmin")]
     [ApiController]
     [Route("[controller]")]
-    public class AdminAccessController : ControllerBase
+    public class UserOrAdminAccessController : ControllerBase
     {
         [HttpGet]
         public List<string> Get()
         {
+            // could be from either API token
             string[] scopeRequiredByApi = new string[] { "access_as_user" };
             HttpContext.VerifyUserHasAnyAcceptedScope(scopeRequiredByApi);
 
-            return new List<string> { "admin data" };
+            return new List<string> { "data for users and admins data" };
         }
     }
 }
