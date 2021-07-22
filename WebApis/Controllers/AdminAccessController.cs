@@ -18,7 +18,7 @@ namespace WebApis.Controllers
             string[] scopeRequiredByApi = new string[] { "access_as_user" };
             HttpContext.VerifyUserHasAnyAcceptedScope(scopeRequiredByApi);
 
-            return new List<string> { "user data" };
+            return new List<string> { "admin data" };
         }
     }
 }

@@ -8,7 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 
-namespace WebAppUserApis
+namespace AzureB2CUI
 {
     public class Startup
     {
@@ -21,7 +21,7 @@ namespace WebAppUserApis
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<UserApiOneService>();
+            services.AddTransient<AdminApiOneService>();
             services.AddHttpClient();
 
             services.AddOptions();
