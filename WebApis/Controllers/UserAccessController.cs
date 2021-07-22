@@ -7,7 +7,7 @@ using Microsoft.Identity.Web.Resource;
 namespace WebApis.Controllers
 {
     [Authorize]
-    [AuthorizeForScopes(Scopes = new string[] { "api://72286b8d-5010-4632-9cea-e69e565a5517/access_as_user" })]
+    [AuthorizeForScopes(Scopes = new string[] { "api://723191f4-427e-4f77-93a8-0a62dac4e080/access_as_user" })]
     [ApiController]
     [Route("[controller]")]
     public class UserAccessController : ControllerBase
