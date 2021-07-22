@@ -6,7 +6,7 @@ using Microsoft.Identity.Web.Resource;
 
 namespace WebApis.Controllers
 {
-    [Authorize(AuthenticationSchemes = "BearerAdmin")]
+    [Authorize(AuthenticationSchemes = "BearerAdmin", Policy = "IsAdminRequirementPolicy")]
     [AuthorizeForScopes(Scopes = new string[] { "api://5f4e8bb1-3f4e-4fc6-b03c-12169e192cd7/access_as_user" })]
     [ApiController]
     [Route("[controller]")]

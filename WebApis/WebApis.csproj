@@ -17,4 +17,8 @@
     <PackageReference Include="Serilog.Sinks.File" Version="4.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Authz\" />
+  </ItemGroup>
+
 </Project>

@@ -11,6 +11,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Logging;
+using WebApis.Authz;
 
 namespace WebApis
 {
@@ -82,6 +83,16 @@ namespace WebApis
                    // .RequireClaim("email") // disabled this to test with users that have no email (no license added)
                     .Build();
                 options.Filters.Add(new AuthorizeFilter(policy));
+            });
+
+            services.AddSingleton<IAuthorizationHandler, IsAdminHandler>();
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("IsAdminRequirementPolicy", policyIsAdminRequirement =>
+                {
+                    policyIsAdminRequirement.Requirements.Add(new IsAdminRequirement());
+                });
             });
         }
 
