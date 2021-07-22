@@ -61,9 +61,9 @@ namespace WebApis
 
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "User API One",
+                    Title = "Web APIs",
                     Version = "v1",
-                    Description = "User API One",
+                    Description = "Web APIs",
                     Contact = new OpenApiContact
                     {
                         Name = "damienbod",

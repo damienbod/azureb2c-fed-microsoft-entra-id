@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 namespace AzureB2CUI.Pages
 {
     [AuthorizeForScopes(Scopes = new string[] { "api://b2a09168-54e2-4bc4-af92-a710a64ef1fa/access_as_user" })]
-    public class CallApiModel : PageModel
+    public class CallAdminApiModel : PageModel
     {
         private readonly AdminApiOneService _apiService;
 
         public JArray DataFromApi { get; set; }
-        public CallApiModel(AdminApiOneService apiService)
+        public CallAdminApiModel(AdminApiOneService apiService)
         {
             _apiService = apiService;
         }
