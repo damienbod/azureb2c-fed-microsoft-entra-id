@@ -33,9 +33,8 @@ namespace WebApis
             IdentityModelEventSource.ShowPII = true;
             // JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
 
-            services.AddMicrosoftIdentityWebApiAuthentication(Configuration)
-                .EnableTokenAcquisitionToCallDownstreamApi()
-                .AddInMemoryTokenCaches();
+            services.AddMicrosoftIdentityWebApiAuthentication(
+                Configuration, "AzureB2CUserApi");
 
             services.AddSwaggerGen(c =>
             {
