@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.OpenApi.Models;
 using System;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Logging;
 
 namespace WebApis
 {
@@ -29,7 +30,7 @@ namespace WebApis
             services.AddOptions();
 
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
-            // IdentityModelEventSource.ShowPII = true;
+            IdentityModelEventSource.ShowPII = true;
             // JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
 
             services.AddMicrosoftIdentityWebApiAuthentication(Configuration)
