@@ -16,7 +16,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "UserApiOne": {
+    "WebApis": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "weatherforecast",

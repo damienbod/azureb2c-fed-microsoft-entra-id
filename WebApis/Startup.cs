@@ -11,7 +11,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
-namespace UserApiOne
+namespace WebApis
 {
     public class Startup
     {
