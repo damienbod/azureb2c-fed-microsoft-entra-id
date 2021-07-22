@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace AzureB2CUI.Pages
 {
+    [AuthorizeForScopes(Scopes = new string[] { "https://b2cdamienbod.onmicrosoft.com/5f4e8bb1-3f4e-4fc6-b03c-12169e192cd7/access_as_user" })]
     public class CallAdminApiModel : PageModel
     {
         private readonly AdminApiOneService _apiService;
