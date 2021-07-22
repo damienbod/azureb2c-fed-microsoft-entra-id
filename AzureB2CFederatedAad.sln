@@ -9,9 +9,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README_CONFIG.md = README_CONFIG.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserApiOne", "UserApiOne\UserApiOne.csproj", "{C4E0B7F3-8D05-4598-A60C-8219035CC917}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApis", "WebApis\WebApis.csproj", "{C4E0B7F3-8D05-4598-A60C-8219035CC917}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAppUserApis", "WebAppUserApis\WebAppUserApis.csproj", "{777AEF60-55C5-4339-846A-9BBA23FF8B5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureB2CUI", "AzureB2CUI\AzureB2CUI.csproj", "{777AEF60-55C5-4339-846A-9BBA23FF8B5A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
