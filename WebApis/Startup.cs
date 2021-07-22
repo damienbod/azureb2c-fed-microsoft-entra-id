@@ -32,15 +32,15 @@ namespace WebApis
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             IdentityModelEventSource.ShowPII = true;
 
+            services.AddMicrosoftIdentityWebApiAuthentication(
+                Configuration, "AzureB2CUserApi");
+
             //services.AddMicrosoftIdentityWebApiAuthentication(
-            //    Configuration, "AzureB2CUserApi");
+            //   Configuration, "AzureB2CAdminApi");
+
 
             services.AddMicrosoftIdentityWebApiAuthentication(
-               Configuration, "AzureB2CAdminApi");
-
-
-            //services.AddMicrosoftIdentityWebApiAuthentication(
-            //   Configuration, "AzureB2CAdminApi", "BearerAdmin");
+               Configuration, "AzureB2CAdminApi", "BearerAdmin");
 
             services.AddSwaggerGen(c =>
             {
