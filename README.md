@@ -6,6 +6,8 @@ Securing ASP.NET Core Razor, Web APIs with Azure B2C external and Azure AD inter
 
 https://docs.microsoft.com/en-us/azure/active-directory-b2c/overview
 
+https://docs.microsoft.com/en-us/azure/active-directory-b2c/identity-provider-azure-ad-single-tenant
+
 https://github.com/AzureAD/microsoft-identity-web
 
 https://docs.microsoft.com/en-us/azure/active-directory/develop/microsoft-identity-web
