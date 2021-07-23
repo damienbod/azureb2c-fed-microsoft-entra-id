@@ -1,1 +1,15 @@
-# azureb2c-fed-azuread
+# ASP.NET Core Azure B2C, Azure AD
+
+Securing ASP.NET Core Razor, Web APIs with Azure B2C external and Azure AD internal identities
+
+# Links
+
+https://docs.microsoft.com/en-us/azure/active-directory-b2c/overview
+
+https://github.com/AzureAD/microsoft-identity-web
+
+https://docs.microsoft.com/en-us/azure/active-directory/develop/microsoft-identity-web
+
+https://docs.microsoft.com/en-us/azure/active-directory-b2c/identity-provider-local
+
+https://docs.microsoft.com/en-us/azure/active-directory/

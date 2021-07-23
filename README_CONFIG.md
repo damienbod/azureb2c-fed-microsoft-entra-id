@@ -1,17 +1,8 @@
 
-## WebAppUserApis secrets
+## AzureB2CUI secrets
 
 ```
  "AzureAd": {
     "ClientSecret": "your-secret"
   }
 ```
-
-## UserApiOne secrets
-
-```
- "AzureAd": {
-    "ClientSecret": "your-secret"
-  }
-```
-
