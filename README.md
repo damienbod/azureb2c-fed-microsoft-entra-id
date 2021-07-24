@@ -15,3 +15,5 @@ https://docs.microsoft.com/en-us/azure/active-directory/develop/microsoft-identi
 https://docs.microsoft.com/en-us/azure/active-directory-b2c/identity-provider-local
 
 https://docs.microsoft.com/en-us/azure/active-directory/
+
+https://docs.microsoft.com/en-us/aspnet/core/security/authentication/azure-ad-b2c
