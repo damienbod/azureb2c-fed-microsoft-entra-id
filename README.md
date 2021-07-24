@@ -17,3 +17,7 @@ https://docs.microsoft.com/en-us/azure/active-directory-b2c/identity-provider-lo
 https://docs.microsoft.com/en-us/azure/active-directory/
 
 https://docs.microsoft.com/en-us/aspnet/core/security/authentication/azure-ad-b2c
+
+https://github.com/azure-ad-b2c/azureadb2ccommunity.io
+
+https://github.com/azure-ad-b2c/samples
