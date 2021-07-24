@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace AzureB2CUI
 {
-    public class UserApiOneService
+    public class UserApiService
     {
         private readonly IHttpClientFactory _clientFactory;
         private readonly ITokenAcquisition _tokenAcquisition;
         private readonly IConfiguration _configuration;
 
-        public UserApiOneService(IHttpClientFactory clientFactory, 
+        public UserApiService(IHttpClientFactory clientFactory, 
             ITokenAcquisition tokenAcquisition, 
             IConfiguration configuration)
         {

@@ -21,8 +21,8 @@ namespace AzureB2CUI
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<AdminApiOneService>();
-            services.AddTransient<UserApiOneService>();
+            services.AddTransient<AdminApiService>();
+            services.AddTransient<UserApiService>();
             services.AddHttpClient();
 
             services.AddOptions();

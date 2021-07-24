@@ -8,10 +8,10 @@ namespace AzureB2CUI.Pages
     [AuthorizeForScopes(Scopes = new string[] { "https://b2cdamienbod.onmicrosoft.com/723191f4-427e-4f77-93a8-0a62dac4e080/access_as_user" })]
     public class CallUserApiModel : PageModel
     {
-        private readonly UserApiOneService _apiService;
+        private readonly UserApiService _apiService;
 
         public JArray DataFromApi { get; set; }
-        public CallUserApiModel(UserApiOneService apiService)
+        public CallUserApiModel(UserApiService apiService)
         {
             _apiService = apiService;
         }
