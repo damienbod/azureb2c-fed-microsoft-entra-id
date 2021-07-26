@@ -4,7 +4,7 @@ Securing ASP.NET Core Razor, Web APIs with Azure B2C external and Azure AD inter
 
 https://damienbod.com/2021/07/26/securing-asp-net-core-razor-pages-web-apis-with-azure-b2c-external-and-azure-ad-internal-identities/
 
-[setup](https://github.com/damienbod/azureb2c-fed-azuread/blob/main/AzureB2CAzureAD_01.png?raw=true)
+![setup](AzureB2CAzureAD_01.png)
 
 # Links
 
