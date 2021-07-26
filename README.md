@@ -1,6 +1,6 @@
 # ASP.NET Core Azure B2C, Azure AD
 
-[![.NET](https://github.com/damienbod/azureb2c-fed-azuread/actions/workflows/dotnet.yml/badge.svg)](https://github.com/damienbod/azureb2c-fed-azuread/actions/workflows/dotnet.yml)
+[![.NET](https://github.com/damienbod/azureb2c-fed-azuread/workflows/.NET/badge.svg)](https://github.com/damienbod/azureb2c-fed-azuread/actions?query=workflow%3A.NET) 
 
 Securing ASP.NET Core Razor, Web APIs with Azure B2C external and Azure AD internal identities
 
