@@ -8,6 +8,10 @@ https://damienbod.com/2021/07/26/securing-asp-net-core-razor-pages-web-apis-with
 
 ![setup](AzureB2CAzureAD_01.png)
 
+## History
+
+2021-08-19 Updated packages
+
 # Links
 
 https://docs.microsoft.com/en-us/azure/active-directory-b2c/overview
