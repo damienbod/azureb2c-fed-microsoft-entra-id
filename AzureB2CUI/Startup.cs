@@ -1,3 +1,4 @@
+using AzureB2CUI.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -23,6 +24,7 @@ namespace AzureB2CUI
         {
             services.AddTransient<AdminApiService>();
             services.AddTransient<UserApiService>();
+            services.AddScoped<GraphApiClientService>();
             services.AddHttpClient();
 
             services.AddOptions();

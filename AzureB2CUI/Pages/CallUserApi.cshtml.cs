@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using AzureB2CUI.Services;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Identity.Web;
 using Newtonsoft.Json.Linq;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AzureB2CUI.Pages
@@ -9,15 +11,21 @@ namespace AzureB2CUI.Pages
     public class CallUserApiModel : PageModel
     {
         private readonly UserApiService _apiService;
+        private readonly GraphApiClientService _graphApiClientService;
 
         public JArray DataFromApi { get; set; }
-        public CallUserApiModel(UserApiService apiService)
+        public CallUserApiModel(UserApiService apiService, GraphApiClientService graphApiClientService)
         {
             _apiService = apiService;
+            _graphApiClientService = graphApiClientService;
         }
 
         public async Task OnGetAsync()
         {
+            var claimType = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier";
+            var nameidentifier = HttpContext.User.Claims.FirstOrDefault(t => t.Type == claimType);
+
+            var test = await _graphApiClientService.GetGraphApiUser(nameidentifier.Value);
             DataFromApi = await _apiService.GetApiDataAsync().ConfigureAwait(false);
         }
     }
