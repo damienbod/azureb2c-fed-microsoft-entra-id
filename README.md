@@ -8,7 +8,7 @@
 )
 
 
-[Using Azure groups in ASP.NET Core with an Azure B2C Identity Provider]()
+[Using Azure security groups in ASP.NET Core with an Azure B2C Identity Provider]()
 
 ## Setup 
 
