@@ -50,6 +50,49 @@ namespace AzureB2CUI.Services
             }
             
         }
+
+        public async Task<IUserAppRoleAssignmentsCollectionPage> GetGraphApiUserAppRoles(string userId)
+        {
+            try
+            {
+                var d2 = await _graphServiceClient.Users[userId]
+                    .AppRoleAssignments
+                    .Request()
+                    .GetAsync()
+                    .ConfigureAwait(false);
+
+                return d2;
+
+            }
+            catch (Exception ex)
+            {
+                var da = ex.Message;
+                return null;
+            }
+
+        }
+
+        public async Task<IDirectoryObjectGetMemberGroupsCollectionPage> GetGraphApiUserMemberGroups(string userId)
+        {
+            try
+            {
+                var securityEnabledOnly = true;
+
+                var d2 = await _graphServiceClient.Users[userId]
+                    .GetMemberGroups(securityEnabledOnly)
+                    .Request().PostAsync()
+                    .ConfigureAwait(false);
+
+                return d2;
+
+            }
+            catch (Exception ex)
+            {
+                var da = ex.Message;
+                return null;
+            }
+
+        }
     }
 }
 

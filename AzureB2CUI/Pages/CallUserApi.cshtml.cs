@@ -26,6 +26,11 @@ namespace AzureB2CUI.Pages
             var nameidentifier = HttpContext.User.Claims.FirstOrDefault(t => t.Type == claimType);
 
             var test = await _graphApiClientService.GetGraphApiUser(nameidentifier.Value);
+
+            var test2 = await _graphApiClientService.GetGraphApiUserAppRoles(nameidentifier.Value);
+
+            var test3 = await _graphApiClientService.GetGraphApiUserMemberGroups(nameidentifier.Value);
+
             DataFromApi = await _apiService.GetApiDataAsync().ConfigureAwait(false);
         }
     }
