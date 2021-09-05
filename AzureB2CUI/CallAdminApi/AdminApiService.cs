@@ -14,8 +14,8 @@ namespace AzureB2CUI
         private readonly ITokenAcquisition _tokenAcquisition;
         private readonly IConfiguration _configuration;
 
-        public AdminApiService(IHttpClientFactory clientFactory, 
-            ITokenAcquisition tokenAcquisition, 
+        public AdminApiService(IHttpClientFactory clientFactory,
+            ITokenAcquisition tokenAcquisition,
             IConfiguration configuration)
         {
             _clientFactory = clientFactory;

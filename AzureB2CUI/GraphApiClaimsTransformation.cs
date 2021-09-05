@@ -37,6 +37,6 @@ namespace AzureB2CUI
             return principal;
         }
 
-        
+
     }
 }

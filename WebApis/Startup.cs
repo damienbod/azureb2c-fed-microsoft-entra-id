@@ -80,7 +80,7 @@ namespace WebApis
             {
                 var policy = new AuthorizationPolicyBuilder()
                     .RequireAuthenticatedUser()
-                   // .RequireClaim("email") // disabled this to test with users that have no email (no license added)
+                    // .RequireClaim("email") // disabled this to test with users that have no email (no license added)
                     .Build();
                 options.Filters.Add(new AuthorizeFilter(policy));
             });

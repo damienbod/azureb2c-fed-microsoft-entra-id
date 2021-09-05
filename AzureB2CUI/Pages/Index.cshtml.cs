@@ -18,7 +18,7 @@ namespace AzureB2CUI.Pages
         }
 
         public void OnGet()
-        { 
+        {
         }
     }
 }
