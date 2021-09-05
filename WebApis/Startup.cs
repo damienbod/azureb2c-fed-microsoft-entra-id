@@ -85,7 +85,7 @@ namespace WebApis
                 options.Filters.Add(new AuthorizeFilter(policy));
             });
 
-            services.AddSingleton<IAuthorizationHandler, IsAdminHandler>();
+            services.AddSingleton<IAuthorizationHandler, IsAdminHandlerUsingIdp>();
 
             services.AddAuthorization(options =>
             {

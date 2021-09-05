@@ -1,3 +1,4 @@
+using AzureB2CUI.Authz;
 using AzureB2CUI.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -44,6 +45,16 @@ namespace AzureB2CUI
                     .Build();
                 options.Filters.Add(new AuthorizeFilter(policy));
             }).AddMicrosoftIdentityUI();
+
+            services.AddSingleton<IAuthorizationHandler, IsAdminHandlerUsingAzureGroups>();
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("IsAdminPolicy", policy =>
+                {
+                    policy.Requirements.Add(new IsAdminRequirement());
+                });
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
