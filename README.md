@@ -2,9 +2,13 @@
 
 [![.NET](https://github.com/damienbod/azureb2c-fed-azuread/workflows/.NET/badge.svg)](https://github.com/damienbod/azureb2c-fed-azuread/actions?query=workflow%3A.NET) 
 
-Securing ASP.NET Core Razor, Web APIs with Azure B2C external and Azure AD internal identities
+## Blogs
 
-https://damienbod.com/2021/07/26/securing-asp-net-core-razor-pages-web-apis-with-azure-b2c-external-and-azure-ad-internal-identities/
+[Securing ASP.NET Core Razor, Web APIs with Azure B2C external and Azure AD internal identities](https://damienbod.com/2021/07/26/securing-asp-net-core-razor-pages-web-apis-with-azure-b2c-external-and-azure-ad-internal-identities/
+)
+
+
+[Using Azure groups in ASP.NET Core with an Azure B2C Identity Provider]()
 
 ![setup](AzureB2CAzureAD_01.png)
 
