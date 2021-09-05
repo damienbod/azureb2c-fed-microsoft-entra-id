@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Graph;
 using System.Threading.Tasks;
-using System;
 
 namespace AzureB2CUI.Services
 {
@@ -33,65 +32,29 @@ namespace AzureB2CUI.Services
 
         public async Task<User> GetGraphApiUser(string userId)
         {
-            try
-            {
-                var d2 = await _graphServiceClient.Users[userId]
+            return await _graphServiceClient.Users[userId]
                     .Request()
                     .GetAsync()
                     .ConfigureAwait(false);
-
-                return d2;
-
-            }
-            catch (Exception ex)
-            {
-                var da =  ex.Message;
-                return null;
-            }
-            
         }
 
         public async Task<IUserAppRoleAssignmentsCollectionPage> GetGraphApiUserAppRoles(string userId)
         {
-            try
-            {
-                var d2 = await _graphServiceClient.Users[userId]
+            return await _graphServiceClient.Users[userId]
                     .AppRoleAssignments
                     .Request()
                     .GetAsync()
                     .ConfigureAwait(false);
-
-                return d2;
-
-            }
-            catch (Exception ex)
-            {
-                var da = ex.Message;
-                return null;
-            }
-
         }
 
         public async Task<IDirectoryObjectGetMemberGroupsCollectionPage> GetGraphApiUserMemberGroups(string userId)
         {
-            try
-            {
-                var securityEnabledOnly = true;
+            var securityEnabledOnly = true;
 
-                var d2 = await _graphServiceClient.Users[userId]
-                    .GetMemberGroups(securityEnabledOnly)
-                    .Request().PostAsync()
-                    .ConfigureAwait(false);
-
-                return d2;
-
-            }
-            catch (Exception ex)
-            {
-                var da = ex.Message;
-                return null;
-            }
-
+            return await _graphServiceClient.Users[userId]
+                .GetMemberGroups(securityEnabledOnly)
+                .Request().PostAsync()
+                .ConfigureAwait(false);
         }
     }
 }
