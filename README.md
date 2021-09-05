@@ -10,9 +10,13 @@
 
 [Using Azure groups in ASP.NET Core with an Azure B2C Identity Provider]()
 
+## Setup 
+
 ![setup](AzureB2CAzureAD_01.png)
 
 ## History
+
+2021-09-05 Added Graph API and support for Azure groups authorization
 
 2021-08-19 Updated packages
 
