@@ -14,23 +14,13 @@ namespace AzureB2CUI.Pages
         private readonly GraphApiClientService _graphApiClientService;
 
         public JArray DataFromApi { get; set; }
-        public CallUserApiModel(UserApiService apiService, GraphApiClientService graphApiClientService)
+        public CallUserApiModel(UserApiService apiService)
         {
             _apiService = apiService;
-            _graphApiClientService = graphApiClientService;
         }
 
         public async Task OnGetAsync()
         {
-            var claimType = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier";
-            var nameidentifier = HttpContext.User.Claims.FirstOrDefault(t => t.Type == claimType);
-
-            //var test = await _graphApiClientService.GetGraphApiUser(nameidentifier.Value);
-
-            //var test2 = await _graphApiClientService.GetGraphApiUserAppRoles(nameidentifier.Value);
-
-            //var test3 = await _graphApiClientService.GetGraphApiUserMemberGroups(nameidentifier.Value);
-
             DataFromApi = await _apiService.GetApiDataAsync().ConfigureAwait(false);
         }
     }
