@@ -25,11 +25,11 @@ namespace AzureB2CUI.Pages
             var claimType = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier";
             var nameidentifier = HttpContext.User.Claims.FirstOrDefault(t => t.Type == claimType);
 
-            var test = await _graphApiClientService.GetGraphApiUser(nameidentifier.Value);
+            //var test = await _graphApiClientService.GetGraphApiUser(nameidentifier.Value);
 
-            var test2 = await _graphApiClientService.GetGraphApiUserAppRoles(nameidentifier.Value);
+            //var test2 = await _graphApiClientService.GetGraphApiUserAppRoles(nameidentifier.Value);
 
-            var test3 = await _graphApiClientService.GetGraphApiUserMemberGroups(nameidentifier.Value);
+            //var test3 = await _graphApiClientService.GetGraphApiUserMemberGroups(nameidentifier.Value);
 
             DataFromApi = await _apiService.GetApiDataAsync().ConfigureAwait(false);
         }
