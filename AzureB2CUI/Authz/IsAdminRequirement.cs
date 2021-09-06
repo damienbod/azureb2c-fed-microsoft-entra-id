@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 
-namespace WebApis.Authz
+namespace AzureB2CUI.Authz
 {
     public class IsAdminRequirement : IAuthorizationRequirement { }
 }

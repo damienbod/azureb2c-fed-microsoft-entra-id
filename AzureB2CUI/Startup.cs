@@ -1,3 +1,6 @@
+using AzureB2CUI.Authz;
+using AzureB2CUI.Services;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -23,6 +26,8 @@ namespace AzureB2CUI
         {
             services.AddTransient<AdminApiService>();
             services.AddTransient<UserApiService>();
+            services.AddScoped<GraphApiClientService>();
+            services.AddTransient<IClaimsTransformation, GraphApiClaimsTransformation>();
             services.AddHttpClient();
 
             services.AddOptions();
@@ -40,6 +45,16 @@ namespace AzureB2CUI
                     .Build();
                 options.Filters.Add(new AuthorizeFilter(policy));
             }).AddMicrosoftIdentityUI();
+
+            services.AddSingleton<IAuthorizationHandler, IsAdminHandlerUsingAzureGroups>();
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("IsAdminPolicy", policy =>
+                {
+                    policy.Requirements.Add(new IsAdminRequirement());
+                });
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

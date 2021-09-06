@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using AzureB2CUI.Services;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Identity.Web;
 using Newtonsoft.Json.Linq;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AzureB2CUI.Pages
@@ -9,6 +11,7 @@ namespace AzureB2CUI.Pages
     public class CallUserApiModel : PageModel
     {
         private readonly UserApiService _apiService;
+        private readonly GraphApiClientService _graphApiClientService;
 
         public JArray DataFromApi { get; set; }
         public CallUserApiModel(UserApiService apiService)

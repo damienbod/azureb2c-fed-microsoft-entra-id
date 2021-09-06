@@ -2,13 +2,21 @@
 
 [![.NET](https://github.com/damienbod/azureb2c-fed-azuread/workflows/.NET/badge.svg)](https://github.com/damienbod/azureb2c-fed-azuread/actions?query=workflow%3A.NET) 
 
-Securing ASP.NET Core Razor, Web APIs with Azure B2C external and Azure AD internal identities
+## Blogs
 
-https://damienbod.com/2021/07/26/securing-asp-net-core-razor-pages-web-apis-with-azure-b2c-external-and-azure-ad-internal-identities/
+[Securing ASP.NET Core Razor, Web APIs with Azure B2C external and Azure AD internal identities](https://damienbod.com/2021/07/26/securing-asp-net-core-razor-pages-web-apis-with-azure-b2c-external-and-azure-ad-internal-identities/
+)
+
+
+[Using Azure security groups in ASP.NET Core with an Azure B2C Identity Provider]()
+
+## Setup 
 
 ![setup](AzureB2CAzureAD_01.png)
 
 ## History
+
+2021-09-05 Added Graph API and support for Azure groups authorization
 
 2021-08-19 Updated packages
 
@@ -31,3 +39,9 @@ https://docs.microsoft.com/en-us/aspnet/core/security/authentication/azure-ad-b2
 https://github.com/azure-ad-b2c/azureadb2ccommunity.io
 
 https://github.com/azure-ad-b2c/samples
+
+https://docs.microsoft.com/en-us/aspnet/core/blazor/security/webassembly/graph-api
+
+https://techieshour.wordpress.com/2020/05/11/managing-azure-b2c-users-with-microsoft-graph-api/
+
+https://docs.microsoft.com/en-us/graph/sdks/choose-authentication-providers?tabs=CS#client-credentials-provider
