@@ -16,6 +16,8 @@
 
 ## History
 
+2022-01-18 Update to .NET 6, updated packages
+
 2021-09-05 Added Graph API and support for Azure groups authorization
 
 2021-08-19 Updated packages
