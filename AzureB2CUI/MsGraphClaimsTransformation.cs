@@ -25,7 +25,7 @@ namespace AzureB2CUI
                 var objectidentifierClaimType = "http://schemas.microsoft.com/identity/claims/objectidentifier";
                 var objectIdentifier = principal.Claims.FirstOrDefault(t => t.Type == objectidentifierClaimType);
 
-                var groupIds = await _msGraphService.GetGraphApiUserMemberGroups(objectIdentifier.Value)
+                var groupIds = await _msGraphService.GetGraphApiUserMemberGroups(objectIdentifier.Value);
 
                 foreach (var groupId in groupIds.ToList())
                 {
@@ -36,7 +36,5 @@ namespace AzureB2CUI
             principal.AddIdentity(claimsIdentity);
             return principal;
         }
-
-
     }
 }
