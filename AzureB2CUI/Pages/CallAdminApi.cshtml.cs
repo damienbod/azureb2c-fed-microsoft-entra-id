@@ -20,7 +20,7 @@ namespace AzureB2CUI.Pages
 
         public async Task OnGetAsync()
         {
-            DataFromApi = await _apiService.GetApiDataAsync().ConfigureAwait(false);
+            DataFromApi = await _apiService.GetApiDataAsync();
         }
     }
 }
