@@ -26,8 +26,8 @@ namespace AzureB2CUI
         {
             services.AddTransient<AdminApiService>();
             services.AddTransient<UserApiService>();
-            services.AddScoped<GraphApiClientService>();
-            services.AddTransient<IClaimsTransformation, GraphApiClaimsTransformation>();
+            services.AddScoped<MsGraphService>();
+            services.AddTransient<IClaimsTransformation, MsGraphClaimsTransformation>();
             services.AddHttpClient();
 
             services.AddOptions();

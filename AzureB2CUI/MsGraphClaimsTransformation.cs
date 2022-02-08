@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace AzureB2CUI
 {
-    public class GraphApiClaimsTransformation : IClaimsTransformation
+    public class MsGraphClaimsTransformation : IClaimsTransformation
     {
-        private GraphApiClientService _graphApiClientService;
+        private MsGraphService _msGraphService;
 
-        public GraphApiClaimsTransformation(GraphApiClientService graphApiClientService)
+        public MsGraphClaimsTransformation(MsGraphService msGraphService)
         {
 
-            _graphApiClientService = graphApiClientService;
+            _msGraphService = msGraphService;
         }
 
         public async Task<ClaimsPrincipal> TransformAsync(ClaimsPrincipal principal)
@@ -25,7 +25,7 @@ namespace AzureB2CUI
                 var nameidentifierClaimType = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier";
                 var nameidentifier = principal.Claims.FirstOrDefault(t => t.Type == nameidentifierClaimType);
 
-                var groupIds = await _graphApiClientService.GetGraphApiUserMemberGroups(nameidentifier.Value);
+                var groupIds = await _msGraphService.GetGraphApiUserMemberGroups(nameidentifier.Value);
 
                 foreach (var groupId in groupIds.ToList())
                 {
