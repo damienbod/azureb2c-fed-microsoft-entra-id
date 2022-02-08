@@ -11,7 +11,7 @@ namespace AzureB2CUI.Pages
     public class CallUserApiModel : PageModel
     {
         private readonly UserApiService _apiService;
-        private readonly GraphApiClientService _graphApiClientService;
+        private readonly MsGraphService _graphApiClientService;
 
         public JArray DataFromApi { get; set; }
         public CallUserApiModel(UserApiService apiService)
