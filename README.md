@@ -16,6 +16,9 @@
 
 ## History
 
+
+2022-02-11 Updated packages and namespaces
+
 2022-02-08 Updated packages
 
 2022-01-18 Update to .NET 6, updated packages
