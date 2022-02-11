@@ -11,77 +11,76 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 
-namespace AzureB2CUI
+namespace AzureB2CUI;
+
+public class Startup
 {
-    public class Startup
+    public Startup(IConfiguration configuration)
     {
-        public Startup(IConfiguration configuration)
+        Configuration = configuration;
+    }
+
+    public IConfiguration Configuration { get; }
+
+    public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddTransient<AdminApiService>();
+        services.AddTransient<UserApiService>();
+        services.AddScoped<MsGraphService>();
+        services.AddTransient<IClaimsTransformation, MsGraphClaimsTransformation>();
+        services.AddHttpClient();
+
+        services.AddOptions();
+
+        string[] initialScopes = Configuration.GetValue<string>("UserApiOne:ScopeForAccessToken")?.Split(' ');
+
+        services.AddMicrosoftIdentityWebAppAuthentication(Configuration, "AzureAdB2C")
+            .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
+            .AddInMemoryTokenCaches();
+
+        services.AddRazorPages().AddMvcOptions(options =>
         {
-            Configuration = configuration;
-        }
+            var policy = new AuthorizationPolicyBuilder()
+                .RequireAuthenticatedUser()
+                .Build();
+            options.Filters.Add(new AuthorizeFilter(policy));
+        }).AddMicrosoftIdentityUI();
 
-        public IConfiguration Configuration { get; }
+        services.AddSingleton<IAuthorizationHandler, IsAdminHandlerUsingAzureGroups>();
 
-        public void ConfigureServices(IServiceCollection services)
+        services.AddAuthorization(options =>
         {
-            services.AddTransient<AdminApiService>();
-            services.AddTransient<UserApiService>();
-            services.AddScoped<MsGraphService>();
-            services.AddTransient<IClaimsTransformation, MsGraphClaimsTransformation>();
-            services.AddHttpClient();
-
-            services.AddOptions();
-
-            string[] initialScopes = Configuration.GetValue<string>("UserApiOne:ScopeForAccessToken")?.Split(' ');
-
-            services.AddMicrosoftIdentityWebAppAuthentication(Configuration, "AzureAdB2C")
-                .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
-                .AddInMemoryTokenCaches();
-
-            services.AddRazorPages().AddMvcOptions(options =>
+            options.AddPolicy("IsAdminPolicy", policy =>
             {
-                var policy = new AuthorizationPolicyBuilder()
-                    .RequireAuthenticatedUser()
-                    .Build();
-                options.Filters.Add(new AuthorizeFilter(policy));
-            }).AddMicrosoftIdentityUI();
-
-            services.AddSingleton<IAuthorizationHandler, IsAdminHandlerUsingAzureGroups>();
-
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("IsAdminPolicy", policy =>
-                {
-                    policy.Requirements.Add(new IsAdminRequirement());
-                });
+                policy.Requirements.Add(new IsAdminRequirement());
             });
-        }
+        });
+    }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    {
+        if (env.IsDevelopment())
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Error");
-                app.UseHsts();
-            }
-
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-
-            app.UseRouting();
-
-            app.UseAuthentication();
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapRazorPages();
-                endpoints.MapControllers();
-            });
+            app.UseDeveloperExceptionPage();
         }
+        else
+        {
+            app.UseExceptionHandler("/Error");
+            app.UseHsts();
+        }
+
+        app.UseHttpsRedirection();
+        app.UseStaticFiles();
+
+        app.UseRouting();
+
+        app.UseAuthentication();
+        app.UseAuthorization();
+
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapRazorPages();
+            endpoints.MapControllers();
+        });
     }
 }

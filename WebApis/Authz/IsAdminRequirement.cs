@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 
-namespace WebApis.Authz
-{
-    public class IsAdminRequirement : IAuthorizationRequirement { }
-}
+namespace WebApis.Authz;
+
+public class IsAdminRequirement : IAuthorizationRequirement { }
