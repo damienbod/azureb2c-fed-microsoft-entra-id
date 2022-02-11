@@ -8,7 +8,7 @@ namespace AzureB2CUI;
 
 public class MsGraphClaimsTransformation : IClaimsTransformation
 {
-    private MsGraphService _msGraphService;
+    private readonly MsGraphService _msGraphService;
 
     public MsGraphClaimsTransformation(MsGraphService msGraphService)
     {
@@ -18,7 +18,7 @@ public class MsGraphClaimsTransformation : IClaimsTransformation
 
     public async Task<ClaimsPrincipal> TransformAsync(ClaimsPrincipal principal)
     {
-        ClaimsIdentity claimsIdentity = new ClaimsIdentity();
+        ClaimsIdentity claimsIdentity = new();
         var groupClaimType = "group";
         if (!principal.HasClaim(claim => claim.Type == groupClaimType))
         {
