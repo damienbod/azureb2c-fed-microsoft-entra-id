@@ -22,7 +22,7 @@ public class CreateInternalUserModel : PageModel
     }
 
     [BindProperty]
-    public UserModel User { get; set; } = new UserModel();
+    public UserModelB2CTenant User { get; set; } = new UserModelB2CTenant();
 
     public async Task<IActionResult> OnPostAsync()
     {

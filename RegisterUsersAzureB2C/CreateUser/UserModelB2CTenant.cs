@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RegisterUsersAzureB2C.CreateUser
 {
-    public class UserModel
+    public class UserModelB2CTenant
     {
         [Required]
         public string UserPrincipalName { get; set; } = string.Empty;

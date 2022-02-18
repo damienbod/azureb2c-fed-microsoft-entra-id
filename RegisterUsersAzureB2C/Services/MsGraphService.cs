@@ -61,8 +61,9 @@ public class MsGraphService
             .Request().PostAsync();
     }
 
-    public async Task CreateAzureB2CUserAsync(UserModel userModel)
+    public async Task<(string Upn, string Password, string Id)> CreateAzureB2CUserAsync(UserModelB2CTenant userModel)
     {
+        var password = GetEncodedRandomString();
         var user = new User
         {
             AccountEnabled = true,
@@ -78,16 +79,18 @@ public class MsGraphService
             PasswordProfile = new PasswordProfile
             {
                 ForceChangePasswordNextSignIn = true,
-                Password = "xWwvJ]6NMw+bWH-d"
+                Password = password
             }
         };
 
         await _graphServiceClient.Users
             .Request()
             .AddAsync(user);
+
+        return (user.UserPrincipalName, user.PasswordProfile.Password, user.Id);
     }
 
-    public async Task CreateFederatedUserAsync(UserModel userModel)
+    public async Task<(string Upn, string Password, string Id)> CreateFederatedUserAsync(UserModelB2CTenant userModel)
     {
         var user = new User
         {
@@ -114,6 +117,38 @@ public class MsGraphService
             .Request()
             .AddAsync(user);
 
+        return (user.UserPrincipalName, user.PasswordProfile.Password, user.Id);
+    }
+
+    public async Task<(string Upn, string Password, string Id)> CreateAzureB2CGuestUserAsync(UserModelB2CIdentity userModel)
+    {
+        var user = new User
+        {
+            DisplayName = userModel.DisplayName,
+            UserPrincipalName = userModel.UserPrincipalName,
+            PreferredLanguage = userModel.PreferredLanguage,
+            Identities = new List<ObjectIdentity>()
+            {
+                new ObjectIdentity
+                {
+                    SignInType = "emailAddress",
+                    Issuer = "damienbodhotmail.onmicrosoft.com",
+                    IssuerAssignedId = userModel.UserPrincipalName
+                },
+            },
+            PasswordProfile = new PasswordProfile
+            {
+                Password = "password-value",
+                ForceChangePasswordNextSignIn = false
+            },
+            PasswordPolicies = "DisablePasswordExpiration"
+        };
+
+        await _graphServiceClient.Users
+            .Request()
+            .AddAsync(user);
+
+        return (user.UserPrincipalName, user.PasswordProfile.Password, user.Id);
     }
 
     private string GetEncodedRandomString()
