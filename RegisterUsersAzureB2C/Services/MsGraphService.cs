@@ -71,6 +71,7 @@ public class MsGraphService
             Surname = userModel.Surname,
             GivenName = userModel.GivenName,
             PreferredLanguage = userModel.PreferredLanguage,
+            MailNickname = userModel.DisplayName,
             // The following properties cannot be set in the initial POST request. Please set them in a subsequent PATCH request: birthday
             // Birthday = userModel.BirthDate,
 
