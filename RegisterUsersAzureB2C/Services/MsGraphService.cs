@@ -66,9 +66,13 @@ public class MsGraphService
         var user = new User
         {
             AccountEnabled = true,
-            DisplayName = "Adele Vance",
-            MailNickname = "AdeleV",
-            UserPrincipalName = "AdeleV@contoso.onmicrosoft.com",
+            DisplayName = "Nick Moore",
+            MailNickname = "NickMoore",
+            PreferredLanguage = "de",
+            GivenName = "nick",
+            Surname= "Moore",
+            Birthday = DateTime.Now.AddYears(-25),
+            UserPrincipalName = "nick.moore@b2cdamienbod.onmicrosoft.com",
             PasswordProfile = new PasswordProfile
             {
                 ForceChangePasswordNextSignIn = true,
