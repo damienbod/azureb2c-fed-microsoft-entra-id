@@ -99,7 +99,8 @@ public class MsGraphService
             PreferredLanguage = userModel.PreferredLanguage,
             Surname = userModel.Surname,
             GivenName = userModel.GivenName,
-            Mail = userModel.Email,
+            //Mail = userModel.Email,
+            OtherMails = new List<string> { userModel.Email },
             Identities = new List<ObjectIdentity>()
             {
                 new ObjectIdentity
@@ -120,6 +121,14 @@ public class MsGraphService
         var createdUser = await _graphServiceClient.Users
             .Request()
             .AddAsync(user);
+
+        //createdUser.UserPrincipalName = userModel.Email;
+        //createdUser.OtherMails = new List<string> { userModel.Email };
+        //createdUser.Birthday = userModel.BirthDate;
+
+        //var updatedUser = await _graphServiceClient.Users[createdUser.Id]
+        //  .Request()
+        //  .UpdateAsync(createdUser);
 
         return (createdUser.UserPrincipalName, user.PasswordProfile.Password, createdUser.Id);
     }

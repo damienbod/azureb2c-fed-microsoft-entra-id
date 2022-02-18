@@ -54,3 +54,5 @@ https://techieshour.wordpress.com/2020/05/11/managing-azure-b2c-users-with-micro
 https://docs.microsoft.com/en-us/graph/sdks/choose-authentication-providers?tabs=CS#client-credentials-provider
 
 https://docs.microsoft.com/en-us/graph/api/user-post-users?view=graph-rest-1.0&tabs=csharp
+
+https://docs.microsoft.com/en-us/graph/api/invitation-post?view=graph-rest-1.0&tabs=csharp
