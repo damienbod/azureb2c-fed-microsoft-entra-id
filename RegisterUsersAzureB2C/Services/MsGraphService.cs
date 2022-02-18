@@ -117,11 +117,11 @@ public class MsGraphService
             PasswordPolicies = "DisablePasswordExpiration"
         };
 
-        await _graphServiceClient.Users
+        var createdUser = await _graphServiceClient.Users
             .Request()
             .AddAsync(user);
 
-        return (user.UserPrincipalName, user.PasswordProfile.Password, user.Id);
+        return (createdUser.UserPrincipalName, user.PasswordProfile.Password, createdUser.Id);
     }
 
     private string GetEncodedRandomString()
