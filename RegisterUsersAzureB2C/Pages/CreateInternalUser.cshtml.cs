@@ -18,12 +18,11 @@ public class CreateInternalUserModel : PageModel
 
     public IActionResult OnGet()
     {
-        User = new UserModel(); 
         return Page();
     }
 
     [BindProperty]
-    public UserModel User { get; set; }
+    public UserModel User { get; set; } = new UserModel();
 
     // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
     public async Task<IActionResult> OnPostAsync()
