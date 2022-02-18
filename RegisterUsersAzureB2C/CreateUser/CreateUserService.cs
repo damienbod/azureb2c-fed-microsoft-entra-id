@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using RegisterUsersAzureB2C.CreateUser;
 using RegisterUsersAzureB2C.Services;
 using System.Threading.Tasks;
 
@@ -16,8 +17,8 @@ public class CreateUserService
         _configuration = configuration;
     }
 
-    public async Task CreateUserAsync()
+    public async Task CreateUserAsync(UserModel user)
     {
-        await _msGraphService.CreateUserAsync();
+        await _msGraphService.CreateUserAsync(user);
     }
 }

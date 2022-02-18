@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using RegisterUsersAzureB2C.CreateUser;
 using System.Threading.Tasks;
 
 namespace RegisterUsersAzureB2C.Pages;
@@ -14,13 +16,26 @@ public class CreateInternalUserModel : PageModel
         _createUserService = createUserService;
     }
 
-    public async Task OnGetAsync()
+    public IActionResult OnGet()
     {
-        
+        User = new UserModel(); 
+        return Page();
     }
 
-    public async Task OnPostAsync()
+    [BindProperty]
+    public UserModel User { get; set; }
+
+    // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
+    public async Task<IActionResult> OnPostAsync()
     {
-        await _createUserService.CreateUserAsync();
+        if (!ModelState.IsValid)
+        {
+            return Page();
+        }
+
+        await _createUserService.CreateUserAsync(User);
+
+        return RedirectToPage("./Index");
     }
+
 }

@@ -1,6 +1,7 @@
 ﻿using Azure.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Graph;
+using RegisterUsersAzureB2C.CreateUser;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -55,7 +56,7 @@ public class MsGraphService
             .Request().PostAsync();
     }
 
-    public async Task CreateUserAsync()
+    public async Task CreateUserAsync(UserModel userModel)
     {
         var user = new User
         {
