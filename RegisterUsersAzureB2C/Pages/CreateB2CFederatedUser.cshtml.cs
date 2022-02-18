@@ -22,7 +22,10 @@ public class CreateB2CFederatedUserModel : PageModel
     }
 
     [BindProperty]
-    public UserModelB2CIdentity User { get; set; } = new UserModelB2CIdentity();
+    public UserModelB2CIdentity UserModel { get; set; } = new UserModelB2CIdentity();
+
+    [BindProperty]
+    public string  UserPassword { get; set; }
 
     public async Task<IActionResult> OnPostAsync()
     {
@@ -31,9 +34,9 @@ public class CreateB2CFederatedUserModel : PageModel
             return Page();
         }
 
-        var userData = await _createUserService.CreateFederatedUserAsync(User);
+        var data = await _createUserService.CreateFederatedUserAsync(UserModel);
 
-        return RedirectToPage("./Index");
+        UserPassword = data.Password;
+        return OnGet();
     }
-
 }
