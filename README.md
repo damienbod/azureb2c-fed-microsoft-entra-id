@@ -52,3 +52,5 @@ https://docs.microsoft.com/en-us/aspnet/core/blazor/security/webassembly/graph-a
 https://techieshour.wordpress.com/2020/05/11/managing-azure-b2c-users-with-microsoft-graph-api/
 
 https://docs.microsoft.com/en-us/graph/sdks/choose-authentication-providers?tabs=CS#client-credentials-provider
+
+https://docs.microsoft.com/en-us/graph/api/user-post-users?view=graph-rest-1.0&tabs=csharp

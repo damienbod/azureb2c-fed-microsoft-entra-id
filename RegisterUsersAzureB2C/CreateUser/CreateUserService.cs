@@ -18,7 +18,6 @@ public class CreateUserService
 
     public async Task CreateUserAsync()
     {
-
-
+        await _msGraphService.CreateUserAsync();
     }
 }

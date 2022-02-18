@@ -31,10 +31,8 @@ public class Startup
 
         services.AddOptions();
 
-        string[] initialScopes = Configuration.GetValue<string>("UserApiOne:ScopeForAccessToken")?.Split(' ');
-
         services.AddMicrosoftIdentityWebAppAuthentication(Configuration, "AzureAdB2C")
-            .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
+            .EnableTokenAcquisitionToCallDownstreamApi()
             .AddInMemoryTokenCaches();
 
         services.AddRazorPages().AddMvcOptions(options =>

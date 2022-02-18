@@ -1,6 +1,7 @@
 ﻿using Azure.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Graph;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace RegisterUsersAzureB2C.Services;
@@ -52,5 +53,61 @@ public class MsGraphService
         return await _graphServiceClient.Users[userId]
             .GetMemberGroups(securityEnabledOnly)
             .Request().PostAsync();
+    }
+
+    public async Task CreateUserAsync()
+    {
+        var user = new User
+        {
+            DisplayName = "John Smith",
+            Identities = new List<ObjectIdentity>()
+            {
+                new ObjectIdentity
+                {
+                    SignInType = "userName",
+                    Issuer = "contoso.onmicrosoft.com",
+                    IssuerAssignedId = "johnsmith"
+                },
+            },
+            PasswordProfile = new PasswordProfile
+            {
+                Password = "password-value",
+                ForceChangePasswordNextSignIn = false
+            },
+            PasswordPolicies = "DisablePasswordExpiration"
+        };
+
+        await _graphServiceClient.Users
+            .Request()
+            .AddAsync(user);
+
+    }
+
+    public async Task CreateFederatedUserAsync()
+    {
+        var user = new User
+        {
+            DisplayName = "John Smith",
+            Identities = new List<ObjectIdentity>()
+            {
+                new ObjectIdentity
+                {
+                    SignInType = "federated",
+                    Issuer = "facebook.com",
+                    IssuerAssignedId = "5eecb0cd"
+                },
+            },
+            PasswordProfile = new PasswordProfile
+            {
+                Password = "password-value",
+                ForceChangePasswordNextSignIn = false
+            },
+            PasswordPolicies = "DisablePasswordExpiration"
+        };
+
+        await _graphServiceClient.Users
+            .Request()
+            .AddAsync(user);
+
     }
 }

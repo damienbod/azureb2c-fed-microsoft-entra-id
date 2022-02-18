@@ -1,17 +1,15 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Identity.Web;
-using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
 
 namespace RegisterUsersAzureB2C.Pages;
 
 [Authorize(Policy = "IsAdminPolicy")]
-public class CreateUserApiModel : PageModel
+public class CreateInternalUserModel : PageModel
 {
     private readonly CreateUserService _createUserService;
 
-    public CreateUserApiModel(CreateUserService createUserService)
+    public CreateInternalUserModel(CreateUserService createUserService)
     {
         _createUserService = createUserService;
     }
