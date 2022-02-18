@@ -31,7 +31,7 @@ public class CreateB2CFederatedUserModel : PageModel
             return Page();
         }
 
-        await _createUserService.CreateFederatedUserAsync(User);
+        var userData = await _createUserService.CreateFederatedUserAsync(User);
 
         return RedirectToPage("./Index");
     }

@@ -96,15 +96,17 @@ public class MsGraphService
         var user = new User
         {
             DisplayName = userModel.DisplayName,
-           // UserPrincipalName = userModel.UserPrincipalName,
             PreferredLanguage = userModel.PreferredLanguage,
+            Surname = userModel.Surname,
+            GivenName = userModel.GivenName,
+            Mail = userModel.Email,
             Identities = new List<ObjectIdentity>()
             {
                 new ObjectIdentity
                 {
                     SignInType = "federated",
                     Issuer = "damienbodhotmail.onmicrosoft.com",
-                    IssuerAssignedId = userModel.UserPrincipalName
+                    IssuerAssignedId = userModel.Email
                 },
             },
             PasswordProfile = new PasswordProfile

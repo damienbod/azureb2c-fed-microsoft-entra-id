@@ -23,7 +23,7 @@ public class CreateUserService
         return createdUser;
     }
 
-    public async Task<(string Upn, string Email, string Id)> CreateFederatedUserAsync(UserModelB2CIdentity user)
+    public async Task<(string Upn, string Password, string Id)> CreateFederatedUserAsync(UserModelB2CIdentity user)
     {
         var createdUser = await _msGraphService.CreateFederatedUserAsync(user);
         return createdUser;
