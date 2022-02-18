@@ -12,19 +12,18 @@ namespace RegisterUsersAzureB2C.CreateUser
         public string DisplayName { get; set; } = string.Empty;
 
         [Required]
-        public string FirstName { get; set; } = string.Empty;
-
-        [Required]
         public string Surname { get; set; } = string.Empty;
 
         [Required]
         public string GivenName { get; set; } = string.Empty;
 
         [Required]
-        public DateTimeOffset BirthDate { get; set; }
+        public string PreferredLanguage { get; set; } = "de";
 
         [Required]
-        public string PreferredLanguage { get; set; } = "de";
+        public DateTimeOffset BirthDate { get; set; }
+
+      
 
         
 

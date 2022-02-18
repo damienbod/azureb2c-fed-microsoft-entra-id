@@ -14,12 +14,14 @@
             <div class="form-outline">
                 <label class="form-label" asp-validation-for="User.UserPrincipalName">UserPrincipalName</label>
                 <input type="email" asp-for="User.UserPrincipalName" class="form-control" />
+                <span asp-validation-for="User.UserPrincipalName" class="text-danger"></span>
             </div>
         </div>
         <div class="col">
             <div class="form-outline">
                 <label class="form-label" asp-validation-for="User.DisplayName">DisplayName</label>
                 <input type="text" asp-for="User.DisplayName" class="form-control" />
+                <span asp-validation-for="User.DisplayName" class="text-danger"></span>
             </div>
         </div>
     </div>
@@ -27,14 +29,16 @@
     <div class="row mb-4">
         <div class="col">
             <div class="form-outline">
-                <label class="form-label" asp-validation-for="User.FirstName">First Name</label>
-                <input type="text" asp-for="User.FirstName" class="form-control" />  
+                <label class="form-label" asp-validation-for="User.BirthDate">Birth Date</label>
+                <input type="date" asp-for="User.BirthDate" class="form-control" />
+                <span asp-validation-for="User.BirthDate" class="text-danger"></span>
             </div>
         </div>
         <div class="col">
             <div class="form-outline">
                 <label class="form-label" asp-validation-for="User.Surname">Surname</label>
                 <input type="text" asp-for="User.Surname" class="form-control" />
+                <span asp-validation-for="User.Surname" class="text-danger"></span>
             </div>
         </div>
     </div>
@@ -43,7 +47,8 @@
         <div class="col">
             <div class="form-outline">
                 <label class="form-label" asp-validation-for="User.GivenName">Given Name</label>
-                <input type="text" asp-for="User.GivenName" class="form-control" />  
+                <input type="text" asp-for="User.GivenName" class="form-control" />
+                <span asp-validation-for="User.GivenName" class="text-danger"></span>
             </div>
         </div>
         <div class="col">
@@ -59,7 +64,6 @@
         </div>
     </div>
 
-    <!-- Submit button -->
     <button type="submit" class="btn btn-primary btn-block mb-4">Create</button>
 </form>
 

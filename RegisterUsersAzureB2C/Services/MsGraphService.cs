@@ -66,15 +66,14 @@ public class MsGraphService
         var user = new User
         {
             AccountEnabled = true,
-            GivenName = "nick",
-            UserPrincipalName = "nick.moore@b2cdamienbod.onmicrosoft.com",
-            DisplayName = "Nick Moore",
-            MailNickname = "NickMoore",
-            PreferredLanguage = "de",
-           
-            Surname= "Moore",
-            Birthday = DateTime.Now.AddYears(-25),
-           
+            UserPrincipalName = userModel.UserPrincipalName,
+            DisplayName = userModel.DisplayName,
+            Surname = userModel.Surname,
+            GivenName = userModel.GivenName,
+            PreferredLanguage = userModel.PreferredLanguage,
+            // The following properties cannot be set in the initial POST request. Please set them in a subsequent PATCH request: birthday
+            // Birthday = userModel.BirthDate,
+
             PasswordProfile = new PasswordProfile
             {
                 ForceChangePasswordNextSignIn = true,

@@ -24,7 +24,6 @@ public class CreateInternalUserModel : PageModel
     [BindProperty]
     public UserModel User { get; set; } = new UserModel();
 
-    // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
     public async Task<IActionResult> OnPostAsync()
     {
         if (!ModelState.IsValid)
