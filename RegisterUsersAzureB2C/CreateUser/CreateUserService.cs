@@ -19,6 +19,6 @@ public class CreateUserService
 
     public async Task CreateUserAsync(UserModel user)
     {
-        await _msGraphService.CreateUserAsync(user);
+        await _msGraphService.CreateAzureB2CUserAsync(user);
     }
 }
