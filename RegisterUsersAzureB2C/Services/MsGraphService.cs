@@ -92,23 +92,24 @@ public class MsGraphService
 
     public async Task<(string Upn, string Password, string Id)> CreateFederatedUserAsync(UserModelB2CIdentity userModel)
     {
+        var password = GetEncodedRandomString();
         var user = new User
         {
             DisplayName = userModel.DisplayName,
-            UserPrincipalName = userModel.UserPrincipalName,
+           // UserPrincipalName = userModel.UserPrincipalName,
             PreferredLanguage = userModel.PreferredLanguage,
             Identities = new List<ObjectIdentity>()
             {
                 new ObjectIdentity
                 {
-                    SignInType = "userName",
+                    SignInType = "federated",
                     Issuer = "damienbodhotmail.onmicrosoft.com",
                     IssuerAssignedId = userModel.UserPrincipalName
                 },
             },
             PasswordProfile = new PasswordProfile
             {
-                Password = "password-value",
+                Password = password,
                 ForceChangePasswordNextSignIn = false
             },
             PasswordPolicies = "DisablePasswordExpiration"
