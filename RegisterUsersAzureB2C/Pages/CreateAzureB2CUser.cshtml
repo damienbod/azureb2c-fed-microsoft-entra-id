@@ -1,5 +1,5 @@
 ﻿@page
-@model RegisterUsersAzureB2C.Pages.CreateB2CGuestUserModel
+@model RegisterUsersAzureB2C.Pages.CreateAzureB2CUserModel
 @{
     ViewData["Title"] = "Create User";
     Layout = "~/Pages/Shared/_Layout.cshtml";
@@ -32,6 +32,23 @@
                 <label class="form-label" asp-validation-for="User.BirthDate">Birth Date</label>
                 <input type="date" asp-for="User.BirthDate" class="form-control" />
                 <span asp-validation-for="User.BirthDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-outline">
+                <label class="form-label" asp-validation-for="User.Surname">Surname</label>
+                <input type="text" asp-for="User.Surname" class="form-control" />
+                <span asp-validation-for="User.Surname" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col">
+            <div class="form-outline">
+                <label class="form-label" asp-validation-for="User.GivenName">Given Name</label>
+                <input type="text" asp-for="User.GivenName" class="form-control" />
+                <span asp-validation-for="User.GivenName" class="text-danger"></span>
             </div>
         </div>
         <div class="col">

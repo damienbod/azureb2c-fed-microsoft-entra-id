@@ -7,26 +7,23 @@ using System.Threading.Tasks;
 namespace RegisterUsersAzureB2C.Pages;
 
 [Authorize(Policy = "IsAdminPolicy")]
-public class CreateFederatedUserModel : PageModel
+public class CreateAzureB2CUserModel : PageModel
 {
     private readonly CreateUserService _createUserService;
 
-    public CreateFederatedUserModel(CreateUserService createUserService)
+    public CreateAzureB2CUserModel(CreateUserService createUserService)
     {
         _createUserService = createUserService;
     }
 
-
     public IActionResult OnGet()
     {
-        User = new UserModelB2CTenant();
         return Page();
     }
 
     [BindProperty]
-    public UserModelB2CTenant User { get; set; }
+    public UserModelB2CTenant User { get; set; } = new UserModelB2CTenant();
 
-    // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
     public async Task<IActionResult> OnPostAsync()
     {
         if (!ModelState.IsValid)
@@ -34,8 +31,9 @@ public class CreateFederatedUserModel : PageModel
             return Page();
         }
 
-        await _createUserService.CreateFederatedUserAsync(User);
+        await _createUserService.CreateAzureB2CUserAsync(User);
 
         return RedirectToPage("./Index");
     }
+
 }

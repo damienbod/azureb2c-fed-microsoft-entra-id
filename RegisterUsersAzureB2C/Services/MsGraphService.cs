@@ -90,37 +90,7 @@ public class MsGraphService
         return (user.UserPrincipalName, user.PasswordProfile.Password, user.Id);
     }
 
-    public async Task<(string Upn, string Password, string Id)> CreateFederatedUserAsync(UserModelB2CTenant userModel)
-    {
-        var user = new User
-        {
-            DisplayName = "John Smith",
-            UserPrincipalName = "AdeleV@contoso.onmicrosoft.com",
-            Identities = new List<ObjectIdentity>()
-            {
-                new ObjectIdentity
-                {
-                    SignInType = "federated",
-                    Issuer = "damienbodhotmail.onmicrosoft.com",
-                    IssuerAssignedId = GetEncodedRandomString()
-                },
-            },
-            PasswordProfile = new PasswordProfile
-            {
-                Password = "password-value",
-                ForceChangePasswordNextSignIn = false
-            },
-            PasswordPolicies = "DisablePasswordExpiration"
-        };
-
-        await _graphServiceClient.Users
-            .Request()
-            .AddAsync(user);
-
-        return (user.UserPrincipalName, user.PasswordProfile.Password, user.Id);
-    }
-
-    public async Task<(string Upn, string Password, string Id)> CreateAzureB2CGuestUserAsync(UserModelB2CIdentity userModel)
+    public async Task<(string Upn, string Password, string Id)> CreateFederatedUserAsync(UserModelB2CIdentity userModel)
     {
         var user = new User
         {
@@ -131,7 +101,7 @@ public class MsGraphService
             {
                 new ObjectIdentity
                 {
-                    SignInType = "emailAddress",
+                    SignInType = "userName",
                     Issuer = "damienbodhotmail.onmicrosoft.com",
                     IssuerAssignedId = userModel.UserPrincipalName
                 },

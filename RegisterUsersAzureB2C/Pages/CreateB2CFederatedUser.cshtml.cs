@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 namespace RegisterUsersAzureB2C.Pages;
 
 [Authorize(Policy = "IsAdminPolicy")]
-public class CreateB2CGuestUserModel : PageModel
+public class CreateB2CFederatedUserModel : PageModel
 {
     private readonly CreateUserService _createUserService;
 
-    public CreateB2CGuestUserModel(CreateUserService createUserService)
+    public CreateB2CFederatedUserModel(CreateUserService createUserService)
     {
         _createUserService = createUserService;
     }
@@ -31,7 +31,7 @@ public class CreateB2CGuestUserModel : PageModel
             return Page();
         }
 
-        await _createUserService.CreateGuestUserAsync(User);
+        await _createUserService.CreateFederatedUserAsync(User);
 
         return RedirectToPage("./Index");
     }
