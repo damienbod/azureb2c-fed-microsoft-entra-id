@@ -7,4 +7,41 @@
 
 <h1>Create new Azure B2C user</h1>
 
+<form method="post">
+    <div asp-validation-summary="All"></div>
+    <div class="row mb-4">
+        <div class="col">
+            <div class="form-outline">
+                <label class="form-label" asp-validation-for="User.UserPrincipalName">Email</label>
+                <input type="email" asp-for="User.UserPrincipalName" class="form-control" />
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-outline">
+                <label class="form-label" asp-validation-for="User.Name">Name</label>
+                <input type="text" asp-for="User.Name" class="form-control" />
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col">
+            <div class="form-outline">
+                <label class="form-label" asp-validation-for="User.FirstName">First Name</label>
+                <input type="text" asp-for="User.FirstName" class="form-control" />  
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-outline">
+                <label class="form-label" asp-validation-for="User.Surname">Surname</label>
+                <input type="text" asp-for="User.Surname" class="form-control" />
+            </div>
+        </div>
+    </div>
+
+    <!-- Submit button -->
+    <button type="submit" class="btn btn-primary btn-block mb-4">Create</button>
+</form>
+
+
 
