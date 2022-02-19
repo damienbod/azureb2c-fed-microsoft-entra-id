@@ -4,11 +4,11 @@
 
 ## Blogs
 
-[Securing ASP.NET Core Razor, Web APIs with Azure B2C external and Azure AD internal identities](https://damienbod.com/2021/07/26/securing-asp-net-core-razor-pages-web-apis-with-azure-b2c-external-and-azure-ad-internal-identities/
-)
-
+[Securing ASP.NET Core Razor, Web APIs with Azure B2C external and Azure AD internal identities](https://damienbod.com/2021/07/26/securing-asp-net-core-razor-pages-web-apis-with-azure-b2c-external-and-azure-ad-internal-identities/)
 
 [Using Azure security groups in ASP.NET Core with an Azure B2C Identity Provider](https://damienbod.com/2021/09/06/using-azure-security-groups-in-asp-net-core-with-an-azure-b2c-identity-provider/)
+
+[Register Azure B2C users using Microsoft Graph](https://damienbod.com)
 
 ## Setup 
 
@@ -16,6 +16,7 @@
 
 ## History
 
+2022-02-19 Register Azure B2C users using Microsoft Graph
 
 2022-02-11 Updated packages and namespaces
 
