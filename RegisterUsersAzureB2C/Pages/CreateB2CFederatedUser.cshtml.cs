@@ -35,6 +35,12 @@ public class CreateB2CFederatedUserModel : PageModel
             return Page();
         }
 
+        if (!_msGraphService.IsEmailValid(UserModel.Email))
+        {
+            ModelState.AddModelError("Email", "Email is invalid");
+            return Page();
+        }
+
         Upn = await _msGraphService.CreateFederatedNoPasswordAsync(UserModel);
 
         return OnGet();

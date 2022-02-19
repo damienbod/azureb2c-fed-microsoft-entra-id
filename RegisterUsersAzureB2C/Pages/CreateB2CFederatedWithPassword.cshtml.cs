@@ -35,6 +35,12 @@ public class CreateB2CFederatedWithPasswordUserModel : PageModel
             return Page();
         }
 
+        if (!_msGraphService.IsEmailValid(UserModel.Email))
+        {
+            ModelState.AddModelError("Email", "Email is invalid");
+            return Page();
+        }
+
         var (_, Password, _) = await _msGraphService.CreateFederatedUserWithPasswordAsync(UserModel);
 
         UserPassword = Password;

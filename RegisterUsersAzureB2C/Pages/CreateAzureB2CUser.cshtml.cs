@@ -41,6 +41,18 @@ public class CreateAzureB2CUserModel : PageModel
             return Page();
         }
 
+        if (!_msGraphService.IsEmailValid(UserModel.UserPrincipalName))
+        {
+            ModelState.AddModelError("UserPrincipalName", "UserPrincipalName is invalid");
+            return Page();
+        }
+
+        if (!UserModel.UserPrincipalName.ToLower().EndsWith(AadB2CIssuerDomain.ToLower()))
+        {
+            ModelState.AddModelError("UserPrincipalName", "UserPrincipalName domain is invalid");
+            return Page();
+        }
+
         var (_, Password, _) = await _msGraphService.CreateAzureB2CSameDomainUserAsync(UserModel);
 
         UserPassword = Password;

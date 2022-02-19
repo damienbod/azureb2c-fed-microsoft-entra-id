@@ -4,6 +4,8 @@ using Microsoft.Graph;
 using RegisterUsersAzureB2C.CreateUser;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
@@ -161,6 +163,28 @@ public class MsGraphService
             .AddAsync(user);
 
         return createdUser.UserPrincipalName;
+    }
+
+    public bool IsEmailValid(string email)
+    {
+        if (!MailAddress.TryCreate(email, out var mailAddress))
+            return false;
+
+        // And if you want to be more strict:
+        var hostParts = mailAddress.Host.Split('.');
+        if (hostParts.Length == 1)
+            return false; // No dot.
+        if (hostParts.Any(p => p == string.Empty))
+            return false; // Double dot.
+        if (hostParts[^1].Length < 2)
+            return false; // TLD only one letter.
+
+        if (mailAddress.User.Contains(' '))
+            return false;
+        if (mailAddress.User.Split('.').Any(p => p == string.Empty))
+            return false; // Double dot or dot at end of user part.
+
+        return true;
     }
 
     private string GetEncodedRandomString()
