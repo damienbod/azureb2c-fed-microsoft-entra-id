@@ -21,6 +21,6 @@ namespace RegisterUsersAzureB2C.CreateUser
         public string GivenName { get; set; } = string.Empty;
 
         [Required]
-        public DateTimeOffset BirthDate { get; set; }
+        public DateTimeOffset BirthDate { get; set; } = DateTimeOffset.UtcNow.AddYears(-30);
     }
 }
