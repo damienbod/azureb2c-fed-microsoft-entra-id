@@ -19,19 +19,19 @@ public class CreateUserService
 
     public async Task<(string Upn, string Password, string Id)> CreateAzureB2CUserAsync(UserModelB2CTenant user)
     {
-        var createdUser = await _msGraphService.CreateAzureB2CUserAsync(user);
+        var createdUser = await _msGraphService.CreateAzureB2CSameDomainUserAsync(user);
         return createdUser;
     }
 
     public async Task<(string Upn, string Password, string Id)> CreateFederatedUserAsync(UserModelB2CIdentity user)
     {
-        var createdUser = await _msGraphService.CreateFederatedUserAsync(user);
+        var createdUser = await _msGraphService.CreateFederatedUserWithPasswordAsync(user);
         return createdUser;
     }
 
     public async Task<string> CreateFederatedToMyAADAsync(UserModelB2CIdentity user)
     {
-        var createdUser = await _msGraphService.CreateFederatedToMyAADAsync(user);
+        var createdUser = await _msGraphService.CreateFederatedNoPasswordsync(user);
         return createdUser;
     }
 }

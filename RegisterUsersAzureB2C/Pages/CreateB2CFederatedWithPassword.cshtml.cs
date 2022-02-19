@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 namespace RegisterUsersAzureB2C.Pages;
 
 [Authorize(Policy = "IsAdminPolicy")]
-public class CreateB2CFederatedUserModel : PageModel
+public class CreateB2CFederatedWithPasswordUserModel : PageModel
 {
     private readonly CreateUserService _createUserService;
 
-    public CreateB2CFederatedUserModel(CreateUserService createUserService)
+    public CreateB2CFederatedWithPasswordUserModel(CreateUserService createUserService)
     {
         _createUserService = createUserService;
     }
@@ -25,7 +25,7 @@ public class CreateB2CFederatedUserModel : PageModel
     public UserModelB2CIdentity UserModel { get; set; } = new UserModelB2CIdentity();
 
     [BindProperty]
-    public string  Upn{ get; set; }
+    public string  UserPassword { get; set; }
 
     public async Task<IActionResult> OnPostAsync()
     {
@@ -34,8 +34,10 @@ public class CreateB2CFederatedUserModel : PageModel
             return Page();
         }
 
-        Upn = await _createUserService.CreateFederatedToMyAADAsync(UserModel);
+        //var data = await _createUserService.CreateFederatedUserAsync(UserModel);
+        var data = await _createUserService.CreateFederatedToMyAADAsync(UserModel);
 
+        UserPassword = data;
         return OnGet();
     }
 }

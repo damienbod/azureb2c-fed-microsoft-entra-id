@@ -61,7 +61,7 @@ public class MsGraphService
             .Request().PostAsync();
     }
 
-    public async Task<(string Upn, string Password, string Id)> CreateAzureB2CUserAsync(UserModelB2CTenant userModel)
+    public async Task<(string Upn, string Password, string Id)> CreateAzureB2CSameDomainUserAsync(UserModelB2CTenant userModel)
     {
         var password = GetEncodedRandomString();
         var user = new User
@@ -90,7 +90,7 @@ public class MsGraphService
         return (user.UserPrincipalName, user.PasswordProfile.Password, user.Id);
     }
 
-    public async Task<(string Upn, string Password, string Id)> CreateFederatedUserAsync(UserModelB2CIdentity userModel)
+    public async Task<(string Upn, string Password, string Id)> CreateFederatedUserWithPasswordAsync(UserModelB2CIdentity userModel)
     {
         var password = GetEncodedRandomString();
         var user = new User
@@ -133,7 +133,7 @@ public class MsGraphService
         return (createdUser.UserPrincipalName, user.PasswordProfile.Password, createdUser.Id);
     }
 
-    public async Task<string> CreateFederatedToMyAADAsync(UserModelB2CIdentity userModel)
+    public async Task<string> CreateFederatedNoPasswordsync(UserModelB2CIdentity userModel)
     {
         var user = new User
         {

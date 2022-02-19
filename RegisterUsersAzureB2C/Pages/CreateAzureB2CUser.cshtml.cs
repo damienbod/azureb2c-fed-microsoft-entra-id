@@ -22,7 +22,10 @@ public class CreateAzureB2CUserModel : PageModel
     }
 
     [BindProperty]
-    public UserModelB2CTenant User { get; set; } = new UserModelB2CTenant();
+    public UserModelB2CTenant UserModel { get; set; } = new UserModelB2CTenant();
+
+    [BindProperty]
+    public string UserPassword { get; set; }
 
     public async Task<IActionResult> OnPostAsync()
     {
@@ -31,9 +34,10 @@ public class CreateAzureB2CUserModel : PageModel
             return Page();
         }
 
-        await _createUserService.CreateAzureB2CUserAsync(User);
+        var data = await _createUserService.CreateAzureB2CUserAsync(UserModel);
 
-        return RedirectToPage("./Index");
+        UserPassword = data.Password;
+        return OnGet();
     }
 
 }
