@@ -45,23 +45,21 @@ public class MsGraphService
     public async Task<User> GetGraphApiUser(string userId)
     {
         return await _graphServiceClient.Users[userId]
-                .Request()
-                .GetAsync();
+            .Request()
+            .GetAsync();
     }
 
     public async Task<IUserAppRoleAssignmentsCollectionPage> GetGraphApiUserAppRoles(string userId)
     {
         return await _graphServiceClient.Users[userId]
-                .AppRoleAssignments
-                .Request()
-                .GetAsync();
+            .AppRoleAssignments
+            .Request()
+            .GetAsync();
     }
 
     public async Task<IDirectoryObjectGetMemberGroupsCollectionPage> GetGraphApiUserMemberGroups(string userId)
     {
         var securityEnabledOnly = true;
-
-        var test = await _graphServiceClient.Users[userId].Request().GetAsync();
 
         return await _graphServiceClient.Users[userId]
             .GetMemberGroups(securityEnabledOnly)
@@ -85,9 +83,6 @@ public class MsGraphService
             GivenName = userModel.GivenName,
             PreferredLanguage = userModel.PreferredLanguage,
             MailNickname = userModel.DisplayName,
-            // The following properties cannot be set in the initial POST request. Please set them in a subsequent PATCH request: birthday
-            // Birthday = userModel.BirthDate,
-
             PasswordProfile = new PasswordProfile
             {
                 ForceChangePasswordNextSignIn = true,
@@ -98,6 +93,15 @@ public class MsGraphService
         await _graphServiceClient.Users
             .Request()
             .AddAsync(user);
+
+        // Needs an SPO license
+        //var patchValues = new User()
+        //{
+        //    Birthday = userModel.BirthDate.ToUniversalTime()
+        //};
+
+        //var request = _graphServiceClient.Users[createdUser.Id].Request();
+        //await request.UpdateAsync(patchValues);
 
         return (user.UserPrincipalName, user.PasswordProfile.Password, user.Id);
     }
