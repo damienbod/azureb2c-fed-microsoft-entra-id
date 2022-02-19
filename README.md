@@ -8,7 +8,7 @@
 
 [Using Azure security groups in ASP.NET Core with an Azure B2C Identity Provider](https://damienbod.com/2021/09/06/using-azure-security-groups-in-asp-net-core-with-an-azure-b2c-identity-provider/)
 
-[Register Azure B2C users using Microsoft Graph](https://damienbod.com)
+[Create Azure B2C users using Microsoft Graph and ASP.NET Core](https://damienbod.com)
 
 ## Setup 
 
