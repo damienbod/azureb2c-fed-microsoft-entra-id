@@ -34,9 +34,10 @@ public class CreateB2CFederatedUserModel : PageModel
             return Page();
         }
 
-        var data = await _createUserService.CreateFederatedUserAsync(UserModel);
+        //var data = await _createUserService.CreateFederatedUserAsync(UserModel);
+        var data = await _createUserService.CreateFederatedToMyAADAsync(UserModel);
 
-        UserPassword = data.Password;
+        UserPassword = data;
         return OnGet();
     }
 }

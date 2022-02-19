@@ -133,6 +133,34 @@ public class MsGraphService
         return (createdUser.UserPrincipalName, user.PasswordProfile.Password, createdUser.Id);
     }
 
+    public async Task<string> CreateFederatedToMyAADAsync(UserModelB2CIdentity userModel)
+    {
+        var user = new User
+        {
+            DisplayName = userModel.DisplayName,
+            PreferredLanguage = userModel.PreferredLanguage,
+            Surname = userModel.Surname,
+            GivenName = userModel.GivenName,
+            //Mail = userModel.Email,
+            OtherMails = new List<string> { userModel.Email },
+            Identities = new List<ObjectIdentity>()
+            {
+                new ObjectIdentity
+                {
+                    SignInType = "federated",
+                    Issuer = "damienbodhotmail.onmicrosoft.com",
+                    IssuerAssignedId = userModel.Email
+                },
+            }
+        };
+
+        var createdUser = await _graphServiceClient.Users
+            .Request()
+            .AddAsync(user);
+
+        return createdUser.UserPrincipalName;
+    }
+
     private string GetEncodedRandomString()
     {
         var base64 = Convert.ToBase64String(GenerateRandomBytes(20));

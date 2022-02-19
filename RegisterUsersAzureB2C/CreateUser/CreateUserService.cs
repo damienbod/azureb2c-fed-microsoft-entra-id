@@ -28,4 +28,10 @@ public class CreateUserService
         var createdUser = await _msGraphService.CreateFederatedUserAsync(user);
         return createdUser;
     }
+
+    public async Task<string> CreateFederatedToMyAADAsync(UserModelB2CIdentity user)
+    {
+        var createdUser = await _msGraphService.CreateFederatedToMyAADAsync(user);
+        return createdUser;
+    }
 }
