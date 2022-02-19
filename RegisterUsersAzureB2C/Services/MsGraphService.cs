@@ -133,7 +133,7 @@ public class MsGraphService
         return (createdUser.UserPrincipalName, user.PasswordProfile.Password, createdUser.Id);
     }
 
-    public async Task<string> CreateFederatedNoPasswordsync(UserModelB2CIdentity userModel)
+    public async Task<string> CreateFederatedNoPasswordAsync(UserModelB2CIdentity userModel)
     {
         var user = new User
         {

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RegisterUsersAzureB2C.CreateUser;
+using RegisterUsersAzureB2C.Services;
 using System.Threading.Tasks;
 
 namespace RegisterUsersAzureB2C.Pages;
@@ -9,11 +10,11 @@ namespace RegisterUsersAzureB2C.Pages;
 [Authorize(Policy = "IsAdminPolicy")]
 public class CreateAzureB2CUserModel : PageModel
 {
-    private readonly CreateUserService _createUserService;
+    private readonly MsGraphService _msGraphService;
 
-    public CreateAzureB2CUserModel(CreateUserService createUserService)
+    public CreateAzureB2CUserModel(MsGraphService msGraphService)
     {
-        _createUserService = createUserService;
+        _msGraphService = msGraphService;
     }
 
     public IActionResult OnGet()
@@ -34,9 +35,9 @@ public class CreateAzureB2CUserModel : PageModel
             return Page();
         }
 
-        var data = await _createUserService.CreateAzureB2CUserAsync(UserModel);
+        var (_, Password, _) = await _msGraphService.CreateAzureB2CSameDomainUserAsync(UserModel);
 
-        UserPassword = data.Password;
+        UserPassword = Password;
         return OnGet();
     }
 

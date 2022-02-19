@@ -24,7 +24,6 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddTransient<CreateUserService>();
         services.AddScoped<MsGraphService>();
         services.AddTransient<IClaimsTransformation, MsGraphClaimsTransformation>();
         services.AddHttpClient();
