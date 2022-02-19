@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Configuration;
 using RegisterUsersAzureB2C.CreateUser;
 using RegisterUsersAzureB2C.Services;
 using System.Threading.Tasks;
@@ -12,9 +13,11 @@ public class CreateAzureB2CUserModel : PageModel
 {
     private readonly MsGraphService _msGraphService;
 
-    public CreateAzureB2CUserModel(MsGraphService msGraphService)
+    public CreateAzureB2CUserModel(MsGraphService msGraphService,
+        IConfiguration configuration)
     {
         _msGraphService = msGraphService;
+        AadB2CIssuerDomain = configuration.GetValue<string>("AzureAdB2C:Domain");
     }
 
     public IActionResult OnGet()
@@ -24,6 +27,9 @@ public class CreateAzureB2CUserModel : PageModel
 
     [BindProperty]
     public UserModelB2CTenant UserModel { get; set; } = new UserModelB2CTenant();
+
+    [BindProperty]
+    public string AadB2CIssuerDomain { get; set; }
 
     [BindProperty]
     public string UserPassword { get; set; }

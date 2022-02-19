@@ -13,6 +13,8 @@ namespace RegisterUsersAzureB2C.Services;
 public class MsGraphService
 {
     private readonly GraphServiceClient _graphServiceClient;
+    private string _aadIssuerDomain;
+    private string _aadB2CIssuerDomain;
 
     public MsGraphService(IConfiguration configuration)
     {
@@ -22,6 +24,9 @@ public class MsGraphService
         // Values from app registration
         var clientId = configuration.GetValue<string>("GraphApi:ClientId");
         var clientSecret = configuration.GetValue<string>("GraphApi:ClientSecret");
+
+        _aadIssuerDomain = configuration.GetValue<string>("AadIssuerDomain");
+        _aadB2CIssuerDomain = configuration.GetValue<string>("AzureAdB2C:Domain");
 
         var options = new TokenCredentialOptions
         {
@@ -63,6 +68,11 @@ public class MsGraphService
 
     public async Task<(string Upn, string Password, string Id)> CreateAzureB2CSameDomainUserAsync(UserModelB2CTenant userModel)
     {
+        if(!userModel.UserPrincipalName.ToLower().EndsWith(_aadB2CIssuerDomain.ToLower()))
+        {
+            throw new ArgumentException("incorrect Email domain");
+        }
+            
         var password = GetEncodedRandomString();
         var user = new User
         {
@@ -92,6 +102,7 @@ public class MsGraphService
 
     public async Task<(string Upn, string Password, string Id)> CreateFederatedUserWithPasswordAsync(UserModelB2CIdentity userModel)
     {
+        // new user create, email does not matter unless you require to send mails
         var password = GetEncodedRandomString();
         var user = new User
         {
@@ -99,14 +110,13 @@ public class MsGraphService
             PreferredLanguage = userModel.PreferredLanguage,
             Surname = userModel.Surname,
             GivenName = userModel.GivenName,
-            //Mail = userModel.Email,
             OtherMails = new List<string> { userModel.Email },
             Identities = new List<ObjectIdentity>()
             {
                 new ObjectIdentity
                 {
                     SignInType = "federated",
-                    Issuer = "damienbodhotmail.onmicrosoft.com",
+                    Issuer = _aadB2CIssuerDomain,
                     IssuerAssignedId = userModel.Email
                 },
             },
@@ -122,33 +132,25 @@ public class MsGraphService
             .Request()
             .AddAsync(user);
 
-        //createdUser.UserPrincipalName = userModel.Email;
-        //createdUser.OtherMails = new List<string> { userModel.Email };
-        //createdUser.Birthday = userModel.BirthDate;
-
-        //var updatedUser = await _graphServiceClient.Users[createdUser.Id]
-        //  .Request()
-        //  .UpdateAsync(createdUser);
-
         return (createdUser.UserPrincipalName, user.PasswordProfile.Password, createdUser.Id);
     }
 
     public async Task<string> CreateFederatedNoPasswordAsync(UserModelB2CIdentity userModel)
     {
+        // User must already exist in AAD
         var user = new User
         {
             DisplayName = userModel.DisplayName,
             PreferredLanguage = userModel.PreferredLanguage,
             Surname = userModel.Surname,
             GivenName = userModel.GivenName,
-            //Mail = userModel.Email,
             OtherMails = new List<string> { userModel.Email },
             Identities = new List<ObjectIdentity>()
             {
                 new ObjectIdentity
                 {
                     SignInType = "federated",
-                    Issuer = "damienbodhotmail.onmicrosoft.com",
+                    Issuer = _aadIssuerDomain,
                     IssuerAssignedId = userModel.Email
                 },
             }
