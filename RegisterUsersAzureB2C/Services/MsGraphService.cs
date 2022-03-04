@@ -174,7 +174,7 @@ public class MsGraphService
         var invitation = new Invitation
         {
             InvitedUserEmailAddress = email,
-            InviteRedirectUrl = redirectUrl
+            InviteRedirectUrl = redirectUrl, 
         };
 
         var invite = await _graphServiceClient.Invitations

@@ -29,6 +29,9 @@ public class InviteUserModel : PageModel
     public UserInvite UserInvite { get; set; } = new UserInvite();
 
     [BindProperty]
+    public string InviteRedeemUrl { get; set; }
+
+    [BindProperty]
     public string AadB2CIssuerDomain { get; set; }
 
     public async Task<IActionResult> OnPostAsync()
@@ -44,7 +47,10 @@ public class InviteUserModel : PageModel
             return Page();
         }
 
-        var invite = await _msGraphService.InviteUser(UserInvite.Email, "/profile");
+        var invite = await _msGraphService.InviteUser(UserInvite.Email, 
+            "https://localhost:44397/profile");
+
+        InviteRedeemUrl = invite.InviteRedeemUrl;
 
         return OnGet();
     }
