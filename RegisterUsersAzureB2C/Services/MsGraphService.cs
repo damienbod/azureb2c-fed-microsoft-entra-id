@@ -169,6 +169,12 @@ public class MsGraphService
         return createdUser.UserPrincipalName;
     }
 
+    /// <summary>
+    /// This does not work for B2C, only Azure AD
+    /// </summary>
+    /// <param name="email"></param>
+    /// <param name="redirectUrl"></param>
+    /// <returns></returns>
     public async Task<Invitation> InviteUser(string email, string redirectUrl)
     {
         var invitation = new Invitation
