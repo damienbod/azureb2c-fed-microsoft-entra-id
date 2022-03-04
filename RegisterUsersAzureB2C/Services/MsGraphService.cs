@@ -175,6 +175,7 @@ public class MsGraphService
         {
             InvitedUserEmailAddress = email,
             InviteRedirectUrl = redirectUrl, 
+            InvitedUserType = "Member" // default is guest
         };
 
         var invite = await _graphServiceClient.Invitations
