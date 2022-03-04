@@ -169,6 +169,21 @@ public class MsGraphService
         return createdUser.UserPrincipalName;
     }
 
+    public async Task<Invitation> InviteUser(string email, string redirectUrl)
+    {
+        var invitation = new Invitation
+        {
+            InvitedUserEmailAddress = email,
+            InviteRedirectUrl = redirectUrl
+        };
+
+        var invite = await _graphServiceClient.Invitations
+            .Request()
+            .AddAsync(invitation);
+
+        return invite;
+    }
+
     public bool IsEmailValid(string email)
     {
         if (!MailAddress.TryCreate(email, out var mailAddress))
