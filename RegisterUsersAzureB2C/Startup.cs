@@ -1,6 +1,5 @@
 using RegisterUsersAzureB2C.Authz;
 using RegisterUsersAzureB2C.Services;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

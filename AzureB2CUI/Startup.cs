@@ -1,6 +1,5 @@
 using AzureB2CUI.Authz;
 using AzureB2CUI.Services;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
