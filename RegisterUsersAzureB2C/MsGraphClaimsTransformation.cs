@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RegisterUsersAzureB2C;
 
-public class MsGraphClaimsTransformation : IClaimsTransformation
+public class MsGraphClaimsTransformation
 {
     private readonly MsGraphService _msGraphService;
 

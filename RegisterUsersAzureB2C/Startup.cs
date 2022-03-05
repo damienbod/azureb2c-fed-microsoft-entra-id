@@ -10,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using System;
 
 namespace RegisterUsersAzureB2C;
 
@@ -21,11 +23,12 @@ public class Startup
     }
 
     public IConfiguration Configuration { get; }
+    protected IServiceProvider ApplicationServices { get; set; }
 
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddScoped<MsGraphService>();
-        services.AddTransient<IClaimsTransformation, MsGraphClaimsTransformation>();
+        services.AddScoped<MsGraphClaimsTransformation>();
         services.AddHttpClient();
 
         services.AddOptions();
@@ -33,6 +36,17 @@ public class Startup
         services.AddMicrosoftIdentityWebAppAuthentication(Configuration, "AzureAdB2C")
             .EnableTokenAcquisitionToCallDownstreamApi()
             .AddInMemoryTokenCaches();
+
+        services.Configure<OpenIdConnectOptions>(OpenIdConnectDefaults.AuthenticationScheme, options =>
+        {
+            options.Events.OnTokenValidated = async context =>
+            {
+                using var scope = ApplicationServices.CreateScope();
+                context.Principal = await scope.ServiceProvider
+                    .GetRequiredService<MsGraphClaimsTransformation>()
+                    .TransformAsync(context.Principal);
+            };
+        });
 
         services.AddRazorPages().AddMvcOptions(options =>
         {
@@ -55,6 +69,8 @@ public class Startup
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
+        ApplicationServices = app.ApplicationServices;
+
         if (env.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
