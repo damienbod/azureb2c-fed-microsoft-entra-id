@@ -41,7 +41,6 @@ public class Startup
             .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
             .AddInMemoryTokenCaches();
 
-        //services.Configure<MicrosoftIdentityOptions>(options =>
         services.Configure<MicrosoftIdentityOptions>(OpenIdConnectDefaults.AuthenticationScheme, options =>
         {
             options.Events.OnTokenValidated = async context =>
