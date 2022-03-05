@@ -15,8 +15,8 @@ namespace RegisterUsersAzureB2C.Services;
 public class MsGraphService
 {
     private readonly GraphServiceClient _graphServiceClient;
-    private string _aadIssuerDomain;
-    private string _aadB2CIssuerDomain;
+    private readonly string _aadIssuerDomain;
+    private readonly string _aadB2CIssuerDomain;
 
     public MsGraphService(IConfiguration configuration)
     {
@@ -213,13 +213,13 @@ public class MsGraphService
         return true;
     }
 
-    private string GetEncodedRandomString()
+    private static string GetEncodedRandomString()
     {
         var base64 = Convert.ToBase64String(GenerateRandomBytes(20));
         return HtmlEncoder.Default.Encode(base64);
     }
 
-    private byte[] GenerateRandomBytes(int length)
+    private static byte[] GenerateRandomBytes(int length)
     {
         var item = RandomNumberGenerator.Create();
         var byteArray = new byte[length];
