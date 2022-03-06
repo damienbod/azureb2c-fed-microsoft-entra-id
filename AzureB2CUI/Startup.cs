@@ -22,7 +22,7 @@ public class Startup
     }
 
     public IConfiguration Configuration { get; }
-    protected IServiceProvider ApplicationServices { get; set; }
+    protected IServiceProvider ApplicationServices { get; set; } = null;
 
     public void ConfigureServices(IServiceCollection services)
     {
