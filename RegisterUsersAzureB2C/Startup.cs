@@ -40,10 +40,13 @@ public class Startup
         {
             options.Events.OnTokenValidated = async context =>
             {
-                using var scope = ApplicationServices.CreateScope();
-                context.Principal = await scope.ServiceProvider
-                    .GetRequiredService<MsGraphClaimsTransformation>()
-                    .TransformAsync(context.Principal);
+                if (ApplicationServices != null && context.Principal != null)
+                {
+                    using var scope = ApplicationServices.CreateScope();
+                    context.Principal = await scope.ServiceProvider
+                        .GetRequiredService<MsGraphClaimsTransformation>()
+                        .TransformAsync(context.Principal);
+                }
             };
         });
 
