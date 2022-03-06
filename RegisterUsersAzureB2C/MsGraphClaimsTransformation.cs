@@ -1,5 +1,4 @@
 ﻿using RegisterUsersAzureB2C.Services;
-using Microsoft.AspNetCore.Authentication;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
