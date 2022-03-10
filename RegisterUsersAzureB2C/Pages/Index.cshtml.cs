@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace RegisterUsersAzureB2C.Pages;
+namespace RegisterUsersAzureB2CMsGraph.Pages;
 
 public class IndexModel : PageModel
 {

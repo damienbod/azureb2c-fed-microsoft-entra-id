@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApis", "WebApis\WebApis.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureB2CUI", "AzureB2CUI\AzureB2CUI.csproj", "{777AEF60-55C5-4339-846A-9BBA23FF8B5A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RegisterUsersAzureB2C", "RegisterUsersAzureB2C\RegisterUsersAzureB2C.csproj", "{7BAF1D35-FA4D-4221-99F0-C93D66B9CFA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RegisterUsersAzureB2CMsGraph", "RegisterUsersAzureB2C\RegisterUsersAzureB2CMsGraph.csproj", "{7BAF1D35-FA4D-4221-99F0-C93D66B9CFA0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

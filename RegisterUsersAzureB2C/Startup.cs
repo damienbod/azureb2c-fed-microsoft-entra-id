@@ -1,5 +1,5 @@
-using RegisterUsersAzureB2C.Authz;
-using RegisterUsersAzureB2C.Services;
+using RegisterUsersAzureB2CMsGraph.Authz;
+using RegisterUsersAzureB2CMsGraph.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -12,7 +12,7 @@ using Microsoft.Identity.Web.UI;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using System;
 
-namespace RegisterUsersAzureB2C;
+namespace RegisterUsersAzureB2CMsGraph;
 
 public class Startup
 {

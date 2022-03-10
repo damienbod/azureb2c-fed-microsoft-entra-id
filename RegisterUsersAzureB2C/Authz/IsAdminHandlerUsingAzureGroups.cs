@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RegisterUsersAzureB2C.Authz;
+namespace RegisterUsersAzureB2CMsGraph.Authz;
 
 public class IsAdminHandlerUsingAzureGroups : AuthorizationHandler<IsAdminRequirement>
 {

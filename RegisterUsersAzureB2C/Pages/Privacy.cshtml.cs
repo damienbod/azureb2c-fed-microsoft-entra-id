@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
-namespace RegisterUsersAzureB2C.Pages;
+namespace RegisterUsersAzureB2CMsGraph.Pages;
 
 public class PrivacyModel : PageModel
 {

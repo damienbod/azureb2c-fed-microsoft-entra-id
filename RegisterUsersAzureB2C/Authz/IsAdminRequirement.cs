@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 
-namespace RegisterUsersAzureB2C.Authz;
+namespace RegisterUsersAzureB2CMsGraph.Authz;
 
 public class IsAdminRequirement : IAuthorizationRequirement { }

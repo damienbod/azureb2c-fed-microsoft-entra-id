@@ -2,11 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
-using RegisterUsersAzureB2C.CreateUser;
-using RegisterUsersAzureB2C.Services;
+using RegisterUsersAzureB2CMsGraph.CreateUser;
+using RegisterUsersAzureB2CMsGraph.Services;
 using System.Threading.Tasks;
 
-namespace RegisterUsersAzureB2C.Pages;
+namespace RegisterUsersAzureB2CMsGraph.Pages;
 
 [Authorize(Policy = "IsAdminPolicy")]
 public class CreateAzureB2CUserModel : PageModel

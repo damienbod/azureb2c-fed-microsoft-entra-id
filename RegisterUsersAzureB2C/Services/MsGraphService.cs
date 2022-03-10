@@ -1,7 +1,7 @@
 ﻿using Azure.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Graph;
-using RegisterUsersAzureB2C.CreateUser;
+using RegisterUsersAzureB2CMsGraph.CreateUser;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ using System.Security.Cryptography;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 
-namespace RegisterUsersAzureB2C.Services;
+namespace RegisterUsersAzureB2CMsGraph.Services;
 
 public class MsGraphService
 {
@@ -170,7 +170,7 @@ public class MsGraphService
     }
 
     /// <summary>
-    /// This does not work for B2C, only Azure AD
+    /// Invitations do NOT work for B2C, only Azure AD
     /// </summary>
     /// <param name="email"></param>
     /// <param name="redirectUrl"></param>

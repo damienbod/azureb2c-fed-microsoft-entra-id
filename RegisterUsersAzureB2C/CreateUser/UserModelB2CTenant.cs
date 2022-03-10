@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace RegisterUsersAzureB2C.CreateUser
+namespace RegisterUsersAzureB2CMsGraph.CreateUser
 {
     public class UserModelB2CTenant
     {

@@ -5,7 +5,7 @@ using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
 
-namespace RegisterUsersAzureB2C;
+namespace RegisterUsersAzureB2CMsGraph;
 
 public class Program
 {

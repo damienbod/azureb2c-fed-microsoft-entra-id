@@ -1,9 +1,9 @@
-﻿using RegisterUsersAzureB2C.Services;
+﻿using RegisterUsersAzureB2CMsGraph.Services;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace RegisterUsersAzureB2C;
+namespace RegisterUsersAzureB2CMsGraph;
 
 public class MsGraphClaimsTransformation
 {
