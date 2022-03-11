@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using OnboardingAzureB2CCustomInvite.CreateUser;
 using System.Linq;
 using System.Net.Mail;
@@ -36,6 +37,25 @@ public class UserService
             return false; // Double dot or dot at end of user part.
 
         return true;
+    }
+
+    public async Task<int> UpdateUserIfExistsAsync(string onboardingRegistrationCode, string oid, string? email)
+    {
+        var user = await _userContext.Users.FirstOrDefaultAsync(
+            u => u.OnboardingRegistrationCode == onboardingRegistrationCode);
+
+        if(user  == null)
+            return 0;
+
+        user.AzureOid = oid;
+
+        if(email != null)
+            user.Email = email;
+
+        _userContext.Users.Update(user);
+        _userContext.SaveChanges();
+
+        return user.Id;
     }
 
     public static string GetRandomString()
