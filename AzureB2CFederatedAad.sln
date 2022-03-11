@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureB2CUI", "AzureB2CUI\Az
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RegisterUsersAzureB2CMsGraph", "RegisterUsersAzureB2CMsGraph\RegisterUsersAzureB2CMsGraph.csproj", "{7BAF1D35-FA4D-4221-99F0-C93D66B9CFA0}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnboardingAzureB2CCustomInvite", "OnboardingAzureB2CCustomInvite\OnboardingAzureB2CCustomInvite.csproj", "{5E8B3D9D-BD90-4C36-B621-C9FBBB2CA873}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{7BAF1D35-FA4D-4221-99F0-C93D66B9CFA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7BAF1D35-FA4D-4221-99F0-C93D66B9CFA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7BAF1D35-FA4D-4221-99F0-C93D66B9CFA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E8B3D9D-BD90-4C36-B621-C9FBBB2CA873}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E8B3D9D-BD90-4C36-B621-C9FBBB2CA873}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E8B3D9D-BD90-4C36-B621-C9FBBB2CA873}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E8B3D9D-BD90-4C36-B621-C9FBBB2CA873}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
