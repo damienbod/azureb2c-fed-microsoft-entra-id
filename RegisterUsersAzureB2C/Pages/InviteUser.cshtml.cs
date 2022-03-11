@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace RegisterUsersAzureB2C.Pages;
 
+/// <summary>
+/// Grpah invitations only works for Azure AD, not Azure B2C
+/// </summary>
 [Authorize(Policy = "IsAdminPolicy")]
 public class InviteUserModel : PageModel
 {
