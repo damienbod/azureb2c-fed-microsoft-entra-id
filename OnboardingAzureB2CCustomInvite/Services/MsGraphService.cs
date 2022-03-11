@@ -10,9 +10,11 @@ namespace OnboardingAzureB2CCustomInvite.Services;
 public class MsGraphService
 {
     private readonly GraphServiceClient _graphServiceClient;
+    private readonly IConfiguration _configuration;
 
     public MsGraphService(IConfiguration configuration)
     {
+        _configuration = configuration;
         string[]? scopes = configuration.GetValue<string>("GraphApi:Scopes")?.Split(' ');
         var tenantId = configuration.GetValue<string>("GraphApi:TenantId");
 
@@ -30,6 +32,31 @@ public class MsGraphService
             tenantId, clientId, clientSecret, options);
 
         _graphServiceClient = new GraphServiceClient(clientSecretCredential, scopes);
+    }
+
+    private async Task<string> GetUserIdAsync()
+    {
+        var meetingOrganizer = _configuration["AzureAd:EmailSender"];
+        var filter = $"startswith(userPrincipalName,'{meetingOrganizer}')";
+
+        var users = await _graphServiceClient.Users
+            .Request()
+            .Filter(filter)
+            .GetAsync();
+
+        return users.CurrentPage[0].Id;
+    }
+
+    public async Task SendEmailAsync(Message message)
+    {
+        var saveToSentItems = true;
+
+        var userId = await GetUserIdAsync();
+
+        await _graphServiceClient.Users[userId]
+            .SendMail(message, saveToSentItems)
+            .Request()
+            .PostAsync();
     }
 
     public async Task<User> GetGraphApiUser(string userId)

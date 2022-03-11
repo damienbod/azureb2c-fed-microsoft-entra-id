@@ -11,6 +11,7 @@ using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using System;
+using Microsoft.EntityFrameworkCore;
 
 namespace OnboardingAzureB2CCustomInvite;
 
@@ -29,8 +30,14 @@ public class Startup
         services.AddScoped<UserService>();
         services.AddScoped<MsGraphService>();
         services.AddScoped<MsGraphClaimsTransformation>();
-        services.AddHttpClient();
 
+        var defaultConnection = Configuration.GetConnectionString("DefaultConnection");
+
+        services.AddDbContext<UserContext>(options =>
+            options.UseSqlite(defaultConnection)
+        );
+
+        services.AddHttpClient();
         services.AddOptions();
 
         services.AddMicrosoftIdentityWebAppAuthentication(Configuration, "AzureAdB2C")

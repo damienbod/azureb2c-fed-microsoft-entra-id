@@ -1,15 +1,19 @@
 ﻿using Microsoft.Extensions.Configuration;
+using OnboardingAzureB2CCustomInvite.CreateUser;
 using System.Linq;
 using System.Net.Mail;
 using System.Security.Cryptography;
+using System.Threading.Tasks;
 
 namespace OnboardingAzureB2CCustomInvite.Services;
 
 public class UserService
 {
-    public UserService(IConfiguration configuration)
-    {
+    private readonly UserContext _userContext;
 
+    public UserService(UserContext userContext)
+    {
+        _userContext = userContext;
     }
 
     public bool IsEmailValid(string email)
@@ -34,7 +38,7 @@ public class UserService
         return true;
     }
 
-    public static string GetEncodedRandomString()
+    public static string GetRandomString()
     {
         var random = $"{GenerateRandom()}{GenerateRandom()}{GenerateRandom()}{GenerateRandom()}-AC";
         return random;
@@ -43,5 +47,14 @@ public class UserService
     private static int GenerateRandom()
     {
         return RandomNumberGenerator.GetInt32(100000000, int.MaxValue);
+    }
+
+    public async Task<UserEntity> CreateUser(UserEntity userModel)
+    {
+        userModel.OnboardingRegistrationCode = GetRandomString();
+
+        await _userContext.AddAsync(userModel);
+
+        return userModel;
     }
 }
