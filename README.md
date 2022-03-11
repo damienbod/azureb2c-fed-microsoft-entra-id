@@ -16,6 +16,8 @@
 
 ## History
 
+2022-03-11 Add Microsoft Graph create examples
+
 2022-02-19 Register Azure B2C users using Microsoft Graph
 
 2022-02-11 Updated packages and namespaces
