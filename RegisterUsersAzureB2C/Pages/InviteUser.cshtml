@@ -7,6 +7,8 @@ Layout = "~/Pages/Shared/_Layout.cshtml";
 
 <h1>Invite new Azure B2C user to @Model.AadB2CIssuerDomain</h1>
 
+<b>Does not work for Azure B2C, only Azure AD!</b>
+
 @{
     if(!string.IsNullOrEmpty(Model.InviteRedeemUrl))
     {
