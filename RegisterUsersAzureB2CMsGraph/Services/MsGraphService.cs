@@ -170,7 +170,7 @@ public class MsGraphService
     }
 
     /// <summary>
-    /// Invitations do NOT work for B2C, only Azure AD
+    /// Graph invitations only works for Azure AD, not Azure B2C
     /// </summary>
     /// <param name="email"></param>
     /// <param name="redirectUrl"></param>

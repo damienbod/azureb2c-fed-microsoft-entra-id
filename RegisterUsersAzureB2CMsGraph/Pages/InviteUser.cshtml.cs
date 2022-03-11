@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace RegisterUsersAzureB2CMsGraph.Pages;
 
 /// <summary>
-/// Grpah invitations only works for Azure AD, not Azure B2C
+/// Graph invitations only works for Azure AD, not Azure B2C
 /// </summary>
 [Authorize(Policy = "IsAdminPolicy")]
 public class InviteUserModel : PageModel
