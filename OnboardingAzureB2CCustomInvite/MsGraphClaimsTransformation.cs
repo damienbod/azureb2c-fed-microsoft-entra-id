@@ -23,12 +23,15 @@ public class MsGraphClaimsTransformation
             var objectidentifierClaimType = "http://schemas.microsoft.com/identity/claims/objectidentifier";
             var objectIdentifier = principal.Claims.FirstOrDefault(t => t.Type == objectidentifierClaimType);
 
-            var groupIds = await _msGraphService.GetGraphApiUserMemberGroups(objectIdentifier.Value);
-
-            foreach (var groupId in groupIds.ToList())
+            if(objectIdentifier != null)
             {
-                claimsIdentity.AddClaim(new Claim(groupClaimType, groupId));
-            }
+                var groupIds = await _msGraphService.GetGraphApiUserMemberGroups(objectIdentifier.Value);
+
+                foreach (var groupId in groupIds.ToList())
+                {
+                    claimsIdentity.AddClaim(new Claim(groupClaimType, groupId));
+                }
+            } 
         }
 
         principal.AddIdentity(claimsIdentity);

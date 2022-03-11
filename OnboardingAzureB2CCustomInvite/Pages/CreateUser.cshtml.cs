@@ -12,12 +12,13 @@ namespace OnboardingAzureB2CCustomInvite.Pages;
 public class CreateUserModel : PageModel
 {
     private readonly MsGraphService _msGraphService;
+    private readonly UserService _userService;
 
     public CreateUserModel(MsGraphService msGraphService,
-        IConfiguration configuration)
+        UserService userService, IConfiguration configuration)
     {
         _msGraphService = msGraphService;
-        AadB2CIssuerDomain = configuration.GetValue<string>("AzureAdB2C:Domain");
+        _userService = userService;
     }
 
     public IActionResult OnGet()
@@ -26,13 +27,10 @@ public class CreateUserModel : PageModel
     }
 
     [BindProperty]
-    public UserModelB2CTenant UserModel { get; set; } = new UserModelB2CTenant();
+    public UserModel UserModel { get; set; } = new UserModel();
 
     [BindProperty]
-    public string AadB2CIssuerDomain { get; set; }
-
-    [BindProperty]
-    public string UserPassword { get; set; }
+    public string OnboardingRegistrationCode { get; set; } = string.Empty;
 
     public async Task<IActionResult> OnPostAsync()
     {
@@ -41,15 +39,9 @@ public class CreateUserModel : PageModel
             return Page();
         }
 
-        if (!_msGraphService.IsEmailValid(UserModel.UserPrincipalName))
+        if (!_msGraphService.IsEmailValid(UserModel.Email))
         {
-            ModelState.AddModelError("UserPrincipalName", "UserPrincipalName is invalid");
-            return Page();
-        }
-
-        if (!UserModel.UserPrincipalName.ToLower().EndsWith(AadB2CIssuerDomain.ToLower()))
-        {
-            ModelState.AddModelError("UserPrincipalName", "UserPrincipalName domain is invalid");
+            ModelState.AddModelError("Email", "Email is invalid");
             return Page();
         }
 

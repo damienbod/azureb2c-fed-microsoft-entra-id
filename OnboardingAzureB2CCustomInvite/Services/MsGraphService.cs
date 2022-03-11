@@ -1,11 +1,8 @@
 ﻿using Azure.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Graph;
-using System;
 using System.Linq;
 using System.Net.Mail;
-using System.Security.Cryptography;
-using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 
 namespace OnboardingAzureB2CCustomInvite.Services;
@@ -13,20 +10,15 @@ namespace OnboardingAzureB2CCustomInvite.Services;
 public class MsGraphService
 {
     private readonly GraphServiceClient _graphServiceClient;
-    private readonly string _aadIssuerDomain;
-    private readonly string _aadB2CIssuerDomain;
 
     public MsGraphService(IConfiguration configuration)
     {
-        string[] scopes = configuration.GetValue<string>("GraphApi:Scopes")?.Split(' ');
+        string[]? scopes = configuration.GetValue<string>("GraphApi:Scopes")?.Split(' ');
         var tenantId = configuration.GetValue<string>("GraphApi:TenantId");
 
         // Values from app registration
         var clientId = configuration.GetValue<string>("GraphApi:ClientId");
         var clientSecret = configuration.GetValue<string>("GraphApi:ClientSecret");
-
-        _aadIssuerDomain = configuration.GetValue<string>("AadIssuerDomain");
-        _aadB2CIssuerDomain = configuration.GetValue<string>("AzureAdB2C:Domain");
 
         var options = new TokenCredentialOptions
         {
@@ -84,19 +76,5 @@ public class MsGraphService
             return false; // Double dot or dot at end of user part.
 
         return true;
-    }
-
-    private static string GetEncodedRandomString()
-    {
-        var base64 = Convert.ToBase64String(GenerateRandomBytes(20));
-        return HtmlEncoder.Default.Encode(base64);
-    }
-
-    private static byte[] GenerateRandomBytes(int length)
-    {
-        var item = RandomNumberGenerator.Create();
-        var byteArray = new byte[length];
-        item.GetBytes(byteArray);
-        return byteArray;
     }
 }
