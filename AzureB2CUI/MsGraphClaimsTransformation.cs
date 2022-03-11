@@ -1,18 +1,16 @@
 ﻿using AzureB2CUI.Services;
-using Microsoft.AspNetCore.Authentication;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace AzureB2CUI;
 
-public class MsGraphClaimsTransformation : IClaimsTransformation
+public class MsGraphClaimsTransformation
 {
     private readonly MsGraphService _msGraphService;
 
     public MsGraphClaimsTransformation(MsGraphService msGraphService)
     {
-
         _msGraphService = msGraphService;
     }
 

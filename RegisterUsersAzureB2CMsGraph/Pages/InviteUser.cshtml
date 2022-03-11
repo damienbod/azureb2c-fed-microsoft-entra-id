@@ -1,0 +1,36 @@
+﻿@page
+@model RegisterUsersAzureB2CMsGraph.Pages.InviteUserModel
+@{
+ViewData["Title"] = "Invite User";
+Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Invite new Azure B2C user to @Model.AadB2CIssuerDomain</h1>
+
+<b>Does not work for Azure B2C, only Azure AD!</b>
+
+@{
+    if(!string.IsNullOrEmpty(Model.InviteRedeemUrl))
+    {
+        <p>Email: @Model.InviteRedeemUrl</p>
+    }
+    else
+    {
+        <form method="post">
+            <div asp-validation-summary="All"></div>
+            <div class="row mb-4">
+                <div class="col-4">
+                    <div class="form-outline">
+                        <label class="form-label" asp-validation-for="User.UserPrincipalName">Email</label>
+                        <input type="email" asp-for="UserInvite.Email" class="form-control" />
+                        <span asp-validation-for="UserInvite.Email" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block mb-4">Invite</button>
+        </form>
+    }
+}
+
+

@@ -1,6 +1,6 @@
 using AzureB2CUI.Authz;
 using AzureB2CUI.Services;
-using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
+using System;
 
 namespace AzureB2CUI;
 
@@ -21,13 +22,14 @@ public class Startup
     }
 
     public IConfiguration Configuration { get; }
+    protected IServiceProvider ApplicationServices { get; set; } = null;
 
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddTransient<AdminApiService>();
         services.AddTransient<UserApiService>();
         services.AddScoped<MsGraphService>();
-        services.AddTransient<IClaimsTransformation, MsGraphClaimsTransformation>();
+        services.AddScoped<MsGraphClaimsTransformation>();
         services.AddHttpClient();
 
         services.AddOptions();
@@ -37,6 +39,20 @@ public class Startup
         services.AddMicrosoftIdentityWebAppAuthentication(Configuration, "AzureAdB2C")
             .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
             .AddInMemoryTokenCaches();
+
+        services.Configure<MicrosoftIdentityOptions>(OpenIdConnectDefaults.AuthenticationScheme, options =>
+        {
+            options.Events.OnTokenValidated = async context =>
+            {
+                if (ApplicationServices != null && context.Principal != null)
+                {
+                    using var scope = ApplicationServices.CreateScope();
+                    context.Principal = await scope.ServiceProvider
+                        .GetRequiredService<MsGraphClaimsTransformation>()
+                        .TransformAsync(context.Principal);
+                }
+            };
+        });
 
         services.AddRazorPages().AddMvcOptions(options =>
         {
@@ -59,6 +75,8 @@ public class Startup
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
+        ApplicationServices = app.ApplicationServices;
+
         if (env.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();

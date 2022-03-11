@@ -1,0 +1,82 @@
+﻿@page
+@model RegisterUsersAzureB2CMsGraph.Pages.CreateAzureB2CUserModel
+@{
+    ViewData["Title"] = "Create User";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Create new Azure B2C domain user</h1>
+
+@{
+    if(!string.IsNullOrEmpty(Model.UserPassword))
+    {
+        <p>Email: @Model.UserModel.UserPrincipalName</p>
+        <p>Password: @Model.UserPassword</p>
+    }
+    else
+    {
+        <form method="post">
+            <div asp-validation-summary="All"></div>
+            <div class="row mb-4">
+                <div class="col">
+                    <div class="form-outline">
+                        <label class="form-label" asp-validation-for="User.UserPrincipalName">UserPrincipalName</label>
+                        <input type="email" asp-for="UserModel.UserPrincipalName" class="form-control" />@Model.AadB2CIssuerDomain
+                        <span asp-validation-for="UserModel.UserPrincipalName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-outline">
+                        <label class="form-label" asp-validation-for="User.DisplayName">DisplayName</label>
+                        <input type="text" asp-for="UserModel.DisplayName" class="form-control" />
+                        <span asp-validation-for="UserModel.DisplayName" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col">
+                    <div class="form-outline">
+                        <label class="form-label" asp-validation-for="User.BirthDate">Birth Date</label>
+                        <input type="date" asp-for="UserModel.BirthDate"  min="1910-01-01" class="form-control" />
+                        <span asp-validation-for="UserModel.BirthDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-outline">
+                        <label class="form-label" asp-validation-for="User.Surname">Surname</label>
+                        <input type="text" asp-for="UserModel.Surname" class="form-control" />
+                        <span asp-validation-for="UserModel.Surname" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col">
+                    <div class="form-outline">
+                        <label class="form-label" asp-validation-for="User.GivenName">Given Name</label>
+                        <input type="text" asp-for="UserModel.GivenName" class="form-control" />
+                        <span asp-validation-for="UserModel.GivenName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-outline">
+                        <label class="form-label" asp-validation-for="User.PreferredLanguage">PreferredLanguage</label>
+                        <select asp-for="UserModel.PreferredLanguage" class="form-control">
+                            <option value="de">de</option>
+                            <option value="fr">fr</option>
+                            <option value="it">it</option>
+                            <option value="en">en</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block mb-4">Create</button>
+        </form>
+    }
+}
+
+
+
+
