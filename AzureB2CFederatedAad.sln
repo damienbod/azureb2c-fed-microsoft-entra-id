@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32126.317
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1CF61267-6B41-4FD5-9054-296126C4AB0C}"
 	ProjectSection(SolutionItems) = preProject
@@ -12,6 +12,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApis", "WebApis\WebApis.csproj", "{C4E0B7F3-8D05-4598-A60C-8219035CC917}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureB2CUI", "AzureB2CUI\AzureB2CUI.csproj", "{777AEF60-55C5-4339-846A-9BBA23FF8B5A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RegisterUsersAzureB2C", "RegisterUsersAzureB2C\RegisterUsersAzureB2C.csproj", "{7BAF1D35-FA4D-4221-99F0-C93D66B9CFA0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{777AEF60-55C5-4339-846A-9BBA23FF8B5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{777AEF60-55C5-4339-846A-9BBA23FF8B5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{777AEF60-55C5-4339-846A-9BBA23FF8B5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BAF1D35-FA4D-4221-99F0-C93D66B9CFA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BAF1D35-FA4D-4221-99F0-C93D66B9CFA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BAF1D35-FA4D-4221-99F0-C93D66B9CFA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BAF1D35-FA4D-4221-99F0-C93D66B9CFA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
