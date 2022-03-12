@@ -11,7 +11,7 @@ public class CallUserApiModel : PageModel
 {
     private readonly UserApiService _userApiService;
 
-    public JArray DataFromApi { get; set; }
+    public JArray? DataFromApi { get; set; }
 
     public CallUserApiModel(UserApiService userApiService)
     {

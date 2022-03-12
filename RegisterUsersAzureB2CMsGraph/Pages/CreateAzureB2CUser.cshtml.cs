@@ -20,11 +20,6 @@ public class CreateAzureB2CUserModel : PageModel
         AadB2CIssuerDomain = configuration.GetValue<string>("AzureAdB2C:Domain");
     }
 
-    public IActionResult OnGet()
-    {
-        return Page();
-    }
-
     [BindProperty]
     public UserModelB2CTenant UserModel { get; set; } = new UserModelB2CTenant();
 
@@ -32,7 +27,12 @@ public class CreateAzureB2CUserModel : PageModel
     public string AadB2CIssuerDomain { get; set; }
 
     [BindProperty]
-    public string UserPassword { get; set; }
+    public string? UserPassword { get; set; }
+
+    public IActionResult OnGet()
+    {
+        return Page();
+    }
 
     public async Task<IActionResult> OnPostAsync()
     {

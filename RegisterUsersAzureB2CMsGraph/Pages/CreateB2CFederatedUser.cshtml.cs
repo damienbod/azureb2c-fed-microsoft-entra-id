@@ -17,16 +17,16 @@ public class CreateB2CFederatedUserModel : PageModel
         _msGraphService = msGraphService;
     }
 
-    public IActionResult OnGet()
-    {
-        return Page();
-    }
-
     [BindProperty]
     public UserModelB2CIdentity UserModel { get; set; } = new UserModelB2CIdentity();
 
     [BindProperty]
-    public string  Upn{ get; set; }
+    public string? Upn { get; set; }
+
+    public IActionResult OnGet()
+    {
+        return Page();
+    }
 
     public async Task<IActionResult> OnPostAsync()
     {
