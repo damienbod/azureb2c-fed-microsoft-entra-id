@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using OnboardingAzureB2CCustomInvite.CreateUser;
 using OnboardingAzureB2CCustomInvite.Services;
 using System.Linq;
 using System.Threading.Tasks;

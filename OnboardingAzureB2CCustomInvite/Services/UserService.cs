@@ -1,6 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using OnboardingAzureB2CCustomInvite.CreateUser;
 using System.Linq;
 using System.Net.Mail;
 using System.Security.Cryptography;

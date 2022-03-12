@@ -7,7 +7,7 @@ namespace OnboardingAzureB2CCustomInvite.Services;
 
 public class EmailService
 {
-    MessageAttachmentsCollectionPage MessageAttachmentsCollectionPage = new();
+    readonly MessageAttachmentsCollectionPage MessageAttachmentsCollectionPage = new();
 
     public Message CreateStandardEmail(string recipient, string header, string body)
     {

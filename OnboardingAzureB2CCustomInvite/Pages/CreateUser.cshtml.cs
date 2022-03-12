@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Configuration;
-using OnboardingAzureB2CCustomInvite.CreateUser;
 using OnboardingAzureB2CCustomInvite.Services;
 using System.Threading.Tasks;
 
@@ -16,9 +14,7 @@ public class CreateUserModel : PageModel
     private readonly EmailService _emailService;
 
     public CreateUserModel(MsGraphService msGraphService,
-        UserService userService,
-        EmailService emailService,
-        IConfiguration configuration)
+        UserService userService, EmailService emailService)
     {
         _msGraphService = msGraphService;
         _userService = userService;
