@@ -5,15 +5,17 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<h1>Create new Azure B2C domain user</h1>
-
 @{
     if(!string.IsNullOrEmpty(Model.OnboardingRegistrationCode))
     {
+        <h1>Created new user: </h1>
         <p>Email: @Model.UserModel.Email</p>
+        <p>Onboarding code: @Model.OnboardingRegistrationCode</p>
     }
     else
     {
+        <h1>Create new Azure B2C domain user</h1>
+
         <form method="post">
             <div asp-validation-summary="All"></div>
             <div class="row mb-4">
