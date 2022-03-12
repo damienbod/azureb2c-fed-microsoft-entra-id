@@ -54,9 +54,11 @@ public class ProfileModel : PageModel
                 AzureOid = userEntity.AzureOid;
                 Email = userEntity.Email;
             }
-
-            IsActive = false;
-            AzureOid = oid;
+            else
+            {
+                IsActive = false;
+                AzureOid = oid;
+            }
         }
 
         return Page();
