@@ -60,7 +60,9 @@ public class CreateUserModel : PageModel
 
         AccountUrl = $"https://{Request.Host}/ConnectAccount?code={user.OnboardingRegistrationCode}";
         var header = $"{user.FirstName} {user.Surname} you are invited to signup";
-        var body = $"Hi {user.FirstName} {user.Surname} \n Use the following link to register \n {AccountUrl}";
+        var introText = "You have been invite to join the MyApp services. You can register and sign up here";
+        var endText = "Best regards, your MyApp support";
+        var body = $"Dear {user.FirstName} {user.Surname} \n\n{introText} \n\n{AccountUrl} \n\n{endText}";
         var message = _emailService.CreateStandardEmail(user.Email, header, body);
 
         await _msGraphEmailService.SendEmailAsync(message);
