@@ -34,8 +34,8 @@ public class ConnectAccountModel : PageModel
         if(oid == null)
             return Page();
 
-        int id = await _userService.UpdateUserIfExistsAsync(
-            code, oid, email);
+        int id = await _userService.ConnectUserIfExistsAsync(
+            code, oid, true, email);
 
         if(id > 0)
         {
@@ -62,8 +62,8 @@ public class ConnectAccountModel : PageModel
         var oidClaimType = "http://schemas.microsoft.com/identity/claims/objectidentifier";
         var oid = User.Claims.FirstOrDefault(t => t.Type == oidClaimType)?.Value;
 
-        int id = await _userService.UpdateUserIfExistsAsync(
-            OnboardingRegistrationCode, oid, email);
+        int id = await _userService.ConnectUserIfExistsAsync(
+            OnboardingRegistrationCode, oid, true, email);
 
         if (id > 0)
         {

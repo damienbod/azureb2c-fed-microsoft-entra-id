@@ -37,7 +37,7 @@ public class UserService
         return true;
     }
 
-    public async Task<int> UpdateUserIfExistsAsync(string onboardingRegistrationCode, string oid, string? email)
+    public async Task<int> ConnectUserIfExistsAsync(string onboardingRegistrationCode, string oid, bool isActive, string? email)
     {
         var user = await _userContext.Users.FirstOrDefaultAsync(
             u => u.OnboardingRegistrationCode == onboardingRegistrationCode);
@@ -50,6 +50,7 @@ public class UserService
         if(email != null)
             user.Email = email;
 
+        user.IsActive = isActive;
         _userContext.Users.Update(user);
         await _userContext.SaveChangesAsync();
 
