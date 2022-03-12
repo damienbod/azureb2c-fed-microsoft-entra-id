@@ -1,7 +1,71 @@
 ﻿@page
-@model ProfileModel
+@model OnboardingAzureB2CCustomInvite.Pages.ProfileModel
 @{
-    ViewData["Title"] = "Profile page";
+    ViewData["Title"] = "Create User";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-Profile
+<h1>Create new Azure B2C domain user</h1>
+
+<p>Email: @Model.Profile.Email </p>
+<p>IsActive: @Model.IsActive </p>
+<p>OID: @Model.AzureOid </p>
+
+<form method="post">
+    <div asp-validation-summary="All"></div>
+    <div class="row mb-4">
+        <div class="col">
+            <div class="form-outline">
+                <label class="form-label" asp-validation-for="User.DisplayName">DisplayName</label>
+                <input type="text" asp-for="Profile.DisplayName" class="form-control" />
+                <span asp-validation-for="Profile.DisplayName" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col">
+            <div class="form-outline">
+                <label class="form-label" asp-validation-for="User.BirthDate">Birth Date</label>
+                <input type="date" asp-for="Profile.BirthDate"  min="1910-01-01" class="form-control" />
+                <span asp-validation-for="Profile.BirthDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-outline">
+                <label class="form-label" asp-validation-for="User.Surname">Surname</label>
+                <input type="text" asp-for="Profile.Surname" class="form-control" />
+                <span asp-validation-for="Profile.Surname" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col">
+            <div class="form-outline">
+                <label class="form-label" asp-validation-for="User.GivenName">Given Name</label>
+                <input type="text" asp-for="Profile.FirstName" class="form-control" />
+                <span asp-validation-for="Profile.FirstName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-outline">
+                <label class="form-label" asp-validation-for="User.PreferredLanguage">PreferredLanguage</label>
+                <select asp-for="Profile.PreferredLanguage" class="form-control">
+                    <option value="de">de</option>
+                    <option value="fr">fr</option>
+                    <option value="it">it</option>
+                    <option value="en">en</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block mb-4">Update</button>
+</form>
+   
+
+
+
+
+

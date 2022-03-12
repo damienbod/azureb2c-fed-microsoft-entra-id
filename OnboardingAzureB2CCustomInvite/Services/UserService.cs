@@ -53,9 +53,32 @@ public class UserService
             user.Email = email;
 
         _userContext.Users.Update(user);
-        _userContext.SaveChanges();
+        await _userContext.SaveChangesAsync();
 
         return user.Id;
+    }
+
+    public async Task<UserEntity?> FindUserWithOid(string oid)
+    {
+        return await _userContext.Users.FirstOrDefaultAsync(
+            u => u.AzureOid == oid);
+    }
+
+    public async Task UpdateCreateProfile(UserEntity userEntity)
+    {
+        var user = await _userContext.Users.FirstOrDefaultAsync(
+             u => u.AzureOid == userEntity.AzureOid);
+
+        if(user == null)
+        {
+            await _userContext.AddAsync(userEntity);
+        }
+        else
+        {
+            _userContext.Users.Update(user);
+        }
+
+        await _userContext.SaveChangesAsync();
     }
 
     public static string GetRandomString()
@@ -77,4 +100,6 @@ public class UserService
 
         return userModel;
     }
+
+   
 }
