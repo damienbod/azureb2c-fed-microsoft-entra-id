@@ -24,13 +24,13 @@ public class ProfileModel : PageModel
     public Profile Profile { get; set; } = new Profile();
 
     [BindProperty]
-    public string AzureOid { get; set; } = string.Empty;
+    public string? AzureOid { get; set; } = string.Empty;
 
     [BindProperty]
     public bool IsActive { get; set; }
 
     [BindProperty]
-    public string Email { get; set; }
+    public string? Email { get; set; }
 
 
     public async Task<IActionResult> OnGetAsync()
