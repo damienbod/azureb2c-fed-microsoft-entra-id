@@ -58,7 +58,7 @@ public class CreateUserModel : PageModel
             PreferredLanguage = UserModel.PreferredLanguage
         });
 
-        AccountUrl = $"https://{Request.Host}/ConnectAccount?OnboardingRegistrationCode={user.OnboardingRegistrationCode}";
+        AccountUrl = $"https://{Request.Host}/ConnectAccount?code={user.OnboardingRegistrationCode}";
         var header = $"{user.FirstName} {user.Surname} you are invited to signup";
         var body = $"Hi {user.FirstName} {user.Surname} \n Use the following link to register \n {AccountUrl}";
         var message = _emailService.CreateStandardEmail(user.Email, header, body);

@@ -20,9 +20,9 @@ public class ConnectAccountModel : PageModel
     [BindProperty]
     public string? OnboardingRegistrationCode { get; set; } = string.Empty;
 
-    public async Task<IActionResult> OnGet([FromQuery] string OnboardingRegistrationCode)
+    public async Task<IActionResult> OnGet([FromQuery] string code)
     {
-        if (string.IsNullOrEmpty(OnboardingRegistrationCode))
+        if (string.IsNullOrEmpty(code))
         {
             return Page();
         }
@@ -35,7 +35,7 @@ public class ConnectAccountModel : PageModel
             return Page();
 
         int id = await _userService.UpdateUserIfExistsAsync(
-            OnboardingRegistrationCode, oid, email);
+            code, oid, email);
 
         if(id > 0)
         {
@@ -49,6 +49,12 @@ public class ConnectAccountModel : PageModel
     {
         if (!ModelState.IsValid)
         {
+            return Page();
+        }
+
+        if(string.IsNullOrEmpty(OnboardingRegistrationCode))
+        {
+            ModelState.AddModelError("OnboardingRegistrationCode", "code required");
             return Page();
         }
 
