@@ -29,6 +29,7 @@ public class Startup
     {
         services.AddScoped<UserService>();
         services.AddScoped<MsGraphService>();
+        services.AddScoped<MsGraphEmailService>();
         services.AddScoped<EmailService>();
         services.AddScoped<MsGraphClaimsTransformation>();
 

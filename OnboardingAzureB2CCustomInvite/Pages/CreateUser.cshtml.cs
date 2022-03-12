@@ -9,14 +9,14 @@ namespace OnboardingAzureB2CCustomInvite.Pages;
 [Authorize(Policy = "IsAdminPolicy")]
 public class CreateUserModel : PageModel
 {
-    private readonly MsGraphService _msGraphService;
+    private readonly MsGraphEmailService _msGraphEmailService;
     private readonly UserService _userService;
     private readonly EmailService _emailService;
 
-    public CreateUserModel(MsGraphService msGraphService,
+    public CreateUserModel(MsGraphEmailService msGraphEmailService,
         UserService userService, EmailService emailService)
     {
-        _msGraphService = msGraphService;
+        _msGraphEmailService = msGraphEmailService;
         _userService = userService;
         _emailService = emailService;
     }
@@ -42,7 +42,7 @@ public class CreateUserModel : PageModel
             return Page();
         }
 
-        if (!_msGraphService.IsEmailValid(UserModel.Email))
+        if (!_userService.IsEmailValid(UserModel.Email))
         {
             ModelState.AddModelError("Email", "Email is invalid");
             return Page();
@@ -63,7 +63,7 @@ public class CreateUserModel : PageModel
         var body = $"Hi {user.FirstName} {user.Surname} \n Use the following link to register \n {AccountUrl}";
         var message = _emailService.CreateStandardEmail(user.Email, header, body);
 
-        await _msGraphService.SendEmailAsync(message);
+        await _msGraphEmailService.SendEmailAsync(message);
 
         OnboardingRegistrationCode = user.OnboardingRegistrationCode;
         return OnGet();
