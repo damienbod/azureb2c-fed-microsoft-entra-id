@@ -29,6 +29,10 @@ public class ProfileModel : PageModel
     [BindProperty]
     public bool IsActive { get; set; }
 
+    [BindProperty]
+    public string Email { get; set; }
+
+
     public async Task<IActionResult> OnGetAsync()
     {
         var oidClaimType = "http://schemas.microsoft.com/identity/claims/objectidentifier";
@@ -43,14 +47,17 @@ public class ProfileModel : PageModel
             if (userEntity != null)
             {
                 Profile.Surname = userEntity.Surname;
-                Profile.Email = userEntity.Email;
                 Profile.FirstName = userEntity.FirstName;
                 Profile.DisplayName = userEntity.DisplayName;
                 Profile.BirthDate  = userEntity.BirthDate;
 
                 IsActive = userEntity.IsActive;
                 AzureOid = userEntity.AzureOid;
+                Email = userEntity.Email;
             }
+
+            IsActive = false;
+            AzureOid = oid;
         }
 
         return Page();
@@ -60,12 +67,6 @@ public class ProfileModel : PageModel
     {
         if (!ModelState.IsValid)
         {
-            return Page();
-        }
-
-        if (!_msGraphService.IsEmailValid(Profile.Email))
-        {
-            ModelState.AddModelError("Email", "Email is invalid");
             return Page();
         }
 

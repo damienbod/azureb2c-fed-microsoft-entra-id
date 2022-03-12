@@ -5,8 +5,6 @@ namespace OnboardingAzureB2CCustomInvite.CreateUser
 {
     public class Profile
     {
-        public int Id { get; set; } 
-
         [Required]
         public string DisplayName { get; set; } = string.Empty;
 
@@ -21,15 +19,5 @@ namespace OnboardingAzureB2CCustomInvite.CreateUser
 
         [Required]
         public DateTimeOffset BirthDate { get; set; } = DateTimeOffset.UtcNow.AddYears(-30);
-
-        [Required]
-        public bool IsActive { get; set; }
-
-        [Required]
-        public string Email { get; set; } = string.Empty;
-
-        public string OnboardingRegistrationCode { get; set; } = string.Empty;
-
-        public string AzureOid { get; set; } = string.Empty;
     }
 }
