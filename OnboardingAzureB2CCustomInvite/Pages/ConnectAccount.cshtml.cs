@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using OnboardingAzureB2CCustomInvite.Services;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace OnboardingAzureB2CCustomInvite.Pages;
 
+[Authorize]
 public class ConnectAccountModel : PageModel
 {
     private readonly UserService _userService;
@@ -18,7 +20,7 @@ public class ConnectAccountModel : PageModel
     [BindProperty]
     public string? OnboardingRegistrationCode { get; set; } = string.Empty;
 
-    public async Task<IActionResult> OnGet()
+    public async Task<IActionResult> OnGet([FromQuery] string OnboardingRegistrationCode)
     {
         if (string.IsNullOrEmpty(OnboardingRegistrationCode))
         {
