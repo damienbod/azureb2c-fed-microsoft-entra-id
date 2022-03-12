@@ -12,11 +12,11 @@
 <p>OID: @Model.AzureOid </p>
 
 <form method="post">
-    <div asp-validation-summary="All"></div>
+    <div class="text-danger" asp-validation-summary="All"></div>
     <div class="row mb-4">
         <div class="col">
             <div class="form-outline">
-                <label class="form-label" asp-validation-for="User.DisplayName">DisplayName</label>
+                <label class="form-label" asp-validation-for="User.DisplayName">Display name</label>
                 <input type="text" asp-for="Profile.DisplayName" class="form-control" />
                 <span asp-validation-for="Profile.DisplayName" class="text-danger"></span>
             </div>
@@ -26,7 +26,7 @@
     <div class="row mb-4">
         <div class="col">
             <div class="form-outline">
-                <label class="form-label" asp-validation-for="User.BirthDate">Birth Date</label>
+                <label class="form-label" asp-validation-for="User.BirthDate">Birth date</label>
                 <input type="date" asp-for="Profile.BirthDate"  min="1910-01-01" class="form-control" />
                 <span asp-validation-for="Profile.BirthDate" class="text-danger"></span>
             </div>
@@ -43,14 +43,14 @@
     <div class="row mb-4">
         <div class="col">
             <div class="form-outline">
-                <label class="form-label" asp-validation-for="User.GivenName">Given Name</label>
+                <label class="form-label" asp-validation-for="User.GivenName">Given name</label>
                 <input type="text" asp-for="Profile.FirstName" class="form-control" />
                 <span asp-validation-for="Profile.FirstName" class="text-danger"></span>
             </div>
         </div>
         <div class="col">
             <div class="form-outline">
-                <label class="form-label" asp-validation-for="User.PreferredLanguage">PreferredLanguage</label>
+                <label class="form-label" asp-validation-for="User.PreferredLanguage">Preferred language</label>
                 <select asp-for="Profile.PreferredLanguage" class="form-control">
                     <option value="de">de</option>
                     <option value="fr">fr</option>
