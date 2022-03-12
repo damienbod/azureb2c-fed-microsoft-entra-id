@@ -13,7 +13,6 @@ public class MsGraphService
 
     public MsGraphService(IConfiguration configuration)
     {
-        _configuration = configuration;
         string[]? scopes = configuration.GetValue<string>("GraphApi:Scopes")?.Split(' ');
         var tenantId = configuration.GetValue<string>("GraphApi:TenantId");
 

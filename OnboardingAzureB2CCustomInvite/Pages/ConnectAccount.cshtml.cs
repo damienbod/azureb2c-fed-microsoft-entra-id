@@ -62,6 +62,12 @@ public class ConnectAccountModel : PageModel
         var oidClaimType = "http://schemas.microsoft.com/identity/claims/objectidentifier";
         var oid = User.Claims.FirstOrDefault(t => t.Type == oidClaimType)?.Value;
 
+        if(oid == null)
+        {
+            ModelState.AddModelError("OID", "you are not authenticate using Azure AD, Azure AD B2C!");
+            return Page();
+        }
+
         int id = await _userService.ConnectUserIfExistsAsync(
             OnboardingRegistrationCode, oid, true, email);
 
