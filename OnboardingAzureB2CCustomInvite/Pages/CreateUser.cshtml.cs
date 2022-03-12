@@ -25,19 +25,19 @@ public class CreateUserModel : PageModel
         _emailService = emailService;
     }
 
-    public IActionResult OnGet()
-    {
-        return Page();
-    }
-
     [BindProperty]
     public UserModel UserModel { get; set; } = new UserModel();
 
     [BindProperty]
-    public string OnboardingRegistrationCode { get; set; } = string.Empty;
+    public string? OnboardingRegistrationCode { get; set; } = string.Empty;
 
     [BindProperty]
-    public string AccountUrl { get; set; } = string.Empty;
+    public string? AccountUrl { get; set; } = string.Empty;
+
+    public IActionResult OnGet()
+    {
+        return Page();
+    }
 
     public async Task<IActionResult> OnPostAsync()
     {
@@ -72,5 +72,4 @@ public class CreateUserModel : PageModel
         OnboardingRegistrationCode = user.OnboardingRegistrationCode;
         return OnGet();
     }
-
 }

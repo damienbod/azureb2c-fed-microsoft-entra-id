@@ -16,7 +16,7 @@ public class ConnectAccountModel : PageModel
     }
 
     [BindProperty]
-    public string OnboardingRegistrationCode { get; set; } = string.Empty;
+    public string? OnboardingRegistrationCode { get; set; } = string.Empty;
 
     public async Task<IActionResult> OnGet()
     {

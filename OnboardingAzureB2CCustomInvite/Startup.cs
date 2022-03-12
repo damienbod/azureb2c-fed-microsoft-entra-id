@@ -29,6 +29,7 @@ public class Startup
     {
         services.AddScoped<UserService>();
         services.AddScoped<MsGraphService>();
+        services.AddScoped<EmailService>();
         services.AddScoped<MsGraphClaimsTransformation>();
 
         var defaultConnection = Configuration.GetConnectionString("DefaultConnection");
