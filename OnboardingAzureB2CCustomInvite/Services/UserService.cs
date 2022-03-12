@@ -95,6 +95,7 @@ public class UserService
         userModel.OnboardingRegistrationCode = GetRandomString();
 
         await _userContext.AddAsync(userModel);
+        await _userContext.SaveChangesAsync();
 
         return userModel;
     }
