@@ -10,7 +10,6 @@ namespace OnboardingAzureB2CCustomInvite.Services;
 public class MsGraphService
 {
     private readonly GraphServiceClient _graphServiceClient;
-    private readonly IConfiguration _configuration;
 
     public MsGraphService(IConfiguration configuration)
     {

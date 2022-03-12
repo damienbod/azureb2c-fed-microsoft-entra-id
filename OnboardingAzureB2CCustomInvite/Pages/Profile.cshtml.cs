@@ -11,12 +11,10 @@ namespace OnboardingAzureB2CCustomInvite.Pages;
 public class ProfileModel : PageModel
 {
     private readonly UserService _userService;
-    private readonly MsGraphService _msGraphService;
 
-    public ProfileModel(UserService userService, MsGraphService msGraphService)
+    public ProfileModel(UserService userService)
     {
         _userService = userService;
-        _msGraphService = msGraphService;
     }
 
     [BindProperty]
