@@ -130,8 +130,14 @@ public class UserService
         return userModel;
     }
 
-    public async Task SendEmailInvite(UserEntity user, HostString host)
+    public async Task SendEmailInvite(UserEntity user, HostString host, bool updateCode)
     {
+        if (updateCode)
+        {
+            user.OnboardingRegistrationCode = GetRandomString();
+            await _userContext.SaveChangesAsync();
+        }
+
         var accountUrl = $"https://{host}/ConnectAccount?code={user.OnboardingRegistrationCode}";
         var header = $"{user.FirstName} {user.Surname} you are invited to signup";
         var introText = "You have been invite to join the MyApp services. You can register and sign up here";

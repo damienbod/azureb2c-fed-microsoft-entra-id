@@ -9,16 +9,11 @@ namespace OnboardingAzureB2CCustomInvite.Pages;
 [Authorize(Policy = "IsAdminPolicy")]
 public class CreateUserModel : PageModel
 {
-    private readonly MsGraphEmailService _msGraphEmailService;
     private readonly UserService _userService;
-    private readonly EmailService _emailService;
 
-    public CreateUserModel(MsGraphEmailService msGraphEmailService,
-        UserService userService, EmailService emailService)
+    public CreateUserModel(UserService userService)
     {
-        _msGraphEmailService = msGraphEmailService;
         _userService = userService;
-        _emailService = emailService;
     }
 
     [BindProperty]
@@ -58,7 +53,7 @@ public class CreateUserModel : PageModel
             PreferredLanguage = UserModel.PreferredLanguage
         });
 
-        await _userService.SendEmailInvite(user, Request.Host);
+        await _userService.SendEmailInvite(user, Request.Host, false);
 
         OnboardingRegistrationCode = user.OnboardingRegistrationCode;
         return OnGet();

@@ -9,16 +9,11 @@ namespace OnboardingAzureB2CCustomInvite.Pages;
 [Authorize(Policy = "IsAdminPolicy")]
 public class AdminEditUserModel : PageModel
 {
-    private readonly MsGraphEmailService _msGraphEmailService;
     private readonly UserService _userService;
-    private readonly EmailService _emailService;
 
-    public AdminEditUserModel(MsGraphEmailService msGraphEmailService,
-        UserService userService, EmailService emailService)
+    public AdminEditUserModel(UserService userService)
     {
-        _msGraphEmailService = msGraphEmailService;
         _userService = userService;
-        _emailService = emailService;
     }
 
     [BindProperty]
@@ -75,11 +70,7 @@ public class AdminEditUserModel : PageModel
         }
 
         var userEntity = await _userService.GetUserById(Id);
-        userEntity.OnboardingRegistrationCode = UserService.GetRandomString();
-        UserModel.OnboardingRegistrationCode = userEntity.OnboardingRegistrationCode;
-
-        await _userService.UpdateUser(UserModel, Id);
-        await _userService.SendEmailInvite(userEntity, Request.Host);
+        await _userService.SendEmailInvite(userEntity, Request.Host, true);
 
         return Page();
     }
