@@ -22,7 +22,7 @@ public class AdminEditUserModel : PageModel
     [BindProperty]
     public UserModel UserModel { get; set; } = new UserModel();
 
-    public async Task<IActionResult> OnGet()
+    public async Task<IActionResult> OnGet([FromRoute] int Id)
     {
         var userEntity = await _userService.GetUserById(Id);
 
@@ -38,7 +38,7 @@ public class AdminEditUserModel : PageModel
         return Page();
     }
 
-    public async Task<IActionResult> OnPostAsync()
+    public async Task<IActionResult> OnPostAsync([FromRoute] int Id)
     {
         if (!ModelState.IsValid)
         {
@@ -56,24 +56,24 @@ public class AdminEditUserModel : PageModel
         return Page();
     }
 
-    public async Task<IActionResult> SendInviteAsync()
-    {
-        if (!ModelState.IsValid)
-        {
-            return Page();
-        }
+    //public async Task<IActionResult> SendInviteAsync([FromRoute] int Id)
+    //{
+    //    if (!ModelState.IsValid)
+    //    {
+    //        return Page();
+    //    }
 
-        if (!_userService.IsEmailValid(UserModel.Email))
-        {
-            ModelState.AddModelError("Email", "Email is invalid");
-            return Page();
-        }
+    //    if (!_userService.IsEmailValid(UserModel.Email))
+    //    {
+    //        ModelState.AddModelError("Email", "Email is invalid");
+    //        return Page();
+    //    }
 
-        var userEntity = await _userService.GetUserById(Id);
-        await _userService.SendEmailInvite(userEntity, Request.Host, true);
+    //    var userEntity = await _userService.GetUserById(Id);
+    //    await _userService.SendEmailInvite(userEntity, Request.Host, true);
 
-        return Page();
-    }
+    //    return Page();
+    //}
 
 
 }
