@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 namespace OnboardingAzureB2CCustomInvite.Pages;
 
 [Authorize(Policy = "IsAdminPolicy")]
-public class CreateUserModel : PageModel
+public class AdminCreateUserModel : PageModel
 {
     private readonly UserService _userService;
 
-    public CreateUserModel(UserService userService)
+    public AdminCreateUserModel(UserService userService)
     {
         _userService = userService;
     }
