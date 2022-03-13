@@ -97,5 +97,4 @@ public class ProfileModel : PageModel
 
         return await OnGetAsync();
     }
-
 }

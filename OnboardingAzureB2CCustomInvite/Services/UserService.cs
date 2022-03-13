@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Net.Mail;
 using System.Security.Cryptography;
@@ -9,10 +10,15 @@ namespace OnboardingAzureB2CCustomInvite.Services;
 public class UserService
 {
     private readonly UserContext _userContext;
+    private readonly MsGraphEmailService _msGraphEmailService;
+    private readonly EmailService _emailService;
 
-    public UserService(UserContext userContext)
+    public UserService(MsGraphEmailService msGraphEmailService,
+       UserContext userContext, EmailService emailService)
     {
+        _msGraphEmailService = msGraphEmailService;
         _userContext = userContext;
+        _emailService = emailService;
     }
 
     public bool IsEmailValid(string email)
@@ -35,6 +41,29 @@ public class UserService
             return false; // Double dot or dot at end of user part.
 
         return true;
+    }
+
+    public async Task<UserEntity> GetUserById(int id)
+    {
+        return await _userContext.Users.FirstAsync(
+            u => u.Id == id);
+    }
+
+    public async Task<UserEntity> UpdateUser(UserModel userModel, int id)
+    {
+        var user = await GetUserById(id);
+
+        user.Email = userModel.Email;
+        user.FirstName = userModel.FirstName;
+        user.Surname = userModel.Surname;
+        user.BirthDate = userModel.BirthDate;
+        user.DisplayName = userModel.DisplayName;
+        user.PreferredLanguage = userModel.PreferredLanguage;
+        user.IsActive = userModel.IsActive;
+
+        await _userContext.SaveChangesAsync();
+
+        return user;
     }
 
     public async Task<int> ConnectUserIfExistsAsync(string onboardingRegistrationCode, string oid, bool isActive, string? email)
@@ -99,5 +128,17 @@ public class UserService
         await _userContext.SaveChangesAsync();
 
         return userModel;
+    }
+
+    public async Task SendEmailInvite(UserEntity user, HostString host)
+    {
+        var accountUrl = $"https://{host}/ConnectAccount?code={user.OnboardingRegistrationCode}";
+        var header = $"{user.FirstName} {user.Surname} you are invited to signup";
+        var introText = "You have been invite to join the MyApp services. You can register and sign up here";
+        var endText = "Best regards, your MyApp support";
+        var body = $"Dear {user.FirstName} {user.Surname} \n\n{introText} \n\n{accountUrl} \n\n{endText}";
+        var message = _emailService.CreateStandardEmail(user.Email, header, body);
+
+        await _msGraphEmailService.SendEmailAsync(message);
     }
 }
