@@ -47,6 +47,7 @@ public class ProfileModel : PageModel
                 Profile.FirstName = userEntity.FirstName;
                 Profile.DisplayName = userEntity.DisplayName;
                 Profile.BirthDate  = userEntity.BirthDate;
+                Profile.PreferredLanguage = userEntity.PreferredLanguage;
 
                 IsActive = userEntity.IsActive;
                 AzureOid = userEntity.AzureOid;

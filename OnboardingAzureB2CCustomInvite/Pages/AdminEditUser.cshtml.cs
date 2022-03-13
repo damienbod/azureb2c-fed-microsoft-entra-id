@@ -30,6 +30,7 @@ public class AdminEditUserModel : PageModel
         UserModel.FirstName = userEntity.FirstName;
         UserModel.DisplayName = userEntity.DisplayName;
         UserModel.BirthDate = userEntity.BirthDate;
+        UserModel.PreferredLanguage = userEntity.PreferredLanguage;
 
         UserModel.IsActive = userEntity.IsActive;
         UserModel.AzureOid = userEntity.AzureOid;
