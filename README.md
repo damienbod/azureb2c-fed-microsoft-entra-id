@@ -10,6 +10,8 @@
 
 [Create Azure B2C users with Microsoft Graph and ASP.NET Core](https://damienbod.com/2022/03/11/create-azure-b2c-users-with-microsoft-graph-and-asp-net-core/)
 
+[Transforming identity claims in ASP.NET Core and Cache](https://damienbod.com/2022/03/16/transforming-identity-claims-in-asp-net-core-and-cache/)
+
 ## Setup 
 
 ![setup](AzureB2CAzureAD_01.png)
