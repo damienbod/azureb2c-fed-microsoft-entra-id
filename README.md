@@ -12,11 +12,15 @@
 
 [Transforming identity claims in ASP.NET Core and Cache](https://damienbod.com/2022/03/16/transforming-identity-claims-in-asp-net-core-and-cache/)
 
+[Onboarding new users in an ASP.NET Core application using Azure B2C](https://damienbod.com/2022/03/24/onboarding-new-users-in-an-asp-net-core-application-using-azure-b2c/)
+
 ## Setup 
 
 ![setup](AzureB2CAzureAD_01.png)
 
 ## History
+
+2022-04-24 Azure B2C user onborading added, switched to nullable
 
 2022-03-11 Add Microsoft Graph create examples
 
