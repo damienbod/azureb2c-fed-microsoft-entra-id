@@ -20,7 +20,7 @@
 
 ## History
 
-2022-04-24 Azure B2C user onborading added, switched to nullable
+2022-03-24 Azure B2C user onborading added, switched to nullable
 
 2022-03-11 Add Microsoft Graph create examples
 
