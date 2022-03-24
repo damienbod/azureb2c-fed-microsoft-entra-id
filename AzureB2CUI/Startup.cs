@@ -22,7 +22,7 @@ public class Startup
     }
 
     public IConfiguration Configuration { get; }
-    protected IServiceProvider ApplicationServices { get; set; } = null;
+    protected IServiceProvider? ApplicationServices { get; set; } = null;
 
     public void ConfigureServices(IServiceCollection services)
     {
@@ -34,7 +34,7 @@ public class Startup
 
         services.AddOptions();
 
-        string[] initialScopes = Configuration.GetValue<string>("UserApiOne:ScopeForAccessToken")?.Split(' ');
+        string[]? initialScopes = Configuration.GetValue<string>("UserApiOne:ScopeForAccessToken")?.Split(' ');
 
         services.AddMicrosoftIdentityWebAppAuthentication(Configuration, "AzureAdB2C")
             .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)

@@ -1,0 +1,20 @@
+﻿@page
+@model ConnectAccountModel
+@{
+    ViewData["Title"] = "Connect Account page";
+}
+
+<form method="post">
+    <div asp-validation-summary="All"></div>
+    <div class="row mb-4">
+        <div class="col">
+            <div class="form-outline">
+                <label class="form-label" asp-validation-for="OnboardingRegistrationCode">Onboarding Registration Code</label>
+                <input type="email" asp-for="OnboardingRegistrationCode" class="form-control" />
+                <span asp-validation-for="OnboardingRegistrationCode" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block mb-4">Connect</button>
+</form>

@@ -12,7 +12,8 @@ public class CallAdminApiModel : PageModel
 {
     private readonly AdminApiService _apiService;
 
-    public JArray DataFromApi { get; set; }
+    public JArray? DataFromApi { get; set; }
+
     public CallAdminApiModel(AdminApiService apiService)
     {
         _apiService = apiService;

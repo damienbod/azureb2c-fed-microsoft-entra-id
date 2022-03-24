@@ -26,7 +26,7 @@ public class CreateB2CFederatedWithPasswordUserModel : PageModel
     public UserModelB2CIdentity UserModel { get; set; } = new UserModelB2CIdentity();
 
     [BindProperty]
-    public string  UserPassword { get; set; }
+    public string?  UserPassword { get; set; }
 
     public async Task<IActionResult> OnPostAsync()
     {

@@ -23,19 +23,19 @@ public class InviteUserModel : PageModel
         AadB2CIssuerDomain = configuration.GetValue<string>("AzureAdB2C:Domain");
     }
 
-    public IActionResult OnGet()
-    {
-        return Page();
-    }
-
     [BindProperty]
     public UserInvite UserInvite { get; set; } = new UserInvite();
 
     [BindProperty]
-    public string InviteRedeemUrl { get; set; }
+    public string? InviteRedeemUrl { get; set; }
 
     [BindProperty]
     public string AadB2CIssuerDomain { get; set; }
+
+    public IActionResult OnGet()
+    {
+        return Page();
+    }
 
     public async Task<IActionResult> OnPostAsync()
     {
