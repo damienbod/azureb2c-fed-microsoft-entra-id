@@ -1,12 +1,12 @@
 import { HttpInterceptor, HttpRequest, HttpHandler } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AuthService } from './auth.service';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  private secureRoutes = ['https://localhost:44390'];
+  private secureRoutes = ['https://localhost:44395'];
 
-  constructor(private authService: AuthService) {}
+  constructor( private oidcSecurityService: OidcSecurityService,) {}
 
   intercept(
     request: HttpRequest<any>,
@@ -17,7 +17,7 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
     let token = '';
-    this.authService.token.subscribe((result) => {
+    this.oidcSecurityService.getAccessToken().subscribe((result) => {
       token = result;
     });
 
