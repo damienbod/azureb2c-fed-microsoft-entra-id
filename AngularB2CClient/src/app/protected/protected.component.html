@@ -1,1 +1,14 @@
-<p>protected works!</p>
+
+<div>
+  <button (click)="callApi()">Call API</button>
+  <hr />
+
+  <br />
+
+</div>
+
+<h2>API data:</h2>
+
+<pre>
+  {{ dataFromAzureProtectedApi$ | async | json }}
+</pre>
