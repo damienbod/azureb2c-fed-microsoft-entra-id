@@ -20,7 +20,6 @@ export class ProtectedComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.oidcSecurityService.isAuthenticated().subscribe(isAuthenticated => {
       this.isAuthenticated = isAuthenticated;
     });
