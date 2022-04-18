@@ -28,7 +28,7 @@ export class ProtectedComponent implements OnInit {
 
   callApi() {
     this.dataFromAzureProtectedApi$ = this.httpClient
-      .get('https://localhost:44395/UserAccess')
+      .get('https://localhost:44395/AngularAccess')
       .pipe(catchError((error) => of(error)));
   }
 }
