@@ -46,7 +46,7 @@ public class Startup
                         .AddInMemoryTokenCaches();
 
         services.AddAuthentication()
-                    .AddMicrosoftIdentityWebApp(Configuration, "AzureAdB2CSignup", "t1", "t2")
+                    .AddMicrosoftIdentityWebApp(Configuration, "AzureAdB2CSignup", "signuppolicy", "cookieb2c")
                         .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
                         .AddInMemoryTokenCaches();
 
