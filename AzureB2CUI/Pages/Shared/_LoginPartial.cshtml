@@ -1,6 +1,6 @@
 
 <ul class="navbar-nav">
-@if (User.Identity.IsAuthenticated)
+@if (User.Identity != null && User.Identity.IsAuthenticated)
 {
         <li class="nav-item">
             <span class="navbar-text text-dark">Hello @User.Identity.Name!</span>
@@ -16,14 +16,8 @@ else
         </li>
 
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-page="/SignUp">SignUp</a>
+            <a class="nav-link text-dark" href="/MicrosoftIdentity/AccountSignUp/SignIn">Sign Up</a>
         </li>
-
-        
-        // "/MicrosoftIdentity/Account/SignIn/t1"
-      @*  <li class="nav-item">
-            <a class="nav-link text-dark" href="/MicrosoftIdentity/Account/SignIn?policy=B2C_1_signup">Sign Up</a>
-        </li>*@
 }
 
 </ul>
