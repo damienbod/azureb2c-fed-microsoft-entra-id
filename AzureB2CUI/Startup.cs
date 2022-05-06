@@ -36,19 +36,19 @@ public class Startup
 
         string[]? initialScopes = Configuration.GetValue<string>("UserApiOne:ScopeForAccessToken")?.Split(' ');
 
-        //services.AddMicrosoftIdentityWebAppAuthentication(Configuration, "AzureAdB2C")
-        //    .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
-        //    .AddInMemoryTokenCaches();
+        services.AddMicrosoftIdentityWebAppAuthentication(Configuration, "AzureAdB2C")
+            .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
+            .AddInMemoryTokenCaches();
 
-        services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
-                    .AddMicrosoftIdentityWebApp(Configuration, "AzureAdB2C")
-                        .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
-                        .AddInMemoryTokenCaches();
+        //services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
+        //            .AddMicrosoftIdentityWebApp(Configuration, "AzureAdB2C")
+        //                .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
+        //                .AddInMemoryTokenCaches();
 
-        services.AddAuthentication()
-                    .AddMicrosoftIdentityWebApp(Configuration, "AzureAdB2CSignup", "signuppolicy", "cookieb2c")
-                        .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
-                        .AddInMemoryTokenCaches();
+        //services.AddAuthentication()
+        //            .AddMicrosoftIdentityWebApp(Configuration, "AzureAdB2CSignup", "signuppolicy", "cookieb2c")
+        //                .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
+        //                .AddInMemoryTokenCaches();
 
         services.Configure<MicrosoftIdentityOptions>(OpenIdConnectDefaults.AuthenticationScheme, options =>
         {

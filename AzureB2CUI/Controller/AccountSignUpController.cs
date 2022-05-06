@@ -18,7 +18,7 @@ namespace Microsoft.Identity.Web.UI.Areas.MicrosoftIdentity.Controllers
         }
 
         [HttpGet("{scheme?}")]
-        public IActionResult SignIn(
+        public IActionResult SignUpPolicy(
             [FromRoute] string scheme,
             [FromQuery] string redirectUri)
         {
