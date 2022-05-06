@@ -39,6 +39,24 @@ public class Startup
         services.AddMicrosoftIdentityWebApiAuthentication(
             Configuration, "AzureB2CAdminApi", "BearerAdmin");
 
+        services.AddMicrosoftIdentityWebApiAuthentication(
+           Configuration, "AzureB2CAngularApi", "BearerAngularApi");
+
+        services.AddCors(options =>
+        {
+            options.AddPolicy("AllowMyOrigins",
+                builder =>
+                {
+                    builder
+                        .AllowCredentials()
+                        .WithOrigins(
+                            "https://localhost:4200")
+                        .SetIsOriginAllowedToAllowWildcardSubdomains()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+        });
+
         services.AddSwaggerGen(c =>
         {
             // add JWT Authentication
@@ -108,6 +126,8 @@ public class Startup
             c.SwaggerEndpoint("/swagger/v1/swagger.json", "User API One");
             c.RoutePrefix = string.Empty;
         });
+
+        app.UseCors("AllowMyOrigins");
 
         app.UseHttpsRedirection();
 
