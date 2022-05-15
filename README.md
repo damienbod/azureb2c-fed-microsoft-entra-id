@@ -20,6 +20,8 @@
 
 ## History
 
+2022-05-15 Update packages
+
 2022-05-07 Update client to support multiple user flows.
 
 2022-04-18 Azure B2C Angular UI client with API
