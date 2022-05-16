@@ -54,6 +54,8 @@ public class Startup
             };
         });
 
+        services.AddControllers();
+
         services.AddRazorPages().AddMvcOptions(options =>
         {
             var policy = new AuthorizationPolicyBuilder()

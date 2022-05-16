@@ -1,6 +1,6 @@
 
 <ul class="navbar-nav">
-@if (User.Identity.IsAuthenticated)
+@if (User.Identity != null && User.Identity.IsAuthenticated)
 {
         <li class="nav-item">
             <span class="navbar-text text-dark">Hello @User.Identity.Name!</span>
@@ -14,5 +14,10 @@ else
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignIn">Sign in</a>
         </li>
+
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="/MicrosoftIdentity/AccountSignUp/SignUpPolicy">Sign Up</a>
+        </li>
 }
+
 </ul>
