@@ -14,6 +14,8 @@
 
 [Onboarding new users in an ASP.NET Core application using Azure B2C](https://damienbod.com/2022/03/24/onboarding-new-users-in-an-asp-net-core-application-using-azure-b2c/)
 
+[Using multiple Azure B2C user flows from ASP.NET Core](https://damienbod.com/2022/05/16/using-multiple-azure-b2c-user-flows-from-asp-net-core/)
+
 ## Setup 
 
 ![setup](AzureB2CAzureAD_01.png)
