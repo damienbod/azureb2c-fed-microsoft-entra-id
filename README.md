@@ -1,4 +1,4 @@
-# ASP.NET Core Azure B2C, Azure AD
+# ASP.NET Core Azure AD B2C
 
 [![.NET](https://github.com/damienbod/azureb2c-fed-azuread/workflows/.NET/badge.svg)](https://github.com/damienbod/azureb2c-fed-azuread/actions?query=workflow%3A.NET) 
 
