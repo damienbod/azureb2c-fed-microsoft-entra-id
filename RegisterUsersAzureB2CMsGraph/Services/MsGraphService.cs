@@ -1,14 +1,9 @@
 ﻿using Azure.Identity;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Graph;
 using RegisterUsersAzureB2CMsGraph.CreateUser;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text.Encodings.Web;
-using System.Threading.Tasks;
 
 namespace RegisterUsersAzureB2CMsGraph.Services;
 
