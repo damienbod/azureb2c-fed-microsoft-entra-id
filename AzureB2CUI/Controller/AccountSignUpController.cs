@@ -28,7 +28,7 @@ public class AccountSignUpController : Controller
         scheme ??= OpenIdConnectDefaults.AuthenticationScheme;
 
         var properties = new AuthenticationProperties { RedirectUri = redirect };
-        properties.Items[Constants.Policy] = "B2C_1_signup";
+        properties.Items[Constants.Policy] = "B2C_1_sign_in"; // "B2C_1_signup";
         return Challenge(properties, scheme);
     }
 }
