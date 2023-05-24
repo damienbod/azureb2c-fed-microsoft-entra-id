@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace OnboardingAzureB2CCustomInvite.Services;
+﻿namespace OnboardingAzureB2CCustomInvite.Services;
 
 public class UserEntity
 {

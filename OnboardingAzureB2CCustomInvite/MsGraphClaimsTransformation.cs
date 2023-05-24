@@ -1,7 +1,5 @@
 ﻿using OnboardingAzureB2CCustomInvite.Services;
-using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 
 namespace OnboardingAzureB2CCustomInvite;
 

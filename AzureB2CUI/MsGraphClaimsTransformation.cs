@@ -1,7 +1,5 @@
 ﻿using AzureB2CUI.Services;
-using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 
 namespace AzureB2CUI;
 

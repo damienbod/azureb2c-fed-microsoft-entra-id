@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RegisterUsersAzureB2CMsGraph.CreateUser;
 using RegisterUsersAzureB2CMsGraph.Services;
-using System.Threading.Tasks;
 
 namespace RegisterUsersAzureB2CMsGraph.Pages;
 

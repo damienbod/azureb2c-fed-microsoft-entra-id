@@ -1,11 +1,9 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace RegisterUsersAzureB2CMsGraph.CreateUser
+namespace RegisterUsersAzureB2CMsGraph.CreateUser;
+
+public class UserInvite
 {
-    public class UserInvite
-    {
-        [Required]
-        public string Email { get; set; } = string.Empty;
-    }
+    [Required]
+    public string Email { get; set; } = string.Empty;
 }

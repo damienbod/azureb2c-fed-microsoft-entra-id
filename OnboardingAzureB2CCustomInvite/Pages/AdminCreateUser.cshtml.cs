@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using OnboardingAzureB2CCustomInvite.Services;
-using System.Threading.Tasks;
 
 namespace OnboardingAzureB2CCustomInvite.Pages;
 

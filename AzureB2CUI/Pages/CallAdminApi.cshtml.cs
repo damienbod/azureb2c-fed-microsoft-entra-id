@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Identity.Web;
 using Newtonsoft.Json.Linq;
-using System.Threading.Tasks;
 
 namespace AzureB2CUI.Pages;
 

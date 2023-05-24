@@ -1,9 +1,5 @@
 ﻿using Azure.Identity;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Graph;
-using System.Linq;
-using System.Net.Mail;
-using System.Threading.Tasks;
 
 namespace OnboardingAzureB2CCustomInvite.Services;
 
