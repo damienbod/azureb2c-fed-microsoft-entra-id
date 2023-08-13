@@ -13,7 +13,7 @@ try
 
     builder.Host.UseSerilog((context, loggingConfiguration) => loggingConfiguration
         .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}")
-        .WriteTo.File("../Logs/_registerui.txt")
+        .WriteTo.File("../Logs/_onboradingui.txt")
         .Enrich.FromLogContext()
         .ReadFrom.Configuration(context.Configuration));
 
