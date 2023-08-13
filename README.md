@@ -22,7 +22,7 @@
 
 ## History
 
-2023-08-13 Update packages
+2023-08-13 Update packages, improved startup
 
 2022-05-15 Update packages
 
