@@ -27,7 +27,7 @@ public class AdminApiService
         var scope = _configuration["AdminApiOne:ScopeForAccessToken"];
         var accessToken = await _tokenAcquisition.GetAccessTokenForUserAsync(new[] { scope });
 
-        client.BaseAddress = new Uri(_configuration["AdminApiOne:ApiBaseAddress"]);
+        client.BaseAddress = new Uri(_configuration["AdminApiOne:ApiBaseAddress"]!);
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
         client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 

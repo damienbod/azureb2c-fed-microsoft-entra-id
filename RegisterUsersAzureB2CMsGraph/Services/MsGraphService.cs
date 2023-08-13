@@ -10,8 +10,8 @@ namespace RegisterUsersAzureB2CMsGraph.Services;
 public class MsGraphService
 {
     private readonly GraphServiceClient _graphServiceClient;
-    private readonly string _aadIssuerDomain;
-    private readonly string _aadB2CIssuerDomain;
+    private readonly string? _aadIssuerDomain;
+    private readonly string? _aadB2CIssuerDomain;
 
     public MsGraphService(IConfiguration configuration)
     {
@@ -63,7 +63,7 @@ public class MsGraphService
 
     public async Task<(string Upn, string Password, string Id)> CreateAzureB2CSameDomainUserAsync(UserModelB2CTenant userModel)
     {
-        if(!userModel.UserPrincipalName.ToLower().EndsWith(_aadB2CIssuerDomain.ToLower()))
+        if(!userModel.UserPrincipalName.ToLower().EndsWith(_aadB2CIssuerDomain!.ToLower()))
         {
             throw new ArgumentException("incorrect Email domain");
         }

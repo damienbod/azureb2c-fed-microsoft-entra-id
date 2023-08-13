@@ -21,13 +21,12 @@ public class UserApiService
 
     public async Task<JArray> GetApiDataAsync()
     {
-
         var client = _clientFactory.CreateClient();
 
         var scope = _configuration["UserApiOne:ScopeForAccessToken"];
         var accessToken = await _tokenAcquisition.GetAccessTokenForUserAsync(new[] { scope });
 
-        client.BaseAddress = new Uri(_configuration["UserApiOne:ApiBaseAddress"]);
+        client.BaseAddress = new Uri(_configuration["UserApiOne:ApiBaseAddress"]!);
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
         client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 

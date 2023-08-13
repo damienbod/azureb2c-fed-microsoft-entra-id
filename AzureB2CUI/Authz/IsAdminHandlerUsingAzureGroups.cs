@@ -4,7 +4,7 @@ namespace AzureB2CUI.Authz;
 
 public class IsAdminHandlerUsingAzureGroups : AuthorizationHandler<IsAdminRequirement>
 {
-    private readonly string _adminGroupId;
+    private readonly string? _adminGroupId;
 
     public IsAdminHandlerUsingAzureGroups(IConfiguration configuration)
     {
