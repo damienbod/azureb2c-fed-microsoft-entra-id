@@ -1,38 +1,32 @@
 using RegisterUsersAzureB2CMsGraph.Authz;
 using RegisterUsersAzureB2CMsGraph.Services;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Authorization;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using System;
+using Serilog;
+using Microsoft.IdentityModel.Logging;
 
 namespace RegisterUsersAzureB2CMsGraph;
 
-public class Startup
+internal static class HostingExtensions
 {
-    public Startup(IConfiguration configuration)
+    private static IWebHostEnvironment? _env;
+    private static IServiceProvider? _applicationServices;
+    public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
     {
-        Configuration = configuration;
-    }
+        var services = builder.Services;
+        var configuration = builder.Configuration;
+        _env = builder.Environment;
 
-    public IConfiguration Configuration { get; }
-    protected IServiceProvider? ApplicationServices { get; set; } = null;
-
-    public void ConfigureServices(IServiceCollection services)
-    {
         services.AddScoped<MsGraphService>();
         services.AddScoped<MsGraphClaimsTransformation>();
         services.AddHttpClient();
 
         services.AddOptions();
 
-        services.AddMicrosoftIdentityWebAppAuthentication(Configuration, "AzureAdB2C")
+        services.AddMicrosoftIdentityWebAppAuthentication(configuration, "AzureAdB2C")
             .EnableTokenAcquisitionToCallDownstreamApi()
             .AddInMemoryTokenCaches();
 
@@ -40,9 +34,9 @@ public class Startup
         {
             options.Events.OnTokenValidated = async context =>
             {
-                if (ApplicationServices != null && context.Principal != null)
+                if (_applicationServices != null && context.Principal != null)
                 {
-                    using var scope = ApplicationServices.CreateScope();
+                    using var scope = _applicationServices.CreateScope();
                     context.Principal = await scope.ServiceProvider
                         .GetRequiredService<MsGraphClaimsTransformation>()
                         .TransformAsync(context.Principal);
@@ -67,13 +61,18 @@ public class Startup
                 policy.Requirements.Add(new IsAdminRequirement());
             });
         });
+
+        return builder.Build();
     }
-
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    
+    public static WebApplication ConfigurePipeline(this WebApplication app)
     {
-        ApplicationServices = app.ApplicationServices;
+        IdentityModelEventSource.ShowPII = true;
 
-        if (env.IsDevelopment())
+        _applicationServices = app.Services;
+        app.UseSerilogRequestLogging();
+
+        if (_env!.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
         }
@@ -91,10 +90,9 @@ public class Startup
         app.UseAuthentication();
         app.UseAuthorization();
 
-        app.UseEndpoints(endpoints =>
-        {
-            endpoints.MapRazorPages();
-            endpoints.MapControllers();
-        });
+        app.MapRazorPages();
+        app.MapControllers();
+
+        return app;
     }
 }

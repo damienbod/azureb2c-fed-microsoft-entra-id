@@ -23,9 +23,6 @@ internal static class HostingExtensions
 
         services.AddOptions();
 
-        JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
-        IdentityModelEventSource.ShowPII = true;
-
         services.AddMicrosoftIdentityWebApiAuthentication(
             configuration, "AzureB2CUserApi");
         services.AddMicrosoftIdentityWebApiAuthentication(
@@ -110,6 +107,7 @@ internal static class HostingExtensions
     
     public static WebApplication ConfigurePipeline(this WebApplication app)
     {
+        JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
         IdentityModelEventSource.ShowPII = true;
 
         app.UseSerilogRequestLogging();
