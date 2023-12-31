@@ -1,5 +1,6 @@
 ﻿using Azure.Identity;
 using Microsoft.Graph;
+using Microsoft.Graph.Models;
 
 namespace AzureB2CUI.Services;
 
@@ -28,18 +29,16 @@ public class MsGraphService
         _graphServiceClient = new GraphServiceClient(clientSecretCredential, scopes);
     }
 
-    public async Task<User> GetGraphApiUser(string userId)
+    public async Task<User?> GetGraphApiUser(string userId)
     {
         return await _graphServiceClient.Users[userId]
-                .Request()
                 .GetAsync();
     }
 
-    public async Task<IUserAppRoleAssignmentsCollectionPage> GetGraphApiUserAppRoles(string userId)
+    public async Task<AppRoleAssignmentCollectionResponse?> GetGraphApiUserAppRoles(string userId)
     {
         return await _graphServiceClient.Users[userId]
                 .AppRoleAssignments
-                .Request()
                 .GetAsync();
     }
 
@@ -49,6 +48,6 @@ public class MsGraphService
 
         return await _graphServiceClient.Users[userId]
             .GetMemberGroups(securityEnabledOnly)
-            .Request().PostAsync();
+            .PostAsync();
     }
 }

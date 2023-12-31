@@ -1,5 +1,6 @@
 ﻿using Azure.Identity;
 using Microsoft.Graph;
+using Microsoft.Graph.Models;
 
 namespace OnboardingAzureB2CCustomInvite.Services;
 
@@ -36,7 +37,6 @@ public class MsGraphEmailService
         var filter = $"startswith(userPrincipalName,'{meetingOrganizer}')";
 
         var users = await _graphServiceClient.Users
-            .Request()
             .Filter(filter)
             .GetAsync();
 
@@ -51,7 +51,6 @@ public class MsGraphEmailService
 
         await _graphServiceClient.Users[userId]
             .SendMail(message, saveToSentItems)
-            .Request()
             .PostAsync();
     }
 }
