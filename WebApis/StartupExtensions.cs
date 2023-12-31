@@ -2,10 +2,10 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Identity.Web;
+using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.OpenApi.Models;
 using Serilog;
-using System.IdentityModel.Tokens.Jwt;
 using WebApis.Authz;
 
 namespace WebApis;
@@ -105,7 +105,7 @@ internal static class StartupExtensions
 
     public static WebApplication ConfigurePipeline(this WebApplication app)
     {
-        JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+        JsonWebTokenHandler.DefaultInboundClaimTypeMap.Clear();
         IdentityModelEventSource.ShowPII = true;
 
         app.UseSerilogRequestLogging();
