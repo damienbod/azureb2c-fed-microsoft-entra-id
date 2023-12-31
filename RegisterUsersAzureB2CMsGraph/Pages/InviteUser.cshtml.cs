@@ -48,7 +48,7 @@ public class InviteUserModel : PageModel
             return Page();
         }
 
-        var invite = await _msGraphService.InviteUser(UserInvite.Email, 
+        var invite = await _msGraphService.InviteUser(UserInvite.Email,
             "https://localhost:44397/profile");
 
         InviteRedeemUrl = invite.InviteRedeemUrl;

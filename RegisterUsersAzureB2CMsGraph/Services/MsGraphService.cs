@@ -63,11 +63,11 @@ public class MsGraphService
 
     public async Task<(string Upn, string Password, string Id)> CreateAzureB2CSameDomainUserAsync(UserModelB2CTenant userModel)
     {
-        if(!userModel.UserPrincipalName.ToLower().EndsWith(_aadB2CIssuerDomain!.ToLower()))
+        if (!userModel.UserPrincipalName.ToLower().EndsWith(_aadB2CIssuerDomain!.ToLower()))
         {
             throw new ArgumentException("incorrect Email domain");
         }
-            
+
         var password = GetEncodedRandomString();
         var user = new User
         {
@@ -175,7 +175,7 @@ public class MsGraphService
         var invitation = new Invitation
         {
             InvitedUserEmailAddress = email,
-            InviteRedirectUrl = redirectUrl, 
+            InviteRedirectUrl = redirectUrl,
             InvitedUserType = "Member" // default is guest
         };
 

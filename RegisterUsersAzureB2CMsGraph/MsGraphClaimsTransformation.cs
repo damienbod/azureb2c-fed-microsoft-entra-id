@@ -1,7 +1,5 @@
 ﻿using RegisterUsersAzureB2CMsGraph.Services;
-using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 
 namespace RegisterUsersAzureB2CMsGraph;
 

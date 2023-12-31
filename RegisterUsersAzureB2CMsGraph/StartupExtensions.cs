@@ -1,12 +1,12 @@
-using RegisterUsersAzureB2CMsGraph.Authz;
-using RegisterUsersAzureB2CMsGraph.Services;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Serilog;
 using Microsoft.IdentityModel.Logging;
+using RegisterUsersAzureB2CMsGraph.Authz;
+using RegisterUsersAzureB2CMsGraph.Services;
+using Serilog;
 
 namespace RegisterUsersAzureB2CMsGraph;
 
@@ -64,7 +64,7 @@ internal static class StartupExtensions
 
         return builder.Build();
     }
-    
+
     public static WebApplication ConfigurePipeline(this WebApplication app)
     {
         IdentityModelEventSource.ShowPII = true;

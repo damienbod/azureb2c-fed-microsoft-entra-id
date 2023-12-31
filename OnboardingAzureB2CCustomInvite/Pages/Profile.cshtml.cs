@@ -44,7 +44,7 @@ public class ProfileModel : PageModel
                 Profile.Surname = userEntity.Surname;
                 Profile.FirstName = userEntity.FirstName;
                 Profile.DisplayName = userEntity.DisplayName;
-                Profile.BirthDate  = userEntity.BirthDate;
+                Profile.BirthDate = userEntity.BirthDate;
                 Profile.PreferredLanguage = userEntity.PreferredLanguage;
 
                 IsActive = userEntity.IsActive;
@@ -75,8 +75,8 @@ public class ProfileModel : PageModel
         UserEntity? userEntity = null;
         if (oid != null)
             userEntity = await _userService.FindUserWithOid(oid);
-        
-        if(userEntity == null)
+
+        if (userEntity == null)
         {
             userEntity = new UserEntity();
 

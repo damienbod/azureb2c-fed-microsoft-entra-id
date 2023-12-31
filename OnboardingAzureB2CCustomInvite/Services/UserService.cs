@@ -68,12 +68,12 @@ public class UserService
         var user = await _userContext.Users.FirstOrDefaultAsync(
             u => u.OnboardingRegistrationCode == onboardingRegistrationCode);
 
-        if(user  == null)
+        if (user == null)
             return 0;
 
         user.AzureOid = oid;
 
-        if(email != null)
+        if (email != null)
             user.Email = email;
 
         user.IsActive = isActive;
@@ -94,7 +94,7 @@ public class UserService
         var user = await _userContext.Users.FirstOrDefaultAsync(
              u => u.AzureOid == userEntity.AzureOid);
 
-        if(user == null)
+        if (user == null)
         {
             await _userContext.AddAsync(userEntity);
         }

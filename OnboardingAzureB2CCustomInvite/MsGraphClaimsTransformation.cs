@@ -21,7 +21,7 @@ public class MsGraphClaimsTransformation
             var objectidentifierClaimType = "http://schemas.microsoft.com/identity/claims/objectidentifier";
             var objectIdentifier = principal.Claims.FirstOrDefault(t => t.Type == objectidentifierClaimType);
 
-            if(objectIdentifier != null)
+            if (objectIdentifier != null)
             {
                 var groupIds = await _msGraphService.GetGraphApiUserMemberGroups(objectIdentifier.Value);
 
@@ -29,7 +29,7 @@ public class MsGraphClaimsTransformation
                 {
                     claimsIdentity.AddClaim(new Claim(groupClaimType, groupId));
                 }
-            } 
+            }
         }
 
         principal.AddIdentity(claimsIdentity);
