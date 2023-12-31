@@ -1,5 +1,7 @@
 ﻿using Azure.Identity;
 using Microsoft.Graph;
+using Microsoft.Graph.Models;
+using Microsoft.Graph.Users.Item.GetMemberGroups;
 
 namespace OnboardingAzureB2CCustomInvite.Services;
 
@@ -28,20 +30,22 @@ public class MsGraphService
         _graphServiceClient = new GraphServiceClient(clientSecretCredential, scopes);
     }
 
-    public async Task<IUserAppRoleAssignmentsCollectionPage> GetGraphApiUserAppRoles(string userId)
+    public async Task<AppRoleAssignmentCollectionResponse?> GetGraphApiUserAppRoles(string userId)
     {
         return await _graphServiceClient.Users[userId]
             .AppRoleAssignments
-            .Request()
             .GetAsync();
     }
 
-    public async Task<IDirectoryObjectGetMemberGroupsCollectionPage> GetGraphApiUserMemberGroups(string userId)
+    public async Task<GetMemberGroupsPostResponse?> GetGraphApiUserMemberGroups(string userId)
     {
-        var securityEnabledOnly = true;
+        var requestBody = new GetMemberGroupsPostRequestBody
+        {
+            SecurityEnabledOnly = true,
+        };
 
         return await _graphServiceClient.Users[userId]
-            .GetMemberGroups(securityEnabledOnly)
-            .Request().PostAsync();
+            .GetMemberGroups
+            .PostAsGetMemberGroupsPostResponseAsync(requestBody);
     }
 }

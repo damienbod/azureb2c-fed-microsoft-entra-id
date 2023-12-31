@@ -1,5 +1,7 @@
 ﻿using Azure.Identity;
 using Microsoft.Graph;
+using Microsoft.Graph.Models;
+using Microsoft.Graph.Users.Item.SendMail;
 
 namespace OnboardingAzureB2CCustomInvite.Services;
 
@@ -33,25 +35,38 @@ public class MsGraphEmailService
     private async Task<string> GetUserIdAsync()
     {
         var meetingOrganizer = _configuration["AzureAdEmailService:EmailSender"];
+
         var filter = $"startswith(userPrincipalName,'{meetingOrganizer}')";
 
-        var users = await _graphServiceClient.Users
-            .Request()
-            .Filter(filter)
-            .GetAsync();
+        var users = await _graphServiceClient.Users.GetAsync((requestConfiguration) =>
+        {
+            requestConfiguration.QueryParameters.Filter = filter;
+        });
 
-        return users.CurrentPage[0].Id;
+        var userId = users!.Value!.FirstOrDefault()!.Id;
+
+        if (string.IsNullOrEmpty(userId))
+        {
+            return string.Empty;
+        }
+
+        return userId;
     }
 
     public async Task SendEmailAsync(Message message)
     {
         var saveToSentItems = true;
-
         var userId = await GetUserIdAsync();
 
+        var body = new SendMailPostRequestBody
+        {
+            Message = message,
+            SaveToSentItems = saveToSentItems
+        };
+
         await _graphServiceClient.Users[userId]
-            .SendMail(message, saveToSentItems)
-            .Request()
-            .PostAsync();
+            .SendMail
+            .PostAsync(body);
     }
+
 }

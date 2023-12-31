@@ -4,7 +4,7 @@
 
 ## Blogs
 
-[Securing ASP.NET Core Razor, Web APIs with Azure B2C external and Azure AD internal identities](https://damienbod.com/2021/07/26/securing-asp-net-core-razor-pages-web-apis-with-azure-b2c-external-and-azure-ad-internal-identities/)
+[Securing ASP.NET Core Razor, Web APIs with Azure B2C external and Microsoft Entra ID internal identities](https://damienbod.com/2021/07/26/securing-asp-net-core-razor-pages-web-apis-with-azure-b2c-external-and-azure-ad-internal-identities/)
 
 [Using Azure security groups in ASP.NET Core with an Azure B2C Identity Provider](https://damienbod.com/2021/09/06/using-azure-security-groups-in-asp-net-core-with-an-azure-b2c-identity-provider/)
 
@@ -22,6 +22,7 @@
 
 ## History
 
+- 2023-12-31 Graph SDK 5
 - 2023-12-31 .NET 8
 - 2023-08-13 Update packages, improved startup
 - 2022-05-15 Update packages
@@ -33,7 +34,7 @@
 - 2022-02-11 Updated packages and namespaces
 - 2022-02-08 Updated packages
 - 2022-01-18 Update to .NET 6, updated packages
-- 2021-09-05 Added Graph API and support for Azure groups authorization
+- 2021-09-05 Added Graph API and support for Microsoft Entra ID groups authorization
 - 2021-08-19 Updated packages
 
 # Links

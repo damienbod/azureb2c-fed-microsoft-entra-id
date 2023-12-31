@@ -1,9 +1,12 @@
 ﻿using Azure.Identity;
 using Microsoft.Graph;
+using Microsoft.Graph.Models;
+using Microsoft.Graph.Users.Item.GetMemberGroups;
 using RegisterUsersAzureB2CMsGraph.CreateUser;
 using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text.Encodings.Web;
+
 
 namespace RegisterUsersAzureB2CMsGraph.Services;
 
@@ -37,28 +40,29 @@ public class MsGraphService
         _graphServiceClient = new GraphServiceClient(clientSecretCredential, scopes);
     }
 
-    public async Task<User> GetGraphApiUser(string userId)
+    public async Task<User?> GetGraphApiUser(string userId)
     {
         return await _graphServiceClient.Users[userId]
-            .Request()
             .GetAsync();
     }
 
-    public async Task<IUserAppRoleAssignmentsCollectionPage> GetGraphApiUserAppRoles(string userId)
+    public async Task<AppRoleAssignmentCollectionResponse?> GetGraphApiUserAppRoles(string userId)
     {
         return await _graphServiceClient.Users[userId]
             .AppRoleAssignments
-            .Request()
             .GetAsync();
     }
 
-    public async Task<IDirectoryObjectGetMemberGroupsCollectionPage> GetGraphApiUserMemberGroups(string userId)
+    public async Task<GetMemberGroupsPostResponse?> GetGraphApiUserMemberGroups(string userId)
     {
-        var securityEnabledOnly = true;
+        var requestBody = new GetMemberGroupsPostRequestBody
+        {
+            SecurityEnabledOnly = true,
+        };
 
         return await _graphServiceClient.Users[userId]
-            .GetMemberGroups(securityEnabledOnly)
-            .Request().PostAsync();
+            .GetMemberGroups
+            .PostAsGetMemberGroupsPostResponseAsync(requestBody);
     }
 
     public async Task<(string Upn, string Password, string Id)> CreateAzureB2CSameDomainUserAsync(UserModelB2CTenant userModel)
@@ -86,8 +90,7 @@ public class MsGraphService
         };
 
         await _graphServiceClient.Users
-            .Request()
-            .AddAsync(user);
+            .PostAsync(user);
 
         // Needs an SPO license
         //var patchValues = new User()
@@ -98,7 +101,7 @@ public class MsGraphService
         //var request = _graphServiceClient.Users[createdUser.Id].Request();
         //await request.UpdateAsync(patchValues);
 
-        return (user.UserPrincipalName, user.PasswordProfile.Password, user.Id);
+        return (user.UserPrincipalName!, user.PasswordProfile.Password, user.Id!);
     }
 
     public async Task<(string Upn, string Password, string Id)> CreateFederatedUserWithPasswordAsync(UserModelB2CIdentity userModel)
@@ -130,13 +133,14 @@ public class MsGraphService
         };
 
         var createdUser = await _graphServiceClient.Users
-            .Request()
-            .AddAsync(user);
+            .PostAsync(user);
 
-        return (createdUser.UserPrincipalName, user.PasswordProfile.Password, createdUser.Id);
+        if (createdUser == null) throw new ArgumentNullException("createdUser");
+
+        return (createdUser.UserPrincipalName!, user.PasswordProfile.Password, createdUser.Id!);
     }
 
-    public async Task<string> CreateFederatedNoPasswordAsync(UserModelB2CIdentity userModel)
+    public async Task<string?> CreateFederatedNoPasswordAsync(UserModelB2CIdentity userModel)
     {
         // User must already exist in AAD
         var user = new User
@@ -158,8 +162,7 @@ public class MsGraphService
         };
 
         var createdUser = await _graphServiceClient.Users
-            .Request()
-            .AddAsync(user);
+            .PostAsync(user);
 
         return createdUser.UserPrincipalName;
     }
@@ -170,7 +173,7 @@ public class MsGraphService
     /// <param name="email"></param>
     /// <param name="redirectUrl"></param>
     /// <returns></returns>
-    public async Task<Invitation> InviteUser(string email, string redirectUrl)
+    public async Task<Invitation?> InviteUser(string email, string redirectUrl)
     {
         var invitation = new Invitation
         {
@@ -180,8 +183,7 @@ public class MsGraphService
         };
 
         var invite = await _graphServiceClient.Invitations
-            .Request()
-            .AddAsync(invitation);
+            .PostAsync(invitation);
 
         return invite;
     }
