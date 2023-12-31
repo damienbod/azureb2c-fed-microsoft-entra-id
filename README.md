@@ -22,29 +22,19 @@
 
 ## History
 
-2023-08-13 Update packages, improved startup
-
-2022-05-15 Update packages
-
-2022-05-07 Update client to support multiple user flows.
-
-2022-04-18 Azure B2C Angular UI client with API
-
-2022-03-24 Azure B2C user onborading added, switched to nullable
-
-2022-03-11 Add Microsoft Graph create examples
-
-2022-02-19 Register Azure B2C users using Microsoft Graph
-
-2022-02-11 Updated packages and namespaces
-
-2022-02-08 Updated packages
-
-2022-01-18 Update to .NET 6, updated packages
-
-2021-09-05 Added Graph API and support for Azure groups authorization
-
-2021-08-19 Updated packages
+- 2023-12-31 .NET 8
+- 2023-08-13 Update packages, improved startup
+- 2022-05-15 Update packages
+- 2022-05-07 Update client to support multiple user flows.
+- 2022-04-18 Azure B2C Angular UI client with API
+- 2022-03-24 Azure B2C user onborading added, switched to nullable
+- 2022-03-11 Add Microsoft Graph create examples
+- 2022-02-19 Register Azure B2C users using Microsoft Graph
+- 2022-02-11 Updated packages and namespaces
+- 2022-02-08 Updated packages
+- 2022-01-18 Update to .NET 6, updated packages
+- 2021-09-05 Added Graph API and support for Azure groups authorization
+- 2021-08-19 Updated packages
 
 # Links
 
