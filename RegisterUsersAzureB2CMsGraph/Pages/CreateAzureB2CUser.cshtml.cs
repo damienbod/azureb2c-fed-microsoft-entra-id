@@ -15,7 +15,7 @@ public class CreateAzureB2CUserModel : PageModel
         IConfiguration configuration)
     {
         _msGraphService = msGraphService;
-        AadB2CIssuerDomain = configuration.GetValue<string>("AzureAdB2C:Domain");
+        AadB2CIssuerDomain = configuration.GetValue<string>("AzureAdB2C:Domain")!;
     }
 
     [BindProperty]

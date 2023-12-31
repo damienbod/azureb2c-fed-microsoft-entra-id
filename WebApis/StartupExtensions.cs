@@ -94,13 +94,11 @@ internal static class StartupExtensions
 
         services.AddSingleton<IAuthorizationHandler, IsAdminHandlerUsingIdp>();
 
-        services.AddAuthorization(options =>
-        {
-            options.AddPolicy("IsAdminRequirementPolicy", policyIsAdminRequirement =>
+        services.AddAuthorizationBuilder()
+            .AddPolicy("IsAdminRequirementPolicy", policyIsAdminRequirement =>
             {
                 policyIsAdminRequirement.Requirements.Add(new IsAdminRequirement());
             });
-        });
 
         return builder.Build();
     }

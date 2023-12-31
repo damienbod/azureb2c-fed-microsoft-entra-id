@@ -6,10 +6,8 @@ public class IsAdminHandlerUsingIdp : AuthorizationHandler<IsAdminRequirement>
 {
     protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, IsAdminRequirement requirement)
     {
-        if (context == null)
-            throw new ArgumentNullException(nameof(context));
-        if (requirement == null)
-            throw new ArgumentNullException(nameof(requirement));
+        ArgumentNullException.ThrowIfNull(context);
+        ArgumentNullException.ThrowIfNull(requirement);
 
         var claimIdentityprovider = context.User.Claims.FirstOrDefault(t => t.Type == "idp");
 
