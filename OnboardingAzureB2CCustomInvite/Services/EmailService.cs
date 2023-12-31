@@ -4,7 +4,7 @@ namespace OnboardingAzureB2CCustomInvite.Services;
 
 public class EmailService
 {
-    readonly MessageAttachmentsCollectionPage MessageAttachmentsCollectionPage = new();
+    List<Microsoft.Graph.Models.Attachment> Attachments = new();
 
     public Message CreateStandardEmail(string recipient, string header, string body)
     {
@@ -26,7 +26,7 @@ public class EmailService
                     }
                 }
             },
-            Attachments = MessageAttachmentsCollectionPage
+            Attachments = Attachments
         };
 
         return message;
@@ -52,7 +52,7 @@ public class EmailService
                     }
                 }
             },
-            Attachments = MessageAttachmentsCollectionPage
+            Attachments = Attachments
         };
 
         return message;
@@ -60,7 +60,7 @@ public class EmailService
 
     public void AddAttachment(byte[] rawData, string filePath)
     {
-        MessageAttachmentsCollectionPage.Add(new FileAttachment
+        Attachments.Add(new FileAttachment
         {
             Name = Path.GetFileName(filePath),
             ContentBytes = EncodeTobase64Bytes(rawData)
@@ -69,7 +69,7 @@ public class EmailService
 
     public void ClearAttachments()
     {
-        MessageAttachmentsCollectionPage.Clear();
+        Attachments.Clear();
     }
 
     static public byte[] EncodeTobase64Bytes(byte[] rawData)
