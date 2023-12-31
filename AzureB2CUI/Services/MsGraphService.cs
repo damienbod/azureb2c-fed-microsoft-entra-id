@@ -1,6 +1,7 @@
 ﻿using Azure.Identity;
-using Microsoft.Graph;
+using Microsoft.Graph.Users.Item.GetMemberGroups;
 using Microsoft.Graph.Models;
+using Microsoft.Graph;
 
 namespace AzureB2CUI.Services;
 
@@ -42,12 +43,15 @@ public class MsGraphService
                 .GetAsync();
     }
 
-    public async Task<IDirectoryObjectGetMemberGroupsCollectionPage> GetGraphApiUserMemberGroups(string userId)
+    public async Task<GetMemberGroupsPostResponse?> GetGraphApiUserMemberGroups(string userId)
     {
-        var securityEnabledOnly = true;
+        var requestBody = new GetMemberGroupsPostRequestBody
+        {
+            SecurityEnabledOnly = true,
+        };
 
         return await _graphServiceClient.Users[userId]
-            .GetMemberGroups(securityEnabledOnly)
-            .PostAsync();
+            .GetMemberGroups
+            .PostAsGetMemberGroupsPostResponseAsync(requestBody);
     }
 }
