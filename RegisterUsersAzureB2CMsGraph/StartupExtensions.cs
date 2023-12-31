@@ -10,7 +10,7 @@ using Microsoft.IdentityModel.Logging;
 
 namespace RegisterUsersAzureB2CMsGraph;
 
-internal static class HostingExtensions
+internal static class StartupExtensions
 {
     private static IWebHostEnvironment? _env;
     private static IServiceProvider? _applicationServices;

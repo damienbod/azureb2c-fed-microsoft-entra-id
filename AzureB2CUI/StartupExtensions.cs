@@ -10,7 +10,7 @@ using Serilog;
 
 namespace AzureB2CUI;
 
-internal static class HostingExtensions
+internal static class StartupExtensions
 {
     private static IWebHostEnvironment? _env;
     private static IServiceProvider? _applicationServices;

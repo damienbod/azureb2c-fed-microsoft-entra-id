@@ -10,7 +10,7 @@ using WebApis.Authz;
 
 namespace WebApis;
 
-internal static class HostingExtensions
+internal static class StartupExtensions
 {
     private static IWebHostEnvironment? _env;
     public static WebApplication ConfigureServices(this WebApplicationBuilder builder)

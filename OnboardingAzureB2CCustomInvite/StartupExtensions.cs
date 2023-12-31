@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace OnboardingAzureB2CCustomInvite;
 
-internal static class HostingExtensions
+internal static class StartupExtensions
 {
     private static IWebHostEnvironment? _env;
     private static IServiceProvider? _applicationServices;
