@@ -1,11 +1,11 @@
 ﻿using Azure.Identity;
 using Microsoft.Graph;
 using Microsoft.Graph.Models;
+using Microsoft.Graph.Users.Item.GetMemberGroups;
 using RegisterUsersAzureB2CMsGraph.CreateUser;
 using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text.Encodings.Web;
-using Microsoft.Graph.Users.Item.GetMemberGroups;
 
 
 namespace RegisterUsersAzureB2CMsGraph.Services;
