@@ -45,7 +45,7 @@ public class CreateAzureB2CUserModel : PageModel
             return Page();
         }
 
-        if (!UserModel.UserPrincipalName.ToLower().EndsWith(AadB2CIssuerDomain.ToLower()))
+        if (!UserModel.UserPrincipalName.ToLower().EndsWith(AadB2CIssuerDomain!.ToLower()))
         {
             ModelState.AddModelError("UserPrincipalName", "UserPrincipalName domain is invalid");
             return Page();
