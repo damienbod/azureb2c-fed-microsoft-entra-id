@@ -177,6 +177,7 @@ public class MsGraphService
         var invitation = new Invitation
         {
             InvitedUserEmailAddress = email,
+            //SendInvitationMessage = true,
             InviteRedirectUrl = redirectUrl,
             InvitedUserType = "Member" // default is guest
         };

@@ -28,7 +28,7 @@ public class InviteUserModel : PageModel
     public string? InviteRedeemUrl { get; set; }
 
     [BindProperty]
-    public string AadB2CIssuerDomain { get; set; }
+    public string? AadB2CIssuerDomain { get; set; }
 
     public IActionResult OnGet()
     {
@@ -51,7 +51,7 @@ public class InviteUserModel : PageModel
         var invite = await _msGraphService.InviteUser(UserInvite.Email,
             "https://localhost:44397/profile");
 
-        InviteRedeemUrl = invite.InviteRedeemUrl;
+        InviteRedeemUrl = invite!.InviteRedeemUrl;
 
         return OnGet();
     }
