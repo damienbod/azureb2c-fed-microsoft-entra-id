@@ -103,7 +103,6 @@ public class MsGraphService
         return (user.UserPrincipalName!, user.PasswordProfile.Password, user.Id!);
     }
 
-    // TODO: not working afer Graph SDK 5 update
     public async Task<(string Upn, string Password, string Id)> CreateEmailAddressUserWithPasswordAsync(UserModelB2CEmail userModel)
     {
         // new user create, email does not matter unless you require to send mails
