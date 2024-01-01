@@ -7,7 +7,6 @@ using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text.Encodings.Web;
 
-
 namespace RegisterUsersAzureB2CMsGraph.Services;
 
 public class MsGraphService
