@@ -4,6 +4,12 @@ namespace RegisterUsersAzureB2CMsGraph.CreateUser;
 
 public class UserModelB2CIdentity
 {
+    /// <summary>
+    /// ID from federated identity source
+    /// </summary>
+    [Required]
+    public string Oid { get; set; } = string.Empty;
+
     [Required]
     public string DisplayName { get; set; } = string.Empty;
 

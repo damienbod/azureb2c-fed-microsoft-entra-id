@@ -14,6 +14,7 @@ public class MsGraphService
     private readonly GraphServiceClient _graphServiceClient;
     private readonly string? _aadIssuerDomain;
     private readonly string? _aadB2CIssuerDomain;
+    private readonly string? _microsoftEntraIdFederated;
 
     public MsGraphService(IConfiguration configuration)
     {
@@ -26,6 +27,7 @@ public class MsGraphService
 
         _aadIssuerDomain = configuration.GetValue<string>("AadIssuerDomain");
         _aadB2CIssuerDomain = configuration.GetValue<string>("AzureAdB2C:Domain");
+        _microsoftEntraIdFederated = configuration.GetValue<string>("MicrosoftEntraIdFederated");
 
         var options = new TokenCredentialOptions
         {
@@ -140,32 +142,35 @@ public class MsGraphService
         return (createdUser.UserPrincipalName!, user.PasswordProfile.Password, createdUser.Id!);
     }
 
-    // TODO: not working afer Graph SDK 5 update
+
+    /// <summary>
+    /// OID from the src federated identity required
+    /// </summary>
+    /// <param name="userModel"></param>
     public async Task<string?> CreateFederatedNoPasswordAsync(UserModelB2CIdentity userModel)
     {
-        // User must already exist in AAD
         var user = new User
         {
             DisplayName = userModel.DisplayName,
             PreferredLanguage = userModel.PreferredLanguage,
             Surname = userModel.Surname,
             GivenName = userModel.GivenName,
-            OtherMails = new List<string> { userModel.Email },
-            Identities = new List<ObjectIdentity>()
-            {
+            OtherMails = [userModel.Email],
+            Identities =
+            [
                 new ObjectIdentity
                 {
                     SignInType = "federated",
-                    Issuer = _aadIssuerDomain,
-                    IssuerAssignedId = userModel.Email
+                    Issuer = _microsoftEntraIdFederated,
+                    IssuerAssignedId = userModel.Oid // OID
                 },
-            }
+            ]
         };
 
         var createdUser = await _graphServiceClient.Users
             .PostAsync(user);
 
-        return createdUser.UserPrincipalName;
+        return createdUser!.UserPrincipalName;
     }
 
     /// <summary>
