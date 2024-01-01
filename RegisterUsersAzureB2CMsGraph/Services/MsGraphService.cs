@@ -12,7 +12,6 @@ namespace RegisterUsersAzureB2CMsGraph.Services;
 public class MsGraphService
 {
     private readonly GraphServiceClient _graphServiceClient;
-    private readonly string? _aadIssuerDomain;
     private readonly string? _aadB2CIssuerDomain;
     private readonly string? _microsoftEntraIdFederated;
 
@@ -25,7 +24,6 @@ public class MsGraphService
         var clientId = configuration.GetValue<string>("GraphApi:ClientId");
         var clientSecret = configuration.GetValue<string>("GraphApi:ClientSecret");
 
-        _aadIssuerDomain = configuration.GetValue<string>("AadIssuerDomain");
         _aadB2CIssuerDomain = configuration.GetValue<string>("AzureAdB2C:Domain");
         _microsoftEntraIdFederated = configuration.GetValue<string>("MicrosoftEntraIdFederated");
 
