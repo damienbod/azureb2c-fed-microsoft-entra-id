@@ -22,7 +22,7 @@ public class CreateB2CFederatedWithPasswordUserModel : PageModel
     }
 
     [BindProperty]
-    public UserModelB2CIdentity UserModel { get; set; } = new UserModelB2CIdentity();
+    public UserModelB2CEmail UserModel { get; set; } = new UserModelB2CEmail();
 
     [BindProperty]
     public string? UserPassword { get; set; }
@@ -40,7 +40,7 @@ public class CreateB2CFederatedWithPasswordUserModel : PageModel
             return Page();
         }
 
-        var (_, Password, _) = await _msGraphService.CreateFederatedUserWithPasswordAsync(UserModel);
+        var (_, Password, _) = await _msGraphService.CreateEmailAddressUserWithPasswordAsync(UserModel);
 
         UserPassword = Password;
         return OnGet();

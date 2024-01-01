@@ -104,7 +104,7 @@ public class MsGraphService
     }
 
     // TODO: not working afer Graph SDK 5 update
-    public async Task<(string Upn, string Password, string Id)> CreateFederatedUserWithPasswordAsync(UserModelB2CIdentity userModel)
+    public async Task<(string Upn, string Password, string Id)> CreateEmailAddressUserWithPasswordAsync(UserModelB2CEmail userModel)
     {
         // new user create, email does not matter unless you require to send mails
         var password = GetEncodedRandomString();
@@ -114,16 +114,16 @@ public class MsGraphService
             PreferredLanguage = userModel.PreferredLanguage,
             Surname = userModel.Surname,
             GivenName = userModel.GivenName,
-            OtherMails = new List<string> { userModel.Email },
-            Identities = new List<ObjectIdentity>()
-            {
+            OtherMails = [userModel.Email],
+            Identities =
+            [
                 new ObjectIdentity
                 {
-                    SignInType = "federated",
+                    SignInType = "emailAddress",
                     Issuer = _aadB2CIssuerDomain,
                     IssuerAssignedId = userModel.Email
                 },
-            },
+            ],
             PasswordProfile = new PasswordProfile
             {
                 Password = password,
