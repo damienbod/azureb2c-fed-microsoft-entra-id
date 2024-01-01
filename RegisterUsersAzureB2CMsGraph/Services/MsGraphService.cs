@@ -81,6 +81,15 @@ public class MsGraphService
             GivenName = userModel.GivenName,
             PreferredLanguage = userModel.PreferredLanguage,
             MailNickname = userModel.DisplayName,
+            Identities =
+            [
+                new ObjectIdentity
+                {
+                    SignInType = "emailAddress",
+                    Issuer = _aadB2CIssuerDomain,
+                    IssuerAssignedId = userModel.UserPrincipalName
+                },
+            ],
             PasswordProfile = new PasswordProfile
             {
                 ForceChangePasswordNextSignIn = true,
