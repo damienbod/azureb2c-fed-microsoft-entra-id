@@ -103,6 +103,7 @@ public class MsGraphService
         return (user.UserPrincipalName!, user.PasswordProfile.Password, user.Id!);
     }
 
+    // TODO: not working afer Graph SDK 5 update
     public async Task<(string Upn, string Password, string Id)> CreateFederatedUserWithPasswordAsync(UserModelB2CIdentity userModel)
     {
         // new user create, email does not matter unless you require to send mails
@@ -139,6 +140,7 @@ public class MsGraphService
         return (createdUser.UserPrincipalName!, user.PasswordProfile.Password, createdUser.Id!);
     }
 
+    // TODO: not working afer Graph SDK 5 update
     public async Task<string?> CreateFederatedNoPasswordAsync(UserModelB2CIdentity userModel)
     {
         // User must already exist in AAD
@@ -169,9 +171,6 @@ public class MsGraphService
     /// <summary>
     /// Graph invitations only works for Azure AD, not Azure B2C
     /// </summary>
-    /// <param name="email"></param>
-    /// <param name="redirectUrl"></param>
-    /// <returns></returns>
     public async Task<Invitation?> InviteUser(string email, string redirectUrl)
     {
         var invitation = new Invitation
