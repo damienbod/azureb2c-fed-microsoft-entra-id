@@ -14,6 +14,7 @@ internal static class StartupExtensions
 {
     private static IWebHostEnvironment? _env;
     private static IServiceProvider? _applicationServices;
+
     public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
     {
         var services = builder.Services;
