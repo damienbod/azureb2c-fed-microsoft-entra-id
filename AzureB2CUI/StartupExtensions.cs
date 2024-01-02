@@ -12,14 +12,12 @@ namespace AzureB2CUI;
 
 internal static class StartupExtensions
 {
-    private static IWebHostEnvironment? _env;
     private static IServiceProvider? _applicationServices;
 
     public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
     {
         var services = builder.Services;
         var configuration = builder.Configuration;
-        _env = builder.Environment;
 
         services.AddTransient<AdminApiService>();
         services.AddTransient<UserApiService>();
@@ -79,7 +77,7 @@ internal static class StartupExtensions
 
         app.UseSerilogRequestLogging();
 
-        if (_env!.IsDevelopment())
+        if (app.Environment.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
         }

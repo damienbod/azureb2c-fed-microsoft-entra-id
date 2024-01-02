@@ -13,6 +13,7 @@ namespace RegisterUsersAzureB2CMsGraph;
 internal static class StartupExtensions
 {
     private static IServiceProvider? _applicationServices;
+
     public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
     {
         var services = builder.Services;
