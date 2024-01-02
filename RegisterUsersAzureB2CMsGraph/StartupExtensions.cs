@@ -12,13 +12,11 @@ namespace RegisterUsersAzureB2CMsGraph;
 
 internal static class StartupExtensions
 {
-    private static IWebHostEnvironment? _env;
     private static IServiceProvider? _applicationServices;
     public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
     {
         var services = builder.Services;
         var configuration = builder.Configuration;
-        _env = builder.Environment;
 
         services.AddScoped<MsGraphService>();
         services.AddScoped<MsGraphClaimsTransformation>();
@@ -72,7 +70,7 @@ internal static class StartupExtensions
         _applicationServices = app.Services;
         app.UseSerilogRequestLogging();
 
-        if (_env!.IsDevelopment())
+        if (app.Environment.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
         }
