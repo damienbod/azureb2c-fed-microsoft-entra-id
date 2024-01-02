@@ -68,5 +68,4 @@ public class MsGraphEmailService
             .SendMail
             .PostAsync(body);
     }
-
 }
