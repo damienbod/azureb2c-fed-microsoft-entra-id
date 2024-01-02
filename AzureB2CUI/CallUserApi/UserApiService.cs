@@ -1,6 +1,6 @@
 ﻿using Microsoft.Identity.Web;
-using Newtonsoft.Json.Linq;
 using System.Net.Http.Headers;
+using System.Text.Json;
 
 namespace AzureB2CUI;
 
@@ -19,7 +19,7 @@ public class UserApiService
         _configuration = configuration;
     }
 
-    public async Task<JArray> GetApiDataAsync()
+    public async Task<List<string>?> GetApiDataAsync()
     {
         var client = _clientFactory.CreateClient();
 
@@ -33,8 +33,8 @@ public class UserApiService
         var response = await client.GetAsync("useraccess");
         if (response.IsSuccessStatusCode)
         {
-            var responseContent = await response.Content.ReadAsStringAsync();
-            var data = JArray.Parse(responseContent);
+            var data = await JsonSerializer.DeserializeAsync<List<string>>(
+                await response.Content.ReadAsStreamAsync());
 
             return data;
         }

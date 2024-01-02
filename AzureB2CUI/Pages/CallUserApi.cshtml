@@ -8,5 +8,12 @@
 <h1>Call User API</h1>
 <h6>gets the user data from the Azure B2C protected Web API</h6>
 
-<pre>@Model.DataFromApi</pre>
+<br />
+
+<ul>
+@foreach (string item in Model.DataFromApi)
+{
+    <li>@item</li>
+}
+<ul>
 
