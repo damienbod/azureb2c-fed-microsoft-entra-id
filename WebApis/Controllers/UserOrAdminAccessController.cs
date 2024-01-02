@@ -13,9 +13,9 @@ public class UserOrAdminAccessController : ControllerBase
     public List<string> Get()
     {
         // could be from either API token
-        string[] scopeRequiredByApi = new string[] { "access_as_user" };
+        string[] scopeRequiredByApi = ["access_as_user"];
         HttpContext.VerifyUserHasAnyAcceptedScope(scopeRequiredByApi);
 
-        return new List<string> { "data for users and admins data" };
+        return ["data for users and admins data"];
     }
 }

@@ -6,7 +6,7 @@ using Microsoft.Identity.Web.Resource;
 namespace WebApis.Controllers;
 
 [Authorize(AuthenticationSchemes = "BearerAngularApi")]
-[AuthorizeForScopes(Scopes = new string[] { "api://ac9b845d-96d3-4410-9923-50ec7bc80db9/access_as_user" })]
+[AuthorizeForScopes(Scopes = ["api://ac9b845d-96d3-4410-9923-50ec7bc80db9/access_as_user"])]
 [ApiController]
 [Route("[controller]")]
 public class AngularAccessController : ControllerBase
@@ -14,9 +14,9 @@ public class AngularAccessController : ControllerBase
     [HttpGet]
     public List<string> Get()
     {
-        string[] scopeRequiredByApi = new string[] { "access_as_user" };
+        string[] scopeRequiredByApi = ["access_as_user"];
         HttpContext.VerifyUserHasAnyAcceptedScope(scopeRequiredByApi);
 
-        return new List<string> { "data for Angular public client PKCE" };
+        return ["data for Angular public client PKCE"];
     }
 }
